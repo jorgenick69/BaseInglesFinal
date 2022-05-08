@@ -156,7 +156,7 @@ return er.findById(id).orElse(null);
                 contador=contador + 1;
             }
         }
-        examen.setResultado(contador);
+        examen.setR_Correctas(contador);
         return examen;
     }
     

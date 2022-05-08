@@ -5,8 +5,11 @@
 package BaseInglesFinal.demo.controller;
 
 import BaseInglesFinal.demo.Excel.IngresanteExcelImporter;
+import BaseInglesFinal.demo.entity.Examen;
 import BaseInglesFinal.demo.entity.Ingresante;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
+import BaseInglesFinal.demo.service.ExamenService;
+import BaseInglesFinal.demo.service.IngresanteService;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,10 @@ public class HomeController {
 
     @Autowired
     private IngresanteRepository ir;
+    @Autowired
+    private IngresanteService is;
+    @Autowired
+    private ExamenService es;
 
     @GetMapping({"", "/index", "/home", "/"})
     public String home() {
@@ -49,6 +56,10 @@ public class HomeController {
         IngresanteExcelImporter excelImporter = new IngresanteExcelImporter();
         List<Ingresante> lista = excelImporter.excelImport(file);
         System.out.println("El tamaño de la lista es!!!!!!!!!!! " + lista.size());
+        for (Ingresante in : lista) {
+            Examen ex= new Examen();
+            in.setExamen(es.save(ex));
+        }
         ir.saveAll(lista);
         return "ImportSuccesfuly";
     }

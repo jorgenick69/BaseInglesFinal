@@ -19,5 +19,6 @@ public interface IngresanteService {
     public void deleteIngresante(Ingresante ingresante);
     public Ingresante findIngresante(Ingresante ingresante); 
     public Ingresante findIngresanteById(Long id); 
-
+    public Ingresante findIngresanteByDoc(String numDoc); 
+    
 }

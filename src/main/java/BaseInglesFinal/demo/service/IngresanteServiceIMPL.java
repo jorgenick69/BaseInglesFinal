@@ -82,4 +82,9 @@ public class IngresanteServiceIMPL implements IngresanteService {
         return ir.findById(id).orElse(null);
     }
 
+    @Override
+    public Ingresante findIngresanteByDoc(String numDoc) {
+    return ir.findByNumDoc(numDoc);
+    }
+
 }
