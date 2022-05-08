@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    
+</head>
+
+<body>
+    <span class="days"></span>
+<span class="hours"></span>
+<span class="minutes"></span>
+<span class="seconds"></span>
+    <h1>bienvenido al examen de ingreso</h1>
+    <form th:action="@{/examen/save}" method="post" id="myForm" th:object="${examen}">
+        <label for="nombre">nombre</label>
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}">
+        <label for="dni">dni</label>
+        <input type="number" name="dni" id="dni" th:field="*{dni}">
+        <div>
+            <b>1)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p1" id="p1" th:value="a" th:field="*{p1}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p1" id="p1" th:value="b" th:field="*{p1}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p1" id="p1" th:value="c" th:field="*{p1}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p1" id="p1" th:value="d" th:field="*{p1}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>2)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p2" id="p2" th:value="a" th:field="*{p2}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p2" id="p2" th:value="b" th:field="*{p2}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p2" id="p2" th:value="c" th:field="*{p2}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p2" id="p2" th:value="d" th:field="*{p2}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>3)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p3" id="p3" th:value="a" th:field="*{p3}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p3" id="p3" th:value="b" th:field="*{p3}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p3" id="p3" th:value="c" th:field="*{p3}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p3" id="p3" th:value="d" th:field="*{p3}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>4)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p4" id="p4" th:value="a" th:field="*{p4}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p4" id="p4" th:value="b" th:field="*{p4}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p4" id="p1" th:value="c" th:field="*{p4}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p4" id="p4" th:value="d" th:field="*{p4}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>5)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p5" id="p5" th:value="a" th:field="*{p5}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p5" id="p5" th:value="b" th:field="*{p5}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p5" id="p5" th:value="c" th:field="*{p5}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p5" id="p5" th:value="d" th:field="*{p5}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>6)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p6" id="p6" th:value="a" th:field="*{p6}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p6" id="p6" th:value="b" th:field="*{p6}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p6" id="p6" th:value="c" th:field="*{p6}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p6" id="p6" th:value="d" th:field="*{p6}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>7)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p7" id="p7" th:value="a" th:field="*{p7}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p7" id="p7" th:value="b" th:field="*{p7}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p7" id="p7" th:value="c" th:field="*{p7}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p7" id="p7" th:value="d" th:field="*{p7}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>8)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p8" id="p8" th:value="a" th:field="*{p8}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p8" id="p8" th:value="b" th:field="*{p8}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p8" id="p8" th:value="c" th:field="*{p8}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p8" id="p8" th:value="d" th:field="*{p8}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>9)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p9" id="p9" th:value="a" th:field="*{p9}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p9" id="p9" th:value="b" th:field="*{p9}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p9" id="p9" th:value="c" th:field="*{p9}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p9" id="p9" th:value="d" th:field="*{p9}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>10)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p10" id="p10" th:value="a" th:field="*{p10}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p10" id="p10" th:value="b" th:field="*{p10}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p10" id="p10" th:value="c" th:field="*{p10}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p10" id="p10" th:value="d" th:field="*{p10}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>11)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p11" id="p11" th:value="a" th:field="*{p11}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p11" id="p11" th:value="b" th:field="*{p11}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p11" id="p11" th:value="c" th:field="*{p11}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p11" id="p11" th:value="d" th:field="*{p11}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>12)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p12" id="p12" th:value="a" th:field="*{p12}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p12" id="p12" th:value="b" th:field="*{p12}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p12" id="p12" th:value="c" th:field="*{p12}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p12" id="p12" th:value="d" th:field="*{p12}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>13)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p13" id="p13" th:value="a" th:field="*{p13}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p13" id="p13" th:value="b" th:field="*{p13}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p13" id="p13" th:value="c" th:field="*{p13}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p13" id="p13" th:value="d" th:field="*{p13}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>14)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p14" id="p14" th:value="a" th:field="*{p14}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p14" id="p14" th:value="b" th:field="*{p14}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p14" id="p14" th:value="c" th:field="*{p14}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p14" id="p14" th:value="d" th:field="*{p14}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>15)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p15" id="p15" th:value="a" th:field="*{p15}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p15" id="p15" th:value="b" th:field="*{p15}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p15" id="p15" th:value="c" th:field="*{p15}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p15" id="p15" th:value="d" th:field="*{p15}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>16)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p16" id="p16" th:value="a" th:field="*{p16}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p16" id="p16" th:value="b" th:field="*{p16}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p16" id="p16" th:value="c" th:field="*{p16}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p16" id="p16" th:value="d" th:field="*{p16}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>17)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p17" id="p17" th:value="a" th:field="*{p17}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p17" id="p17" th:value="b" th:field="*{p17}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p17" id="p17" th:value="c" th:field="*{p17}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p17" id="p17" th:value="d" th:field="*{p17}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>18)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p18" id="p18" th:value="a" th:field="*{p18}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p18" id="p18" th:value="b" th:field="*{p18}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p18" id="p18" th:value="c" th:field="*{p18}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p18" id="p18" th:value="d" th:field="*{p18}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>19)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p19" id="p19" th:value="a" th:field="*{p19}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p19" id="p19" th:value="b" th:field="*{p19}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p19" id="p19" th:value="c" th:field="*{p19}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p19" id="p19" th:value="d" th:field="*{p19}"><span>d- Good bye.</span><br>
+        </div>
+        <div>
+            <b>20)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p20" id="p20" th:value="a" th:field="*{p20}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p20" id="p20" th:value="b" th:field="*{p20}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p20" id="p20" th:value="c" th:field="*{p20}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p20" id="p20" th:value="d" th:field="*{p20}"><span>d- Good bye.</span><br>
+        </div>
+        <input type="submit" value="finalizar">
+    </form>
+    <script th:src="@{/js/temporizador.js}"></script>
+   
+    
+</body>
+
+</html>
