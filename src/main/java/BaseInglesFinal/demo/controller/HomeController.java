@@ -11,6 +11,7 @@ import BaseInglesFinal.demo.repository.IngresanteRepository;
 import BaseInglesFinal.demo.service.ExamenService;
 import BaseInglesFinal.demo.service.IngresanteService;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,7 @@ public class HomeController {
     @PostMapping("/import/excel")
     @ResponseBody
     public String ImportToMySql(@RequestParam("file") MultipartFile file) throws IOException {
+        Date ahora=new Date();
         IngresanteExcelImporter excelImporter = new IngresanteExcelImporter();
         List<Ingresante> lista = excelImporter.excelImport(file);
         System.out.println("El tamaño de la lista es!!!!!!!!!!! " + lista.size());
@@ -61,7 +63,7 @@ public class HomeController {
             in.setExamen(es.save(ex));
         }
         ir.saveAll(lista);
-        return "ImportSuccesfuly";
+        return "ImportSuccesfuly Inicio :"+ahora+ " Fin :" + new Date();
     }
 
     @GetMapping("/exportar")

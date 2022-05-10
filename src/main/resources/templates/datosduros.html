@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
+        
+        <input style="display: none;" type="number" name="id" id="id" th:field="*{id}">
+
+        <label for="nombre">nombre</label>
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}">
+
+        <label for="apellido">apellido</label>
+        <input type="text" name="apellido" id="apellido" th:field="*{apellido}">
+
+        <label for="tDoc">Tipo de documento</label>
+        <input type="text" name="tDoc" id="tDoc" th:field="*{tDoc}">
+
+        <label for="numDoc">numero de documento</label>
+        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}">
+        
+        <label for="mail">Mail</label>
+        <input type="email" name="mail" id="mail" th:field="*{mail}">
+
+        <label for="celu">Ingrese Telefono:</label>
+        <input type="number" name="celu" id="celu" th:field="*{celu}">
+       
+        <label for="fNacimiento">Fecha de nacimiento</label>
+        <input type="date" name="fNacimiento" id="fNacimiento" th:field="*{fNacimiento}">
+    
+
+        <label for="genero">Genero</label>
+        <input type="text" name="genero" id="genero" th:field="*{genero}">
+
+        <label for="pais">pais</label>
+        <input type="text" name="pais" id="pais" th:field="*{pais}">
+        
+        <label for="nacionalidad">nacionalidad</label>
+        <input type="text" name="nacionalidad" id="nacionalidad" th:field="*{nacionalidad}">
+
+        <label for="domicilio">domicilio</label>
+        <input type="text" name="domicilio" id="domicilio" th:field="*{domicilio}">
+
+        <label for="localidadResi">localidad</label>
+        <input type="text" name="localidadResi" id="localidadResi" th:field="*{localidadResi}">
+
+        <label for="provincia">provincia</label>
+        <input type="text" name="provincia" id="provincia" th:field="*{provincia}">
+        
+       
+
+    </form>
+</body>
+</html>
