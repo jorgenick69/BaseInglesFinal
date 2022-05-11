@@ -6,6 +6,7 @@ package BaseInglesFinal.demo.service;
 import BaseInglesFinal.demo.entity.Examen;
 import BaseInglesFinal.demo.entity.Ingresante;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
+import BaseInglesFinal.demo.util.Utiles;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class IngresanteServiceIMPL implements IngresanteService {
 
     @Autowired
     private IngresanteRepository ir;
+    @Autowired
+    private Utiles uti;
 
     @Transactional
     @Override
@@ -81,10 +84,27 @@ public class IngresanteServiceIMPL implements IngresanteService {
     public Ingresante findIngresanteById(Long id) {
         return ir.findById(id).orElse(null);
     }
-
+@Transactional(readOnly = true)
     @Override
     public Ingresante findIngresanteByDoc(String numDoc) {
     return ir.findByNumDoc(numDoc);
+    }
+@Transactional
+    @Override
+    public Ingresante guardarDDuros(Ingresante ingresante) {
+    Ingresante modificado=findIngresanteById(ingresante.getId());
+      
+       modificado.setTDoc(ingresante.getTDoc());
+       modificado.setFNacimiento(ingresante.getFNacimiento());
+       modificado.setGenero(ingresante.getGenero());
+       modificado.setNacionalidad(ingresante.getNacionalidad());
+       modificado.setPais(ingresante.getPais());
+       modificado.setProvincia(ingresante.getProvincia());
+       modificado.setLocalidadResi(ingresante.getLocalidadResi());
+       modificado.setDomicilio(ingresante.getDomicilio());             
+       modificado.setLocalidadResi(uti.comprobardorDecomas(ingresante.getLocalidadResi()));
+       modificado.setD_estado(true);
+    return modificado;
     }
 
 }

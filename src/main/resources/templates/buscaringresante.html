@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form th:action="@{/ingresante/traer}" method="get">
+    <p th:text="${no}"></p>
+    <form th:action="@{/ingresante/traer}" method="Post">
         <label for="doc">dni</label>
         <input type="text" name="doc" id="doc">
         <input type="submit" value="coninuar">

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
+        <input type="number" name="id" id="id" th:field="*{id}" required />
+        <label for="nombre">Año de Egreso</label>
+        <select name="" id="year">
+            <option selected="selected" value="">
+                Seleccione su año de egreso
+            </option>
+        </select>
+        <label for="nombre">nombre</label>
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly required />
+
+        <label for="apellido">apellido</label>
+        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" readonly required />
+
+        <label for="tDoc">Tipo de documento</label>
+        <select name="tDoc" th:field="*{tDoc}" id="tDoc" required>
+            <option selected="selected" value="">
+                Seleccione tipo de Documento
+            </option>
+            <option value="DNI">DNI</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Otro">Otro</option>
+        </select>
+
+        <label for="numDoc">numero de documento</label>
+        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" readonly required />
+
+        <label for="mail">Mail</label>
+        <input type="email" name="mail" id="mail" th:field="*{mail}" readonly />
+
+        <label for="celu">Ingrese Celular:</label>
+        <input type="number" name="celu" id="celu" th:field="*{celu}" required />
+
+        <label for="fNacimiento">Fecha de nacimiento</label>
+        <input type="date" name="fNacimiento" id="fNacimiento" th:field="*{fNacimiento}" required />
+
+        <label for="genero">Genero</label>
+
+        <select name="genero" th:field="*{genero}" id="genero" required>
+            <option selected="selected" value="">
+                Seleccione como se identifica
+            </option>
+            <option value="No binario">No binario</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+        </select>
+
+        <label for="pais">pais</label>
+
+        <select name="pais" th:field="*{pais}" id="pais" required>
+            <option selected="selected" value="">Seleccione su pais</option>
+            <option th:each="paises : ${listaPaises}" th:value="${paises}" th:text="${paises}"></option>
+        </select>
+
+        <label for="nacionalidad">nacionalidad</label>
+        <input type="text" name="nacionalidad" id="nacionalidad" th:field="*{nacionalidad}" required />
+
+        <label for="provincia">provincia</label>
+        <select name="provincia" th:field="*{provincia}" id="provincia" required>
+            <option selected="selected" value="">Seleccione una provincia</option>
+            <option th:each="pr : ${listaProvincias}" th:value="${pr}" th:text="${pr}"></option>
+        </select>
+
+        <label for="barrio" id="etiquetaBarrio">Barrio</label>
+        <select name="localidadResi" th:field="*{localidadResi}" id="barrio">
+            <option selected="selected" value="">Seleccione un barrio</option>
+            <option th:each="ba : ${listaBarriosCaba}" th:value="${ba}" th:text="${ba}"></option>
+        </select>
+
+        <label for="localidad" id="etiquetaLocalidad">Localidad</label>
+        <select name="localidadResi" th:field="*{localidadResi}" id="localidad">
+            <option selected="selected" value="">Seleccione una localidad</option>
+            <option th:each="loca : ${listaDeLocalidadesGcba}" th:value="${loca}" th:text="${loca}"></option>
+        </select>
+
+        <label for="domicilio">domicilio</label>
+        <input type="text" name="domicilio" id="domicilio" th:field="*{domicilio}" required />
+
+        <input type="submit" value="continuar" />
+    </form>
+    <script>
+      
+        let year = document.getElementById("year");
+        let hoy = new Date();
+        document.write(hoy.getFullYear())
+        for (var i = 2018; i <= hoy.getFullYear(); i++) {
+            let option = document.createElement("option");
+            option.setAttribute("value", i);
+            let optionTexto = document.createTextNode(i);
+            option.appendChild(optionTexto);
+            year.appendChild(option);
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

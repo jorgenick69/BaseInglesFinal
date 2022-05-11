@@ -19,5 +19,6 @@ public interface UsuarioService {
     public void deleteUsuario(Usuario usuario);
     public Usuario findUsuario(Usuario usuario); 
     public Usuario findUsuarioById(Long id); 
+    
 
 }

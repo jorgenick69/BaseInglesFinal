@@ -20,5 +20,6 @@ public interface IngresanteService {
     public Ingresante findIngresante(Ingresante ingresante); 
     public Ingresante findIngresanteById(Long id); 
     public Ingresante findIngresanteByDoc(String numDoc); 
+    public Ingresante guardarDDuros(Ingresante ingresante);
     
 }
