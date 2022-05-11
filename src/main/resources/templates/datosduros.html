@@ -16,7 +16,7 @@
     }
   </style>
   <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
-    <input type="number" name="id" id="id" th:field="*{id}" required />
+    <input type="number" name="id" id="id" th:field="*{id}" required  hidden/>
 
     <label for="nombre">nombre</label>
     <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly required />

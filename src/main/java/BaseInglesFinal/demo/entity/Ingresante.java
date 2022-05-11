@@ -61,6 +61,7 @@ public class Ingresante {
     private String t_duracion;
     private Integer t_antiguedad;
     private Integer t_aniosDelSector;
+    private String t_estudiosSector;
     private String t_aportesJ;
     private String t_plataPara;
     private String t_horas;

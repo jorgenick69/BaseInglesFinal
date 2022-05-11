@@ -16,88 +16,139 @@
         }
     </style>
     <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
-        <input type="number" name="id" id="id" th:field="*{id}" required />
-        <label for="nombre">Año de Egreso</label>
-        <select name="" id="year">
+        <!-- Preguntas Educacion -->
+        <input type="number" name="id" id="id" th:field="*{id}" required  hidden readonly/>
+
+        <label for="e_nivelMaximo">Maximo Nivel Educativo Alcanzado</label>
+        <select name="e_nivelMaximo" th:field="*{e_nivelMaximo}" id="e_nivelMaximo" required>
+            <option selected="selected" value="">Seleccione su Nivel</option>
+            <option th:each="nivel : ${listaNivelAlcanzado}" th:value="${nivel}" th:text="${nivel}"></option>
+        </select>
+
+        <label for="e_egresadoDe">Sos egresado/a de... </label>
+        <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
+        </select>
+
+        <label for="e_establecimiento">Establecimiento educativo de egreso</label>
+        <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option th:each="le : ${listaEstablecimientos}" th:value="${le}" th:text="${le}"></option>
+        </select>
+
+        <label for="year">Año de Egreso</label>
+        <select name="year" id="year" th:field="*{e_anioEgreso}" required>
             <option selected="selected" value="">
                 Seleccione su año de egreso
             </option>
         </select>
-        <label for="nombre">nombre</label>
-        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly required />
 
-        <label for="apellido">apellido</label>
-        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" readonly required />
+        <!-- Preguntas Tabajo -->
 
-        <label for="tDoc">Tipo de documento</label>
-        <select name="tDoc" th:field="*{tDoc}" id="tDoc" required>
+
+        <label for="t_situacionActual">¿Cuál es tu situación laboral actual?</label>
+        <select name="t_situacionActual" id="t_situacionActual" th:field="*{t_situacionActual}" required>
             <option selected="selected" value="">
-                Seleccione tipo de Documento
+                Seleccione su situación
             </option>
-            <option value="DNI">DNI</option>
-            <option value="Pasaporte">Pasaporte</option>
+            <option value="Trabajo">Trabajo</option>
+            <option value="No trabajo y busco trabajo">No trabajo y busco trabajo</option>
+            <option value="No trabajo y no estoy pensando por ahora en trabajar">No trabajo y no estoy pensando por
+                ahora en trabajar</option>
+            <option value="Jubilada/o y/o pensionada/o">Jubilada/o y/o pensionada/o</option>
+        </select>
+
+        <label for="t_relacion">Vos trabajás…</label>
+        <select name="t_relacion" id="t_relacion" th:field="*{t_relacion}" required>
+            <option selected="selected" value="">
+                Seleccione su año de egreso
+            </option>
+            <option value="Relación de dependencia">Relación de dependencia</option>
+            <option value="Monotributista">Monotributista</option>
+            <option value="Autónomo">Autónomo</option>
             <option value="Otro">Otro</option>
         </select>
 
-        <label for="numDoc">numero de documento</label>
-        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" readonly required />
 
-        <label for="mail">Mail</label>
-        <input type="email" name="mail" id="mail" th:field="*{mail}" readonly />
-
-        <label for="celu">Ingrese Celular:</label>
-        <input type="number" name="celu" id="celu" th:field="*{celu}" required />
-
-        <label for="fNacimiento">Fecha de nacimiento</label>
-        <input type="date" name="fNacimiento" id="fNacimiento" th:field="*{fNacimiento}" required />
-
-        <label for="genero">Genero</label>
-
-        <select name="genero" th:field="*{genero}" id="genero" required>
-            <option selected="selected" value="">
-                Seleccione como se identifica
-            </option>
-            <option value="No binario">No binario</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+        <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en donde trabajás.</label>
+        <select name="t_actividadPrincipal" th:field="*{t_actividadPrincipal}" id="t_actividadPrincipal" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option th:each="la : ${listaActividades}" th:value="${la}" th:text="${la}"></option>
         </select>
 
-        <label for="pais">pais</label>
-
-        <select name="pais" th:field="*{pais}" id="pais" required>
-            <option selected="selected" value="">Seleccione su pais</option>
-            <option th:each="paises : ${listaPaises}" th:value="${paises}" th:text="${paises}"></option>
+        <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en donde trabajás.</label>
+        <select name="t_actividadPrincipal" th:field="*{t_actividadPrincipal}" id="t_actividadPrincipal" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option th:each="la : ${listaActividades}" th:value="${la}" th:text="${la}"></option>
         </select>
 
-        <label for="nacionalidad">nacionalidad</label>
-        <input type="text" name="nacionalidad" id="nacionalidad" th:field="*{nacionalidad}" required />
-
-        <label for="provincia">provincia</label>
-        <select name="provincia" th:field="*{provincia}" id="provincia" required>
-            <option selected="selected" value="">Seleccione una provincia</option>
-            <option th:each="pr : ${listaProvincias}" th:value="${pr}" th:text="${pr}"></option>
+        <label for="t_roles">En tu trabajo ¿ocupás alguno de los siguientes roles relacionados con el perfil IT?</label>
+        <select name="t_roles" th:field="*{t_roles}" id="t_roles" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option th:each="rolIt : ${listaRolIt}" th:value="${rolIt}" th:text="${rolIt}"></option>
         </select>
 
-        <label for="barrio" id="etiquetaBarrio">Barrio</label>
-        <select name="localidadResi" th:field="*{localidadResi}" id="barrio">
-            <option selected="selected" value="">Seleccione un barrio</option>
-            <option th:each="ba : ${listaBarriosCaba}" th:value="${ba}" th:text="${ba}"></option>
+        <label for="t_duracion">Ese trabajo es...</label>
+        <select name="t_duracion" th:field="*{t_duracion}" id="t_duracion" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="Permanente (la relación laboral no tiene fecha preestablecida de finalización)">Permanente (la relación laboral no tiene fecha preestablecida de finalización)</option>
+            <option value="Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación laboral)">Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación laboral)</option>
         </select>
 
-        <label for="localidad" id="etiquetaLocalidad">Localidad</label>
-        <select name="localidadResi" th:field="*{localidadResi}" id="localidad">
-            <option selected="selected" value="">Seleccione una localidad</option>
-            <option th:each="loca : ${listaDeLocalidadesGcba}" th:value="${loca}" th:text="${loca}"></option>
+        <label for="t_antiguedad">¿Qué antigüedad tenés en el trabajo actual? Si tenés más de uno elegí el que considerás tu principal fuente de ingresos</label>
+        <input type="number" name="t_antiguedad" id="t_antiguedad" th:field="*{t_antiguedad}" min="0" max="60" required />
+       
+       
+        <label for="t_aniosDelSector">¿Cuántos años hace que trabajás en el sector?</label>
+        <input type="number" name="t_aniosDelSector" id="t_aniosDelSector" th:field="*{t_aniosDelSector}" min="0" max="60" required />
+
+        <label for="t_estudiosSector">Cuando iniciaste a trabajar en ese sector: ¿tenías estudios en el mismo sector?</label>
+        <select name="t_estudiosSector" th:field="*{t_estudiosSector}" id="t_estudiosSector" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
         </select>
 
-        <label for="domicilio">domicilio</label>
-        <input type="text" name="domicilio" id="domicilio" th:field="*{domicilio}" required />
+        <label for="t_aportesJ">Por ese trabajo ¿te realizan descuentos jubilatorios?</label>
+        <select name="t_aportesJ" th:field="*{t_aportesJ}" id="t_aportesJ" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+            <option value="No Se">No sè</option>
+            <option value="Soy Monotributista">Soy Monotributista</option>
+        </select>
+
+        <label for="t_plataPara">Los ingresos obtenidos en este trabajo son...</label>
+        <select name="t_plataPara" th:field="*{t_plataPara}" id="t_plataPara" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="De uso exclusivo para tus gastos personales">De uso exclusivo para tus gastos personales</option>
+            <option value="El principal sostén económico del hogar">El principal sostén económico del hogar</option>
+            <option value="Aplicados en parte al sostén del hogar">Aplicados en parte al sostén del hogar</option>
+            <option value="No recibo remuneración">No recibo remuneración</option>
+        </select>
+
+        <label for="t_horas">¿Cuántas horas semanales trabajás habitualmente?</label>
+        <select name="t_horas" th:field="*{t_horas}" id="t_horas" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="Hasta 10 hs">Hasta 10 hs</option>
+            <option value="Entre 11 y 20 hs">Entre 11 y 20 hs</option>
+            <option value="Entre 21 y 35 hs">Entre 21 y 35 hs</option>
+            <option value="Más de 35 hs">más de 35 hs</option>
+        </select>
+
+        <label for="t_franja">¿En qué franja horaria trabajás?</label>
+        <select name="t_franja" th:field="*{t_franja}" id="t_franja" required>
+            <option selected="selected" value="">Seleccione</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>         
+        </select>
 
         <input type="submit" value="continuar" />
     </form>
     <script>
-      
+
         let year = document.getElementById("year");
         let hoy = new Date();
         document.write(hoy.getFullYear())

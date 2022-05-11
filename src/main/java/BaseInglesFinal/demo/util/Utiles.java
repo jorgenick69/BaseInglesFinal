@@ -48,10 +48,47 @@ public class Utiles {
         List<String> listaPaises = Arrays.asList("Argentina", "Bolivia", "Brasil", "Chile", "Colombia", "Costa Rica", "Cuba", "Ecuador", "El Salvador", "Guayana Francesa", "Granada", "Guatemala", "Guayana", "Haití", "Honduras", "Jamaica", "México", "Nicaragua", "Paraguay", "Panamá", "Perú", "Puerto Rico", "República Dominicana", "Surinam", "Uruguay", "Venezuela", "Otro");
         return listaPaises;
     }
+
     public List<String> devolverNivelEstudios() {
-        List<String> estudios = Arrays.asList( "Secundario completo" , "Terciario completo" , "Terciario en curso" , "Terciario incompleto" , "Universitario incompleto" , "Universitario en curso" , "Universitario completo" , "Posgrado incompleto" , "Posgrado en curso" , "Posgrado completo"  );
+        List<String> estudios = Arrays.asList("Secundario completo", "Terciario completo", "Terciario en curso", "Terciario incompleto", "Universitario incompleto", "Universitario en curso", "Universitario completo", "Posgrado incompleto", "Posgrado en curso", "Posgrado completo");
         return estudios;
-       
+
     }
 
+    public List<String> devolverSosEgregadoDe() {
+        List<String> egresadoDe = Arrays.asList("CAC 4.0 Full Stack – Java",
+                "CAC 4.0  Full Stack – PHP",
+                "CAC 4.0  Full Stack – Python",
+                "CAC 4.0  FullStack – Desarrollo Web (JavaScript/Node JS)",
+                "CAC 4.0  FullStack – React/Mongo/GoLang/GO",
+                "CAC 4.0 Testing/QA",
+                "CAC 4.0 Big Data",
+                "CAC 4.0 UX/UI",
+                "Especialización en programación Web",
+                "Especialización Profesional en Programación de Videojuegos",
+                "Programador",
+                "Programador de base de datos",
+                "Tecnicatura Superior en Análisis de Sistemas",
+                "Tecnicatura Superior en Automatización y Robótica",
+                "Tecnicatura Superior en Telecomunicaciones",
+                "Tecnicatura Superior en Teleinformática"
+        );
+        return egresadoDe;
+
+    }
+
+    public List<String> devolverActividadesPrincipales() {
+        List<String> actividadesPrincipales = Arrays.asList("ELECTRÓNICA", "ESTÉTICA PROFESIONAL", "HOTELERÍA Y GASTRONOMÍA", "TEXTIL E INDUMENTARIA", "ADMINISTRACIÓN", "GESTIÓN Y SERVICIOS EMPRESARIALES", "SEGURIDAD", "AMBIENTE E HIGIENE", "ELECTROMECÁNICA", "MECÁNICA", "METALMECÁNICA Y METALURGIA", "INFORMÁTICA", "CUERO Y CALZADO", "AGROPECUARIO", "MADERA Y MUEBLE", "INDUSTRIAS DE PROCESOS", "TURISMO", "ACTIVIDADES ARTISTICAS TECNICAS", "CONSTRUCCIONES", "SALUD", "AUTOMOTRIZ", "ENERGÍA", "INDUSTRIAS GRAFICA", "PUBLICITARIA Y MULTIMEDIAL", "INDUSTRIA ALIMENTARIA", "MINERÍA E HIDROCARBUROS", "NAVAL", "FERROVIARIO", "AERONÁUTICA", "COMERCIO", "ACTIVIDAD FINANCIERA", "ADMINISTRACIÓN PÚBLICA", "ENSEÑANZA", "DESARROLLO HUMANO" 
+
+        );
+        return actividadesPrincipales;
+
+    }
+    public List<String> devolverRolesIt() {
+        List<String> listaRolesIt = Arrays.asList(
+"ADMINISTRADOR DE BASE DE DATOS (DBA)", "ADMINISTRADOR DE REDES", "ANALISTA BIG DATA (DATA SCIENTIST)", "ANALISTA UX", "ANALISTA FUNCIONAL", "ARQUITECTO DE SOFTWARE", "DESARROLLADOR DE SOFTWARE", "DISEÑADOR WEB", "LÍDER DE DESARROLLO", "PROJECT MANAGER (PM)", "SOPORTE TÉCNICO", "TESTER", "NO OCUPO UN ROL IT"
+        );
+        return listaRolesIt;
+
+    }
 }
