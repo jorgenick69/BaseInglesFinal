@@ -4,6 +4,8 @@
  */
 package BaseInglesFinal.demo.util;
 
+import BaseInglesFinal.demo.entity.Ingresante;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Component;
@@ -78,21 +80,66 @@ public class Utiles {
     }
 
     public List<String> devolverActividadesPrincipales() {
-        List<String> actividadesPrincipales = Arrays.asList("ELECTRÓNICA", "ESTÉTICA PROFESIONAL", "HOTELERÍA Y GASTRONOMÍA", "TEXTIL E INDUMENTARIA", "ADMINISTRACIÓN", "GESTIÓN Y SERVICIOS EMPRESARIALES", "SEGURIDAD", "AMBIENTE E HIGIENE", "ELECTROMECÁNICA", "MECÁNICA", "METALMECÁNICA Y METALURGIA", "INFORMÁTICA", "CUERO Y CALZADO", "AGROPECUARIO", "MADERA Y MUEBLE", "INDUSTRIAS DE PROCESOS", "TURISMO", "ACTIVIDADES ARTISTICAS TECNICAS", "CONSTRUCCIONES", "SALUD", "AUTOMOTRIZ", "ENERGÍA", "INDUSTRIAS GRAFICA", "PUBLICITARIA Y MULTIMEDIAL", "INDUSTRIA ALIMENTARIA", "MINERÍA E HIDROCARBUROS", "NAVAL", "FERROVIARIO", "AERONÁUTICA", "COMERCIO", "ACTIVIDAD FINANCIERA", "ADMINISTRACIÓN PÚBLICA", "ENSEÑANZA", "DESARROLLO HUMANO" 
-
+        List<String> actividadesPrincipales = Arrays.asList("ELECTRÓNICA", "ESTÉTICA PROFESIONAL", "HOTELERÍA Y GASTRONOMÍA", "TEXTIL E INDUMENTARIA", "ADMINISTRACIÓN", "GESTIÓN Y SERVICIOS EMPRESARIALES", "SEGURIDAD", "AMBIENTE E HIGIENE", "ELECTROMECÁNICA", "MECÁNICA", "METALMECÁNICA Y METALURGIA", "INFORMÁTICA", "CUERO Y CALZADO", "AGROPECUARIO", "MADERA Y MUEBLE", "INDUSTRIAS DE PROCESOS", "TURISMO", "ACTIVIDADES ARTISTICAS TECNICAS", "CONSTRUCCIONES", "SALUD", "AUTOMOTRIZ", "ENERGÍA", "INDUSTRIAS GRAFICA", "PUBLICITARIA Y MULTIMEDIAL", "INDUSTRIA ALIMENTARIA", "MINERÍA E HIDROCARBUROS", "NAVAL", "FERROVIARIO", "AERONÁUTICA", "COMERCIO", "ACTIVIDAD FINANCIERA", "ADMINISTRACIÓN PÚBLICA", "ENSEÑANZA", "DESARROLLO HUMANO"
         );
         return actividadesPrincipales;
 
     }
+
     public List<String> devolverRolesIt() {
         List<String> listaRolesIt = Arrays.asList(
-"ADMINISTRADOR DE BASE DE DATOS (DBA)", "ADMINISTRADOR DE REDES", "ANALISTA BIG DATA (DATA SCIENTIST)", "ANALISTA UX", "ANALISTA FUNCIONAL", "ARQUITECTO DE SOFTWARE", "DESARROLLADOR DE SOFTWARE", "DISEÑADOR WEB", "LÍDER DE DESARROLLO", "PROJECT MANAGER (PM)", "SOPORTE TÉCNICO", "TESTER", "NO OCUPO UN ROL IT"
+                "ADMINISTRADOR DE BASE DE DATOS (DBA)", "ADMINISTRADOR DE REDES", "ANALISTA BIG DATA (DATA SCIENTIST)", "ANALISTA UX", "ANALISTA FUNCIONAL", "ARQUITECTO DE SOFTWARE", "DESARROLLADOR DE SOFTWARE", "DISEÑADOR WEB", "LÍDER DE DESARROLLO", "PROJECT MANAGER (PM)", "SOPORTE TÉCNICO", "TESTER", "NO OCUPO UN ROL IT"
         );
         return listaRolesIt;
 
     }
-    
-    
-    
-    
+
+    public List<Ingresante> evitarDocDuplicadosPaso1(List<Ingresante> lista) {
+        List<Ingresante> listaVerificada = new ArrayList<>();
+        int contador = 0;
+        var verificado = true;
+        Ingresante ingre = new Ingresante();
+
+        for (Ingresante ingreOri : lista) {
+            contador++;
+            verificado = true;
+            if (contador == 0) {
+                listaVerificada.add(ingreOri);
+            } else {
+                ingre = ingreOri;
+                for (Ingresante ingresante : listaVerificada) {
+                    if (ingresante.getNumDoc().equalsIgnoreCase(ingreOri.getNumDoc())) {
+                        verificado = false;
+                    }
+                }
+                if (verificado) {
+                    listaVerificada.add(ingre);
+                }
+
+            }
+        }
+        return listaVerificada;
+    }
+
+    public List<Ingresante> evitarDocDuplicadosPaso1(List<Ingresante> base, List<Ingresante> aCargar) {
+        List<Ingresante> listaVerificada = new ArrayList<>();
+        var verificado = true;
+        Ingresante ingresante = new Ingresante();
+        for (Ingresante aCar : aCargar) {
+            verificado = true;
+            ingresante = aCar;
+            for (Ingresante bas : base) {
+                if (aCar.getNumDoc().equalsIgnoreCase(bas.getNumDoc())) {
+                    verificado = false;
+                }
+
+            }
+            if (verificado) {
+                listaVerificada.add(ingresante);
+            }
+
+        }
+        return listaVerificada;
+    }
+
 }

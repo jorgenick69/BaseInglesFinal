@@ -10,9 +10,11 @@ import BaseInglesFinal.demo.entity.Ingresante;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
 import BaseInglesFinal.demo.service.ExamenService;
 import BaseInglesFinal.demo.service.IngresanteService;
+import BaseInglesFinal.demo.util.Utiles;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +40,8 @@ public class HomeController {
     private IngresanteService is;
     @Autowired
     private ExamenService es;
+    @Autowired
+    private Utiles ut;
 
     @GetMapping({"", "/index", "/home", "/"})
     public String home() {
@@ -54,12 +58,19 @@ public class HomeController {
     @PostMapping("/import/excel")
     @ResponseBody
     public String ImportToMySql(@RequestParam("file") MultipartFile file) throws IOException {
-        Date ahora=new Date();
+        Date fecha1=new Date();
         IngresanteExcelImporter excelImporter = new IngresanteExcelImporter();
         List<Ingresante> lista = excelImporter.excelImport(file);
+        List<Ingresante> listaVerificadaPaso1=ut.evitarDocDuplicadosPaso1(lista);
+        List<Ingresante> listaComparativaBase=is.findAllIngresante();
+        List<Ingresante> listaFinal=ut.evitarDocDuplicadosPaso1(listaComparativaBase, listaVerificadaPaso1);
+                
         System.out.println("El tamaño de la lista es!!!!!!!!!!! " + lista.size());
-        ir.saveAll(lista);
-        return "ImportSuccesfuly Inicio :"+ahora+ " Fin :" + new Date();
+        ir.saveAll(listaFinal);
+        Date fecha2=new Date();
+        long diferencia=fecha2.getTime()-fecha1.getTime();
+        var minutos = (TimeUnit.MILLISECONDS.toSeconds(diferencia)/60); 
+        return "ImportSuccesfuly tardo : " + minutos +" minutos";
     }
 
     @GetMapping("/exportar")
