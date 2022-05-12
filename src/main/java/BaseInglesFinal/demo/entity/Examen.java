@@ -29,7 +29,8 @@ public class Examen{
     private Long id;
     private String nombre;
     private String apellido;
-    private Long dni;
+    private String numDoc;
+    private Long id_ingresante;
     private String p1;
     private String p2;
     private String p3;

@@ -15,7 +15,7 @@
             flex-direction: column;
         }
     </style>
-    <form th:action="@{/ingresante/duros}" method="get" id="myForm" th:object="${ingresante}">
+    <form th:action="@{/ingresante/nivel}" method="post" id="myForm" th:object="${ingresante}">
         <!-- Preguntas Educacion -->
         <input type="number" name="id" id="id" th:field="*{id}" required hidden readonly />
 

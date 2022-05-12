@@ -21,5 +21,7 @@ public interface IngresanteService {
     public Ingresante findIngresanteById(Long id); 
     public Ingresante findIngresanteByDoc(String numDoc); 
     public Ingresante guardarDDuros(Ingresante ingresante);
+    public Ingresante guardarEncuenta(Ingresante ingresante);
+    public Ingresante guardarNivel(Ingresante ingresante,String i_uso_t_situacion_otro,String i_donde_otro);
     
 }

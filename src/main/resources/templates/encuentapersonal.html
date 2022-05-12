@@ -15,7 +15,7 @@
             flex-direction: column;
         }
     </style>
-    <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
+    <form th:action="@{/ingresante/encuenta}" method="post" id="myForm" th:object="${ingresante}">
         <!-- Preguntas Educacion -->
         <input type="number" name="id" id="id" th:field="*{id}" required  hidden readonly/>
 
@@ -32,10 +32,10 @@
         </select>
 
         <label for="e_establecimiento">Establecimiento educativo de egreso</label>
-        <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required>
+        <!-- <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" >
             <option selected="selected" value="">Seleccione</option>
             <option th:each="le : ${listaEstablecimientos}" th:value="${le}" th:text="${le}"></option>
-        </select>
+        </select> -->
 
         <label for="year">Año de Egreso</label>
         <select name="year" id="year" th:field="*{e_anioEgreso}" required>
@@ -68,13 +68,6 @@
             <option value="Monotributista">Monotributista</option>
             <option value="Autónomo">Autónomo</option>
             <option value="Otro">Otro</option>
-        </select>
-
-
-        <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en donde trabajás.</label>
-        <select name="t_actividadPrincipal" th:field="*{t_actividadPrincipal}" id="t_actividadPrincipal" required>
-            <option selected="selected" value="">Seleccione</option>
-            <option th:each="la : ${listaActividades}" th:value="${la}" th:text="${la}"></option>
         </select>
 
         <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en donde trabajás.</label>

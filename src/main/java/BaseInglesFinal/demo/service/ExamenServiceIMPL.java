@@ -6,6 +6,7 @@ package BaseInglesFinal.demo.service;
 
 import BaseInglesFinal.demo.entity.Examen;
 import BaseInglesFinal.demo.repository.ExamenRepository;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -157,6 +158,8 @@ return er.findById(id).orElse(null);
             }
         }
         examen.setR_Correctas(contador);
+        examen.setEstado(true);
+        examen.setFechaDeFinalizacion(new Date());
         return examen;
     }
     

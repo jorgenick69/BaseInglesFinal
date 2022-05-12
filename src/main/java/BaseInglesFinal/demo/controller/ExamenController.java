@@ -5,7 +5,9 @@
 package BaseInglesFinal.demo.controller;
 
 import BaseInglesFinal.demo.entity.Examen;
+import BaseInglesFinal.demo.entity.Ingresante;
 import BaseInglesFinal.demo.service.ExamenService;
+import BaseInglesFinal.demo.service.IngresanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,22 +26,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ExamenController {
     @Autowired
     private ExamenService es;
-
+ @Autowired
+    private IngresanteService is;
 
    
 
-    @GetMapping("/add")
-    public String add(Examen examen) {
-
-        return "new_examen";
-    }
+    
 
     @PostMapping("/save")
     public String save(Examen examen) {
        Examen examenNew=new Examen();
        examenNew =es.evaluar(examen);
-       es.save(examen);
-        return "saludos";
+       examenNew=es.save(examenNew);
+        Ingresante busqueda=is.findIngresanteById(examenNew.getId_ingresante());
+       busqueda.setExamen(examen);
+       is.saveIngresante(busqueda);
+        return "Finalizo con exito espere noticias";
     }
     
    @GetMapping("/delete")
