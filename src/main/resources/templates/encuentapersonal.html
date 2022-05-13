@@ -5,7 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css}">
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}" ></script> -->
+  
     <title>Document</title>
+
 </head>
 
 <body>
@@ -17,7 +22,7 @@
     </style>
     <form th:action="@{/ingresante/encuenta}" method="post" id="myForm" th:object="${ingresante}">
         <!-- Preguntas Educacion -->
-        <input type="number" name="id" id="id" th:field="*{id}" required  hidden readonly/>
+        <input type="number" name="id" id="id" th:field="*{id}" required hidden readonly />
 
         <label for="e_nivelMaximo">Maximo Nivel Educativo Alcanzado</label>
         <select name="e_nivelMaximo" th:field="*{e_nivelMaximo}" id="e_nivelMaximo" required>
@@ -26,15 +31,17 @@
         </select>
 
         <label for="e_egresadoDe">Sos egresado/a de... </label>
-        <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required>
+        <input type="text" name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required  readonly>
+        <!-- <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required >
             <option selected="selected" value="">Seleccione</option>
             <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
-        </select>
+        </select> -->
 
         <label for="e_establecimiento">Establecimiento educativo de egreso</label>
-        <!-- <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" >
-            <option selected="selected" value="">Seleccione</option>
-            <option th:each="le : ${listaEstablecimientos}" th:value="${le}" th:text="${le}"></option>
+       <input type="text" name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required  readonly>
+        <!-- <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required >
+            <option value=""></option>            
+            <option th:each="les : ${listaEstablecimientos}" th:value="${les}" th:text="${les}"></option>
         </select> -->
 
         <label for="year">Año de Egreso</label>
@@ -48,10 +55,11 @@
 
 
         <label for="t_situacionActual">¿Cuál es tu situación laboral actual?</label>
-        <select name="t_situacionActual" id="t_situacionActual" th:field="*{t_situacionActual}" required>
+        <select  name="t_situacionActual" id="t_situacionActual" th:field="*{t_situacionActual}" required>
             <option selected="selected" value="">
                 Seleccione su situación
             </option>
+            
             <option value="Trabajo">Trabajo</option>
             <option value="No trabajo y busco trabajo">No trabajo y busco trabajo</option>
             <option value="No trabajo y no estoy pensando por ahora en trabajar">No trabajo y no estoy pensando por
@@ -70,7 +78,8 @@
             <option value="Otro">Otro</option>
         </select>
 
-        <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en donde trabajás.</label>
+        <label for="t_actividadPrincipal">Por favor indicá cuál es la rama principal de actividad de la organización en
+            donde trabajás.</label>
         <select name="t_actividadPrincipal" th:field="*{t_actividadPrincipal}" id="t_actividadPrincipal" required>
             <option selected="selected" value="">Seleccione</option>
             <option th:each="la : ${listaActividades}" th:value="${la}" th:text="${la}"></option>
@@ -85,18 +94,26 @@
         <label for="t_duracion">Ese trabajo es...</label>
         <select name="t_duracion" th:field="*{t_duracion}" id="t_duracion" required>
             <option selected="selected" value="">Seleccione</option>
-            <option value="Permanente (la relación laboral no tiene fecha preestablecida de finalización)">Permanente (la relación laboral no tiene fecha preestablecida de finalización)</option>
-            <option value="Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación laboral)">Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación laboral)</option>
+            <option value="Permanente (la relación laboral no tiene fecha preestablecida de finalización)">Permanente
+                (la relación laboral no tiene fecha preestablecida de finalización)</option>
+            <option
+                value="Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación laboral)">
+                Temporal (contratados,plantas transitorias en general donde queda establecidad duración de la relación
+                laboral)</option>
         </select>
 
-        <label for="t_antiguedad">¿Qué antigüedad tenés en el trabajo actual? Si tenés más de uno elegí el que considerás tu principal fuente de ingresos</label>
-        <input type="number" name="t_antiguedad" id="t_antiguedad" th:field="*{t_antiguedad}" min="0" max="60" required />
-       
-       
-        <label for="t_aniosDelSector">¿Cuántos años hace que trabajás en el sector?</label>
-        <input type="number" name="t_aniosDelSector" id="t_aniosDelSector" th:field="*{t_aniosDelSector}" min="0" max="60" required />
+        <label for="t_antiguedad">¿Qué antigüedad tenés en el trabajo actual? Si tenés más de uno elegí el que
+            considerás tu principal fuente de ingresos</label>
+        <input type="number" name="t_antiguedad" id="t_antiguedad" th:field="*{t_antiguedad}" min="0" max="60"
+            required />
 
-        <label for="t_estudiosSector">Cuando iniciaste a trabajar en ese sector: ¿tenías estudios en el mismo sector?</label>
+
+        <label for="t_aniosDelSector">¿Cuántos años hace que trabajás en el sector?</label>
+        <input type="number" name="t_aniosDelSector" id="t_aniosDelSector" th:field="*{t_aniosDelSector}" min="0"
+            max="60" required />
+
+        <label for="t_estudiosSector">Cuando iniciaste a trabajar en ese sector: ¿tenías estudios en el mismo
+            sector?</label>
         <select name="t_estudiosSector" th:field="*{t_estudiosSector}" id="t_estudiosSector" required>
             <option selected="selected" value="">Seleccione</option>
             <option value="SI">SI</option>
@@ -115,7 +132,8 @@
         <label for="t_plataPara">Los ingresos obtenidos en este trabajo son...</label>
         <select name="t_plataPara" th:field="*{t_plataPara}" id="t_plataPara" required>
             <option selected="selected" value="">Seleccione</option>
-            <option value="De uso exclusivo para tus gastos personales">De uso exclusivo para tus gastos personales</option>
+            <option value="De uso exclusivo para tus gastos personales">De uso exclusivo para tus gastos personales
+            </option>
             <option value="El principal sostén económico del hogar">El principal sostén económico del hogar</option>
             <option value="Aplicados en parte al sostén del hogar">Aplicados en parte al sostén del hogar</option>
             <option value="No recibo remuneración">No recibo remuneración</option>
@@ -135,12 +153,14 @@
             <option selected="selected" value="">Seleccione</option>
             <option value="Mañana">Mañana</option>
             <option value="Tarde">Tarde</option>
-            <option value="Noche">Noche</option>         
+            <option value="Noche">Noche</option>
         </select>
+
 
         <input type="submit" value="continuar" />
     </form>
-    <script>
+   
+   <script>
 
         let year = document.getElementById("year");
         let hoy = new Date();
@@ -153,11 +173,22 @@
             year.appendChild(option);
 
         }
-
+        // $(document).ready(function () {
+        //     $('#t_situacionActual').select2();
+        // });
 
 
 
     </script>
+      <script>
+        // $(document).ready(function(){
+        //     $('#e_establecimiento').select2( { 
+        //         placeholder: "Seleccione establecimiento de egreso",
+        //         allowClear: true});
+        // });
+    </script>
+
+    
 </body>
 
 </html>

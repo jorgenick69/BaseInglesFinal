@@ -57,6 +57,7 @@ public class IngresanteController {
             model.addAttribute("listaProvincias", ut.devolverProvincias());
             model.addAttribute("listaPaises", ut.devolverPaises());
             model.addAttribute("ingresante", ingre);
+            model.addAttribute("listaNacionalidades", ut.devolverNacionalidades());
             return "datosduros";
         } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == false && busqueda.getT_estado() == false) {
             model.addAttribute("ingresante", busqueda);
@@ -64,7 +65,8 @@ public class IngresanteController {
             model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
             model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
             model.addAttribute("listaRolIt", ut.devolverRolesIt());
-
+            model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
+            
             return "encuentapersonal";
         } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true && busqueda.getT_estado() == true && busqueda.getI_estado() == false) {
             model.addAttribute("ingresante", busqueda);
@@ -87,7 +89,8 @@ public class IngresanteController {
         model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
         model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
         model.addAttribute("listaRolIt", ut.devolverRolesIt());
-
+        model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
+         
         return "encuentapersonal";
     }
 
@@ -103,7 +106,8 @@ public class IngresanteController {
 
     @PostMapping("/nivel")
     public String saveNivel(Ingresante ingresante, Model model, String i_uso_t_situacion_otro, String i_donde_otro) {
-
+        System.out.println("el lugar es :"+ i_donde_otro);
+        System.out.println("La situaion es :"+ i_uso_t_situacion_otro);
         Ingresante modificado = is.guardarNivel(ingresante, i_uso_t_situacion_otro, i_donde_otro);
 
         modificado = is.saveIngresante(modificado);
@@ -122,8 +126,8 @@ public class IngresanteController {
         exa.setNumDoc(ingre.getNumDoc());
         exa.setId_ingresante(ingre.getId());
         ingre.setExamen(es.save(exa));
-        ingre=is.saveIngresante(ingre) ;
-        model.addAttribute("examen", ingre.getExamen() );
+        ingre = is.saveIngresante(ingre);
+        model.addAttribute("examen", ingre.getExamen());
 
         return "new_examen";
     }

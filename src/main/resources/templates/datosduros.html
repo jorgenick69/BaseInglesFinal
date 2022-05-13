@@ -5,6 +5,37 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/x.css}">
+  <script>
+
+    $(document).ready(function () {
+      $('#pais').select2({
+        placeholder: "Seleccione su Pais",
+        allowClear: true
+      });
+      $('#nacionalidad').select2({
+        placeholder: "Seleccione su Nacionalidad",
+        allowClear: true
+      });
+      $('#provincia').select2({
+        placeholder: "Seleccione su Provincia",
+        allowClear: true
+      });
+      $('#barrio').select2({
+          placeholder: "Seleccione su Barrio",
+          allowClear: true,
+         
+        });
+        $('#localidad').select2({
+          placeholder: "Seleccione su Localidad",
+          allowClear: true,
+          
+        });
+        document.getElementById("localidad").classList.add("no");
+        document.getElementById("barrio").classList.add("no");
+    });</script>
   <title>Document</title>
 </head>
 
@@ -14,9 +45,18 @@
       display: flex;
       flex-direction: column;
     }
+   .nover{
+     display: none;
+   }
+    .no + .select2-container, 
+.no + .select2-container + .select2-container .select2-dropdown {
+    display:none;
+   
+}
+
   </style>
   <form th:action="@{/ingresante/duros}" method="post" id="myForm" th:object="${ingresante}">
-    <input type="number" name="id" id="id" th:field="*{id}" required  hidden/>
+    <input type="number" name="id" id="id" th:field="*{id}" required hidden />
 
     <label for="nombre">nombre</label>
     <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly required />
@@ -61,28 +101,33 @@
     <label for="pais">pais</label>
 
     <select name="pais" th:field="*{pais}" id="pais" required>
-      <option selected="selected" value="">Seleccione su pais</option>
+      <option value=""></option>
       <option th:each="paises : ${listaPaises}" th:value="${paises}" th:text="${paises}"></option>
     </select>
 
     <label for="nacionalidad">nacionalidad</label>
-    <input type="text" name="nacionalidad" id="nacionalidad" th:field="*{nacionalidad}" required />
+
+    <select name="pais" th:field="*{nacionalidad}" id="nacionalidad" required>
+      <option value=""></option>
+      <option th:each="lnac : ${listaNacionalidades}" th:value="${lnac}" th:text="${lnac}"></option>
+    </select>
+
 
     <label for="provincia">provincia</label>
     <select name="provincia" th:field="*{provincia}" id="provincia" required>
-      <option selected="selected" value="">Seleccione una provincia</option>
+      <option value=""></option>
       <option th:each="pr : ${listaProvincias}" th:value="${pr}" th:text="${pr}"></option>
     </select>
 
     <label for="barrio" id="etiquetaBarrio">Barrio</label>
-    <select name="localidadResi" th:field="*{localidadResi}" id="barrio">
-      <option selected="selected" value="">Seleccione un barrio</option>
+    <select class="barrio" name="localidadResi" th:field="*{localidadResi}" id="barrio">
+      <option value=""></option>
       <option th:each="ba : ${listaBarriosCaba}" th:value="${ba}" th:text="${ba}"></option>
     </select>
 
     <label for="localidad" id="etiquetaLocalidad">Localidad</label>
-    <select name="localidadResi" th:field="*{localidadResi}" id="localidad">
-      <option selected="selected" value="">Seleccione una localidad</option>
+    <select class="localidadResi" name="localidadResi" th:field="*{localidadResi}" id="localidad">
+      <option value=""></option>
       <option th:each="loca : ${listaDeLocalidadesGcba}" th:value="${loca}" th:text="${loca}"></option>
     </select>
 
@@ -92,6 +137,7 @@
     <input type="submit" value="continuar" />
   </form>
   <script>
+    
     var etiquetaBarrio = document.getElementById("etiquetaBarrio");
 
     var etiquetaLocalidad = document.getElementById("etiquetaLocalidad");
@@ -102,46 +148,66 @@
 
     var provincia = document.getElementById("provincia");
 
-
-    etiquetaBarrio.setAttribute("Style", "display:none");
-
-    etiquetaLocalidad.setAttribute("Style", "display:none");
-
-    localidad.setAttribute("Style", "display:none");
-
-    barrio.setAttribute("Style", "display:none");
-
-    provincia.addEventListener("change", (event) => {
+    etiquetaLocalidad.classList.add("nover")
+    etiquetaBarrio.classList.add("nover")
+    
+    setInterval(function () {
       let pro = provincia.value;
-
+      
       if (pro === "Ciudad Autonoma de Buenos Aires") {
-        console.log(barrio);
-        barrio.setAttribute("required", true);
-        etiquetaBarrio.setAttribute("Style", "display:block");
-        barrio.setAttribute("Style", "display:block");
-        etiquetaLocalidad.setAttribute("Style", "display:none");
-        localidad.setAttribute("Style", "display:none");
+        console.log(pro)
+        etiquetaBarrio.classList.remove("nover")
+        document.getElementById("barrio").classList.remove("no");
+
+        etiquetaLocalidad.classList.add("nover")
+        document.getElementById("localidad").classList.add("no");
+        
+        
+      barrio.setAttribute("required", true);
+        // etiquetaBarrio.setAttribute("Style", "display:block ");
+        // barrio.setAttribute("Style", "display:block !important");
+        // etiquetaLocalidad.setAttribute("Style", "display:none ");
+        // localidad.setAttribute("Style", "display:none ");
         localidad.removeAttribute("required");
+
 
       } else if (pro === "Buenos Aires") {
-        console.log(localidad);
-        localidad.setAttribute("required", true);
-        etiquetaLocalidad.setAttribute("Style", "display:block");
-        localidad.setAttribute("Style", "display:block");
-        barrio.setAttribute("Style", "display:none");
-        etiquetaBarrio.setAttribute("Style", "display:none");
-        barrio.removeAttribute("required");
+        etiquetaLocalidad.classList.remove("nover")
+        document.getElementById("localidad").classList.remove("no");
+
+        etiquetaBarrio.classList.add("nover")
+        document.getElementById("barrio").classList.add("no");
+        
+      //  console.log(pro)
+      //   console.log(localidad);
+     localidad.setAttribute("required", true);
+      //   etiquetaLocalidad.setAttribute("Style", "display:block ");
+      //   localidad.classList.remove("no")
+      //   barrio.setAttribute("Style", "display:none ");
+      //   etiquetaBarrio.setAttribute("Style", "display:none ");
+     barrio.removeAttribute("required");
+
       } else {
-        localidad.setAttribute("Style", "display:none");
-        barrio.setAttribute("Style", "display:none");
-        etiquetaBarrio.setAttribute("Style", "display:none");
-        etiquetaLocalidad.setAttribute("Style", "display:none");
+        document.getElementById("localidad").classList.add("no");
+        document.getElementById("barrio").classList.add("no");
+        etiquetaLocalidad.classList.add("nover")
+    etiquetaBarrio.classList.add("nover")
         barrio.removeAttribute("required");
-        localidad.removeAttribute("required");
+         localidad.removeAttribute("required");
       }
 
-    });
+    }, 200);
+
+
+
+   
+
+
   </script>
+  
+
+
+
 </body>
 
 </html>

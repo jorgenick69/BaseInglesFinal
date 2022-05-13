@@ -140,6 +140,7 @@ public class IngresanteServiceIMPL implements IngresanteService {
     public Ingresante guardarNivel(Ingresante ingresante, String i_uso_t_situacion_otro, String i_donde_otro) {
         Ingresante modificado = findIngresanteById(ingresante.getId());
         modificado.setI_estudiaste(ingresante.getI_estudiaste());
+      
         if (ingresante.getI_donde().equalsIgnoreCase("Otro")) {
             modificado.setI_donde(i_donde_otro);
         } else {
@@ -150,8 +151,10 @@ public class IngresanteServiceIMPL implements IngresanteService {
         modificado.setI_nivel_escrito(ingresante.getI_nivel_escrito());
         modificado.setI_nivel_lectura(ingresante.getI_nivel_lectura());
         modificado.setI_uso_trabajo(ingresante.getI_uso_trabajo());
+        
+        
         if (ingresante.getI_uso_t_situacion().equalsIgnoreCase("Otro")) {
-            modificado.setI_donde(i_uso_t_situacion_otro);
+            modificado.setI_uso_t_situacion(i_uso_t_situacion_otro);
         } else {
             modificado.setI_uso_t_situacion(ingresante.getI_uso_t_situacion());
         }
