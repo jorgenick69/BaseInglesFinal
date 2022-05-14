@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/x.css}">
+ 
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+   .nover{
+     display: none;
+   }
+   
+  </style>
+  <form th:action="@{/admin/guardar-ingresante}" method="post" id="myForm" th:object="${ingresante}">
+    <input type="number" name="id" id="id" th:field="*{id}"  hidden />
+
+    <label for="nombre">nombre</label>
+    <input type="text" name="nombre" id="nombre" th:field="*{nombre}"  required />
+
+    <label for="apellido">apellido</label>
+    <input type="text" name="apellido" id="apellido" th:field="*{apellido}"  required />
+
+ 
+
+    <label for="numDoc">numero de documento</label>
+    <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}"  required />
+
+    <label for="mail">Mail</label>
+    <input type="email" name="mail" id="mail" th:field="*{mail}" required />
+
+    <label for="e_egresadoDe">Sos egresado/a de... </label>
+
+    <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required >
+        <option  value=""></option>
+        <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
+    </select>
+
+    <label for="e_establecimiento">Establecimiento educativo de egreso</label>
+ 
+    <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required >
+        <option value=""></option>            
+        <option th:each="les : ${listaEstablecimientos}" th:value="${les}" th:text="${les}"></option>
+    </select>
+
+
+    <input type="submit" value="continuar" />
+  </form>
+  
+  
+<script>
+    $(document).ready(function(){
+            $('#e_establecimiento').select2( { 
+                placeholder: "Seleccione establecimiento de egreso",
+                allowClear: true});
+            $('#e_egresadoDe').select2( { 
+                placeholder: "Seleccione",
+                allowClear: true});
+        });
+</script>
+
+
+</body>
+
+</html>

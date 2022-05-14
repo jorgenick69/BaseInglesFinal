@@ -4,6 +4,7 @@
  */
 package BaseInglesFinal.demo.entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -67,6 +68,7 @@ public class Ingresante {
     private String t_horas;
     private String t_franja;
     private Boolean t_estado=false;
+    
     /**
      * **************nivel Ingles********************************
      */
@@ -82,6 +84,7 @@ public class Ingresante {
     private String i_cercerProfecionalmente;
     private String i_valorTiempo;
     private Boolean i_estado=false;
+    private Date fechaEncuenta;
     /**
      * **************test********************************
      */

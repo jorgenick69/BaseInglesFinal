@@ -9,8 +9,12 @@ import BaseInglesFinal.demo.entity.Ingresante;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
 import BaseInglesFinal.demo.util.Utiles;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -164,8 +168,39 @@ public class IngresanteServiceIMPL implements IngresanteService {
         modificado.setI_cercerProfecionalmente(ingresante.getI_cercerProfecionalmente());
         modificado.setI_valorTiempo(ingresante.getI_valorTiempo());
         modificado.setI_estado(true);
+        modificado.setFechaEncuenta(new Date());
 
         return modificado;
     }
 
+    @Override
+    public Ingresante crearIngresante(Ingresante ingresante,Ingresante ingresanteModificado) {
+        Ingresante retorno;
+        if (ingresanteModificado==null) {
+           retorno=new Ingresante();
+        } else {
+        retorno=ingresanteModificado;
+        }
+        
+        retorno.setId(ingresante.getId());
+        retorno.setApellido(ingresante.getApellido());
+        retorno.setNombre(ingresante.getNombre());
+        retorno.setNumDoc(ingresante.getNumDoc());
+        retorno.setMail(ingresante.getMail());
+        retorno.setE_egresadoDe(ingresante.getE_egresadoDe());
+        retorno.setE_establecimiento(ingresante.getE_establecimiento());
+        return retorno;
+    }
+
+//    @Override
+//    public Page<Ingresante> getAll(Pageable pageable,List<Ingresante>ingre) {
+//     Page<Ingresante>page =new PageImpl<Ingresante>(ir.findAll());
+//    
+//    return
+//    }
+//@Override
+//    public Page<Ingresante> getAll(List<Ingresante>ingre) {
+//     Page<Ingresante>page =new PageImpl<Ingresante>(ir.findAll());
+//     return page;
+//    }
 }

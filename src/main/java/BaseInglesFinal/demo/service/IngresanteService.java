@@ -6,12 +6,15 @@ package BaseInglesFinal.demo.service;
 
 import BaseInglesFinal.demo.entity.Ingresante;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
  * @author jorge
  */
 public interface IngresanteService {
+    public Ingresante crearIngresante(Ingresante ingresante,Ingresante ingresanteModificado);
     public List<Ingresante> devolverListaParaImportar(List<Ingresante> lista);
      public Ingresante createIngresante(Ingresante ingresante);
     public List<Ingresante> findAllIngresante();
@@ -23,5 +26,5 @@ public interface IngresanteService {
     public Ingresante guardarDDuros(Ingresante ingresante);
     public Ingresante guardarEncuenta(Ingresante ingresante);
     public Ingresante guardarNivel(Ingresante ingresante,String i_uso_t_situacion_otro,String i_donde_otro);
-    
+//    public Page<Ingresante>getAll(Pageable pageable,List<Ingresante>ingresante);
 }

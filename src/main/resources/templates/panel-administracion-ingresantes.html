@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif !important;
+            }
+
+            .container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .contenedor-acciones {
+                width: 80%;
+                min-height: 70vh;
+                margin: auto;
+                border-radius: 7px 7px 0px 0px;
+                box-shadow: 0 0 8px #c5c3c2;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .acciones-ingresante {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                height: 50px;
+                background-color: #f54789;
+
+
+            }
+
+            .acciones-ingresante button {
+                width: calc(100%/3);
+                display: flex;
+                justify-content: space-between;
+                border: none;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                background: none;
+                color: white;
+                font-size: 1em;
+            }
+
+            .acciones-ingresante button:hover {
+                background-color: #f562a2;
+                font-size: 1.3em;
+                transition: all 0.4s;
+                border-bottom: 5px solid white;
+            }
+
+            .acciones-importar,
+            .acciones-exportar {
+                width: 95%;
+                min-height: calc(70vh - 50px);
+
+                padding-top: 1em;
+                padding-bottom: 1em;
+            }
+
+            .descargar-instructivo {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid #f3a32d;
+                border-radius: 5px;
+                height: 70px;
+            }
+
+            .clic-img {
+                height: 70%;
+            }
+
+            .acciones-exportar form {
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                margin: auto;
+            }
+
+            .acciones-exportar form label {
+                font-size: 0.7em;
+                margin-top: 20px;
+            }
+
+            .acciones-exportar form label,
+            .acciones-exportar form select,
+            .acciones-exportar form input[type=date],
+            .acciones-exportar form input {
+                color: #717170;
+
+
+            }
+
+            .acciones-exportar form select,
+            .acciones-exportar form input[type=date],
+            .acciones-exportar form input {
+                color: #717170;
+                border: none;
+                outline: 0px;
+                padding: 0.5em;
+                border-bottom: 1px solid #717170;
+            }
+
+            .fechas {
+                display: flex;
+                justify-content: space-between;
+
+            }
+
+            .contenedor-desde,
+            .contenedor-hasta {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+
+
+
+
+
+            input[type=date]::-webkit-calendar-picker-indicator {
+                color: #717170;
+                opacity: 1;
+                display: block;
+                position: absolute;
+                left: -25px;
+                font-size: x-large;
+
+                
+               
+
+            }
+
+
+            .botones-exportar {
+                margin-top: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+            }
+
+            .botones-exportar input {
+                border: none !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white !important;
+
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+
+            .verde {
+                background-color: #99c25f !important;
+
+            }
+
+            .rojo {
+                background-color: #e76056 !important;
+
+            }
+
+            .verde:hover {
+                background-color: #88bf48 !important;
+                transform: scale(1.1);
+                transition: all 0.5s;
+            }
+
+            .rojo:hover {
+                background-color: #e74c3c !important;
+                transform: scale(1.1);
+                transition: all 0.5s;
+            }
+
+            /**********File Inputs**********/
+            .container-input {
+                text-align: center;
+
+                padding: 50px 0;
+                border-radius: 6px;
+                width: 50%;
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
+
+            .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .inputfile+label {
+                max-width: 80%;
+                font-size: 1.25rem;
+                font-weight: 700;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                cursor: pointer;
+                display: inline-block;
+                overflow: hidden;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .inputfile+label svg {
+                width: 1em;
+                height: 1em;
+                vertical-align: middle;
+                fill: currentColor;
+                margin-top: -0.25em;
+                margin-right: 0.25em;
+            }
+
+            .iborrainputfile {
+                font-size: 16px;
+                font-weight: normal;
+                font-family: 'Lato';
+            }
+
+            .inputfile-5+label {
+                color: black;
+            }
+
+            .inputfile-5:focus+label,
+            .inputfile-5.has-focus+label,
+            .inputfile-5+label:hover {
+                color: #0389d1;
+            }
+
+            .inputfile-5+label figure {
+                width: 2em;
+                height: 2em;
+                border-radius: 50%;
+                background-color: #0389d1;
+                display: block;
+                padding: 20px;
+                margin: 0 auto 10px;
+            }
+
+            .inputfile-5:focus+label figure,
+            .inputfile-5.has-focus+label figure,
+            .inputfile-5+label:hover figure {
+                background-color: #00b3e3;
+            }
+
+            .inputfile-5+label svg {
+                width: 100%;
+                height: 100%;
+                fill: #fff;
+            }
+
+            /*********************estilos form***************/
+            .form-importar {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                padding-bottom: 2em;
+            }
+
+            .primary-btn {
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #0389d1;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+
+            .no {
+                display: none;
+                visibility: hidden;
+            }
+            @media(max-width:770px){
+               .fechas,.botones-exportar{
+                   flex-direction: column;
+               }
+               .contenedor-acciones {
+                width: 95%;
+            }
+        </style>
+        <section class="container">
+            <h1>Panel de administración de Ingresantes</h1>
+
+            <h3>Desde aquí podras administrar toda la información</h3>
+
+            <div class="contenedor-acciones">
+                <div class="acciones-ingresante">
+                    <button>Importar</button><button>Exportar</button><button>Agregar</button>
+                </div>
+                <!-- MODULO IMPORTACION DE DATOS -->
+                <div class="acciones-importar" id="acciones-importar">
+                    <div class="descargar-instructivo"><span>Descargue el instructivo</span><img class="clic-img"
+                            src="/static/img/icon/hacer-clic.png" alt=""></div>
+                    <form class="form-importar" th:action="@{/import/excel}" method="post"
+                        enctype="multipart/form-data">
+                        <div class="container-input">
+                            <input type="file" name="file" id="file-5" class="inputfile inputfile-5"
+                                data-multiple-caption="{count} archivos seleccionados" multiple />
+                            <label for="file-5">
+                                <figure>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20"
+                                        height="17" viewBox="0 0 20 17">
+                                        <path
+                                            d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z">
+                                        </path>
+                                    </svg>
+                                </figure>
+                                <span class="iborrainputfile">Seleccionar archivo con extencion excel</span>
+                            </label>
+
+                        </div>
+                        <input class="primary-btn" type="submit" value="IMPORTAR">
+                    </form>
+
+                </div>
+                <!--FIN MODULO IMPORTACION DE DATOS -->
+
+                <!--MODULO EXPORTACION DE DATOS -->
+                <div class="acciones-exportar">
+                    <form action="">
+                        <label for="dni">Documento</label>
+                        <input type="text" name="dni" id="dni">
+                        <div class="fechas">
+                            <div class="contenedor-desde">
+
+
+                                <label for="desde">Desde</label>
+                                <input type="date" name="desde" id="desde">
+
+                            </div>
+                            <div class="contenedor-hasta">
+
+                                <label for="hasta">Hasta</label>
+                                <input type="date" name="hasta" id="hasta">
+
+                            </div>
+                        </div>
+
+                        <label for="genero">Genero</label>
+
+                        <select name="genero" id="genero">
+                            <option value="" selected>Seleccione genero</option>
+                            <option value="No binario">No binario</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                        </select>
+
+                        <label for="encuesta">Encuesta Terminada</label>
+                        <select name="encuesta" id="encuesta">
+                            <option value="" selected>Seleccione</option>
+                            <option value="si">si</option>
+                            <option value="no">no</option>
+                        </select>
+                        <label for="examen">Examen Terminado</label>
+                        <select name="examen" id="examen">
+                            <option selected value="">Seleccione</option>
+                            <option value="si">si</option>
+                            <option value="no">no</option>
+                        </select>
+
+                        <div class="botones-exportar">
+                            <input class="verde" type="submit" value="FILTRAR">
+                            <input class="rojo" type="reset" value="RESETEAR FILTRO">
+                        </div>
+
+
+
+
+                    </form>
+
+
+
+                </div>
+
+
+                <!--FIN MODULO EXPORTACION DE DATOS -->
+
+            </div>
+        </section>
+</body>
+<script>
+
+
+    (function (document, window, index) {
+        var inputs = document.querySelectorAll('.inputfile');
+        Array.prototype.forEach.call(inputs, function (input) {
+            var label = input.nextElementSibling,
+                labelVal = label.innerHTML;
+
+            input.addEventListener('change', function (e) {
+                var fileName = '';
+                if (this.files && this.files.length > 1)
+                    fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                else
+                    fileName = e.target.value.split('\\').pop();
+
+                if (fileName)
+                    label.querySelector('span').innerHTML = fileName;
+                else
+                    label.innerHTML = labelVal;
+            });
+        });
+    }(document, window, 0));
+    document.getElementById("acciones-importar").classList.add("no")
+</script>
+
+</html>
