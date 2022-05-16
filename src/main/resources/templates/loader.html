@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        
+
+ <div th:fragment="loading" id="cargando" class="cargando">
+    <style>
+
+        .cargando {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background-color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;        }
+        
+        .loader {
+           
+            display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;  
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: -90px;
+          margin: auto;
+          background-color: #ffffff;
+          transform: translate3d(0, 0, 0);
+        }
+        
+        .dot {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+          width: 18px;
+          height: 18px;
+          border-radius: 100%;
+        }
+        .dot:nth-child(1) {
+          background-color: #f44336;
+          -webkit-animation: jump--1 0.666s linear infinite;
+                  animation: jump--1 0.666s linear infinite;
+          box-shadow: rgba(255, 255, 255, 0.6) 0 0 2px 2px, #f44336 0 0 12px 0;
+        }
+        .dot:nth-child(2) {
+          background-color: #f1c40f;
+          -webkit-animation: jump--2 0.666s linear infinite;
+                  animation: jump--2 0.666s linear infinite;
+          box-shadow: rgba(255, 255, 255, 0.6) 0 0 2px 2px, #f1c40f 0 0 12px 0;
+        }
+        .dot:nth-child(3) {
+          background-color: #03A9F4;
+          -webkit-animation: jump--3 0.666s linear infinite;
+                  animation: jump--3 0.666s linear infinite;
+          box-shadow: rgba(255, 255, 255, 0.6) 0 0 2px 2px, #03A9F4 0 0 12px 0;
+        }
+        
+        @-webkit-keyframes jump--1 {
+          0% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          12.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          25% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          37.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          50% {
+            transform: translate3d(500%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+        }
+        
+        @keyframes jump--1 {
+          0% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          12.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          25% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          37.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          50% {
+            transform: translate3d(500%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+        }
+        @-webkit-keyframes jump--2 {
+          0% {
+            transform: translate3d(250%, 0, 0);
+          }
+          25% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          37.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          50% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          62.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          75% {
+            transform: translate3d(500%, 0, 0);
+          }
+          100% {
+            transform: translate3d(250%, 0, 0);
+          }
+        }
+        @keyframes jump--2 {
+          0% {
+            transform: translate3d(250%, 0, 0);
+          }
+          25% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          37.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          50% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          62.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          75% {
+            transform: translate3d(500%, 0, 0);
+          }
+          100% {
+            transform: translate3d(250%, 0, 0);
+          }
+        }
+        @-webkit-keyframes jump--3 {
+          0% {
+            transform: translate3d(500%, 0, 0);
+          }
+          50% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          62.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          75% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          87.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          100% {
+            transform: translate3d(500%, 0, 0);
+          }
+        }
+        @keyframes jump--3 {
+          0% {
+            transform: translate3d(500%, 0, 0);
+          }
+          50% {
+            transform: translate3d(0, 0, 0) scale(2);
+          }
+          62.5% {
+            transform: translate3d(41.6666666667%, -142.8571428571%, 0);
+          }
+          75% {
+            transform: translate3d(250%, -250%, 0);
+          }
+          87.5% {
+            transform: translate3d(500%, 250%, 0);
+          }
+          100% {
+            transform: translate3d(500%, 0, 0);
+          }
+        }
+            </style>
+         
+    <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+ </div>
+   
+</body>
+</html>

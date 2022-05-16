@@ -5,6 +5,7 @@
 package BaseInglesFinal.demo.service;
 
 import BaseInglesFinal.demo.entity.Ingresante;
+import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,5 +27,7 @@ public interface IngresanteService {
     public Ingresante guardarDDuros(Ingresante ingresante);
     public Ingresante guardarEncuenta(Ingresante ingresante);
     public Ingresante guardarNivel(Ingresante ingresante,String i_uso_t_situacion_otro,String i_donde_otro);
-//    public Page<Ingresante>getAll(Pageable pageable,List<Ingresante>ingresante);
+//public List<Ingresante>buscadorUniversal(String query);
+public List<Ingresante>getByFilter(String query, String desde, String hasta, String genero, String encuenta, String examen,String order);
+
 }

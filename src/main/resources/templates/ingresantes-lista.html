@@ -4,22 +4,374 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap demo</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-      </head>
-      <body>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+   
+    <script>
+     
+      document.addEventListener("DOMContentLoaded", function(event) {
+        document.getElementById("cargando").setAttribute("style","display: none")
+        document.getElementById("despues").setAttribute("style","display: block !important")
+        document.getElementById("icono-excel").setAttribute("style","display:flex")
+        document.getElementById("btn-volver").setAttribute("style","display:flex")
         
-        <ul class="pagination">
-            <li class="page-item" th:each="item : ${page.paginas}" th:class="${item.actual? 'page-item active' : 'page-item'}">
-                <span class="page-link" th:if="${item.actual}" th:text="${item.num}"></span>
-                <a class="page-link" th:if="${not item.actual}" th:href="@{${page.url}(page=$){item.num-1}}" th:text="${item.num}"></a>
+});
+     
+    </script>
+    <script>
+        var tableToExcel = (function() {
+      var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xlsx><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xlsx><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+      return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table)
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+        window.location.href = uri + base64(format(template, ctx))
+      }
+    })()
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    *{
+      font-family: 'Montserrat', sans-serif !important;
+    }
+      .no {
+          display: none;
+      }
+  
+      .si {
+          display: table-row !important;
+  
+      }
+  
+      .flex {
+          display: flex !important;
+      }
+  
+      .paginacion {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+          gap: 5px;
+      }
+  
+      .paginador {
+  
+          width: 100vw;
+  
+      }
+  
+      .ancho ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.5px;
+          justify-content: center;
+      }
+  
+      .ancho ul li {
+          display: none;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          width: 35px;
+          height: 35px;
+          background-color: #f3a32d;
+          border-radius: 2px;
+      }
+  
+      .ancho ul li:hover {
+          background-color: #f39c12;
+          transform: scale(1.1);
+          transition: all 0.4s;
+      }
+  
+      .ancho ul li span {
+          color: #333;
+          font-weight: bold;
+      }
+      .table thead{
+          background-color: #717170;
+          color: white;
+      }
+      #loader{
+        width: 100%;
+        height: 100vh;
+      }
+    
+    #despues{
+        width: 100%;
+        
+        
+    }
+    .vision-tabla{
+        width: 100%;
+    
+    }
+    .tabla{
+        width: 100%;
+        overflow: scroll;
+    }
+    .titulo-listado{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+    .icono-excel{
+        width: 8%;
+        height: max-content;
+        
+        flex-direction: column;justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 5px;
+        position: fixed;
+        top: 30%;
+        right: 30px;
+    }
+    .btn-volver{
+        width: 8%;
+        height: max-content;
+        
+        flex-direction: column;justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 5px;
+        position: fixed;
+        bottom: 10%;
+        right: 27px;
+    }
+    .icono-excel {
+      text-decoration: none;
+      
+    }
+    .btn-volver {
+      text-decoration: none;
+      
+    }
+    .icono-excel img{
+     width: 100%;
+     height: fit-content;
+    }
+    .icono-excel  span{
+      color: white !important;
+      font-weight: bold;
+      padding: 0.3em;
+      background-color: #88bf48;
+      border-radius: 5px;
+     font-size: 1.2vmax;
+      
+    }
+    .btn-volver  span{
+      color: white !important;
+      font-weight: bold;
+      padding: 0.3em;
+      padding-left: 1em;
+      padding-right: 1em;
+      background-color: #f39c12;
+      border-radius: 5px;
+     font-size: 1.2vmax;
+      
+    }
+    .btn-volver:hover ,.icono-excel:hover{
+        transform: scale(1.2);
+    }
+   
+    .icono-accion{
+        width: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .icono-accion:hover{
+        transform: scale(1.3);
+    }
+  </style>
 
-            </li>
+</head>
+
+
+<body>
+  <div  id="cargando" th:replace="/loader :: loading">  </div>
+  <section id="despues" >
+    <h1 class="titulo-listado">Listado de Ingresantes</h1>
+  
+
+   <!-- Exportar la lista</a> -->
+    <!-- <a th:href="@{/exportar?format=xlsx}">Volver</a> -->
+    <p th:text="${cantidadRegistros}" hidden id="contadorFinal"></p>
+    <div th:replace="/estadisticas :: estadistics"></div>
+
+    <a class="icono-excel no" id="icono-excel" th:href="@{/admin/exportar(query=${quer},desde=${des},hasta=${has},genero=${gen},encuesta=${enc},examen=${exam})}+'&format=xlsx'"><img th:src="@{/img/icon/icons8-export-excel-100.png}" alt=""><span>EXPORTAR</span></a>
+    <a class="btn-volver no" id="btn-volver" th:href="@{/admin/administrar}"><span>VOLVER</span></a>
+   <div class="vision-tabla">
+
+    <table id="tabla" class="table table-hover">
+        <thead>
+            <th scope="col" hidden>Id</th>
+            <th scope="col">Acciones</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Celular</th>
+      
+            <th scope="col">num doc</th>
+            <th scope="col">apellido</th>
+            <th scope="col">nombre</th>
+            <th scope="col">fNacimiento</th>
+            <th scope="col">genero</th>
+            <th scope="col">nacionalidad</th>
+            <th scope="col">pais</th>
+            <th scope="col">provincia</th>
+            <th scope="col">localidad</th>
+            <th scope="col">domicilio</th>
+        </thead>
+        <tbody>
+
+            <tr scope="row" th:each="in ,num: ${ingre}" th:id="dato+${num.count}"
+                th:classappend="${num.count>50} ? 'no' ">
+                <td th:text="${in.id}" hidden>Id</td>
+                <td class="container-icono-accion"><a href=""><img class="icono-accion" th:src="@{/img/icon/lapiz.png}" alt=""></a>
+                    <a href=""><img class="icono-accion"  th:src="@{/img/icon/eliminar.png}" alt=""></a></td>
+                <td th:text="${in.mail}">Mail</td>
+                <td th:text="${in.celu}">Celular</td>               
+                <td th:text="${in.numDoc}">num doc</td>
+                <td th:text="${in.apellido}">apellido</td>
+                <td th:text="${in.nombre}">nombre</td>
+                <td th:text="${in.fNacimiento}">fNacimiento</td>
+                <td th:text="${in.genero}">genero</td>
+                <td th:text="${in.nacionalidad}">nacionalidad</td>
+                <td th:text="${in.pais}">pais</td>
+                <td th:text="${in.provincia}">provincia</td>
+                <td th:text="${in.localidadResi}">localidad</td>
+                <td th:text="${in.domicilio}">domicilio</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="ancho">
+        <ul id="pagr">
 
         </ul>
+    </div>
+   </div>
+   
+    
+  </section>
 
 
+    <script>
+
+        var contador = document.getElementById("contadorFinal").innerText;
+        contador = parseInt(contador)
+        console.log(contador)
+        console.log(typeof (contador))
+        const division = Math.round(contador / 50)
+        console.log(contador)
+
+        let ul = document.getElementById("pagr");
+        ul.classList.add("pagination")
 
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-      </body>
+        for (let index = 1; index <= (division + 1); index++) {
+            const element = (index);
+            let li = document.createElement("li");
+            let liText = document.createElement("span");
+            liText.innerText = element
+
+            li.appendChild(liText);
+            li.setAttribute("id", "indice" + (index))
+            li.setAttribute("style", "cursor: pointer")
+            li.setAttribute("onclick", "ver(" + (index) + ")")
+
+            ul.appendChild(li);
+        }
+
+        function ver(num) {
+
+            console.log((((num * 50) - 50) + 1))
+            if (num == 1) {
+                for (let index = 1; index < (contador + 1); index++) {
+                    if (index <= 50) {
+                        var elem = document.getElementById("dato" + (index))
+                        elem.classList.add("si")
+                    } else {
+                        var elem = document.getElementById("dato" + (index))
+                        elem.classList.remove("si")
+                        elem.classList.add("no")
+                    }
+
+                }
+
+                for (let index = 1; index < (division + 1); index++) {
+                    if ( index > (num - 4) && index < (num + 4)) {
+                        let pag = document.getElementById("indice" + index)
+                        pag.classList.add("flex")
+                        console.log(index)
+                    } else {
+                        let pag = document.getElementById("indice" + index)
+                        pag.classList.add("no")
+                        console.log(index)
+                    }
+
+                }
+
+            } else {
+
+                let actual = (((num * 50) - 50) + 1)
+                let posterior = num * 50;
+                console.log(actual)
+                for (let index = 1; index < (contador + 1); index++) {
+
+                    if (index===1|| index===division|| index >= actual && index <= posterior) {
+                        var elem = document.getElementById("dato" + (index))
+                        elem.classList.add("si")
+                    } else {
+                        var elem = document.getElementById("dato" + (index))
+
+                        elem.classList.remove("si")
+                        elem.classList.add("no")
+                    }
+
+                }
+                for (let index = 1; index < (division + 2); index++) {
+                    
+                  if (index===1|| index===division||  index >= (num - 4) && index <= (num + 4)) {
+                        let pag = document.getElementById("indice" + index)
+                        pag.classList.add("flex")
+
+                    } else {
+                        let pag = document.getElementById("indice" + index)
+                        pag.classList.remove("flex")
+                        console.log(index)
+                    }
+
+                }
+            }
+
+
+        }
+        for (let index = 1; index < (division + 1); index++) {
+            if (index < 9 || index===division) {
+                let pag = document.getElementById("indice" + index)
+                pag.classList.add("flex")
+                console.log(index)
+            }
+
+        }
+        // scrip grafica de torta
+
+        document.getElementById("icono-excel").classList.remove("no")
+        document.getElementById(".btn-volver").classList.remove("no")
+       
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
 </html>

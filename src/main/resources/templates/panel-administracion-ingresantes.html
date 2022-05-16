@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/x.css}">
     <title>Document</title>
+    <script>
+        document.getElementById("contenedor").setAttribute("style", "display: none")
+        
+      
+      
+    </script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.getElementById("cargando").setAttribute("style", "display: none")
+            document.getElementById("contenedor").setAttribute("style", "display: block !important")
+        });
+
+    </script>
 </head>
 
 <body>
+    <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
+        th:text="${mensaje}">error inesperado</span>
+    <div id="cargando" th:replace="/loader :: loading"> </div>
     <div class="contenedor">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -18,6 +39,7 @@
                 padding: 0;
                 font-family: 'Montserrat', sans-serif !important;
             }
+
 
             .container {
                 width: 100%;
@@ -70,12 +92,14 @@
             }
 
             .acciones-importar,
-            .acciones-exportar {
+            .acciones-exportar,
+            .acciones-agregar {
                 width: 95%;
                 min-height: calc(70vh - 50px);
 
                 padding-top: 1em;
                 padding-bottom: 1em;
+                
             }
 
             .descargar-instructivo {
@@ -92,14 +116,16 @@
                 height: 70%;
             }
 
-            .acciones-exportar form {
+            .acciones-exportar form,
+            .acciones-agregar form {
                 display: flex;
                 flex-direction: column;
                 width: 60%;
                 margin: auto;
             }
 
-            .acciones-exportar form label {
+            .acciones-exportar form label,
+            .acciones-agregar form label {
                 font-size: 0.7em;
                 margin-top: 20px;
             }
@@ -107,15 +133,32 @@
             .acciones-exportar form label,
             .acciones-exportar form select,
             .acciones-exportar form input[type=date],
-            .acciones-exportar form input {
+            .acciones-exportar form input,
+            .acciones-agregar form label,
+            .acciones-agregarform select,
+            .acciones-agregar form input[type=date],
+            .acciones-agregar form input {
                 color: #717170;
+                outline: 0px;
 
 
             }
 
             .acciones-exportar form select,
             .acciones-exportar form input[type=date],
-            .acciones-exportar form input {
+            .acciones-exportar form input,
+            .acciones-agregar form select,
+            .acciones-agregar form input[type=date],
+            .acciones-agregar form input {
+                color: #717170;
+                border: none;
+                outline: 0px !;
+                padding: 0.5em !;
+                border-bottom: 1px solid #717170;
+            }
+
+            #e_egresadoDe,
+            #e_establecimiento {
                 color: #717170;
                 border: none;
                 outline: 0px;
@@ -145,13 +188,9 @@
             input[type=date]::-webkit-calendar-picker-indicator {
                 color: #717170;
                 opacity: 1;
-                display: block;
-                position: absolute;
-                left: -25px;
                 font-size: x-large;
 
-                
-               
+
 
             }
 
@@ -163,7 +202,19 @@
                 gap: 40px;
                 justify-content: center;
             }
+            
+            .botones-exportar input {
+                border: none !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white !important;
 
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
             .botones-exportar input {
                 border: none !important;
                 padding: 1em;
@@ -300,38 +351,86 @@
                 border-radius: 5px;
                 box-shadow: 0 0 8px #c5c5c5;
             }
+            .boton-volver{
+                margin-top: 30px;
+                margin-bottom: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+            }
+             .reescalar:hover{
+                 transform: scale(1.2);
+                 transition: all 0.5s;
+             }
+            .secondary-btn {
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #f39c12;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .secondary-btn a {
+               text-decoration: none;
+            }
+            .secondary-btn span {
+                color: white !important;
+            }
 
             .no {
                 display: none;
                 visibility: hidden;
             }
-            @media(max-width:770px){
-               .fechas,.botones-exportar{
-                   flex-direction: column;
-               }
-               .contenedor-acciones {
-                width: 95%;
+
+            @media(max-width:770px) {
+
+                .fechas,
+                .botones-exportar {
+                    flex-direction: column;
+                }
+
+                .contenedor-acciones {
+                    width: 95%;
+                }
+            }
+
+            .mensaje-de-advertencia {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+                text-align: left !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background-color: #fcda59;
+                border-radius: 5px;
             }
         </style>
-        <section class="container">
+
+        <div class="container">
+
             <h1>Panel de administración de Ingresantes</h1>
 
             <h3>Desde aquí podras administrar toda la información</h3>
 
             <div class="contenedor-acciones">
                 <div class="acciones-ingresante">
-                    <button>Importar</button><button>Exportar</button><button>Agregar</button>
+                    <button id="importIngre" onclick="importIngre()">Importar</button><button id="exporIngre" onclick="exporIngre()">Exportar/Filtrar</button><button id="createIngre" onclick="createIngre()">Agregar</button>
                 </div>
                 <!-- MODULO IMPORTACION DE DATOS -->
                 <div class="acciones-importar" id="acciones-importar">
                     <div class="descargar-instructivo"><span>Descargue el instructivo</span><img class="clic-img"
-                            src="/static/img/icon/hacer-clic.png" alt=""></div>
-                    <form class="form-importar" th:action="@{/import/excel}" method="post"
+                            th:src="@{/img/icon/hacer-clic.png}" alt=""></div>
+                    <form class="form-importar" th:action="@{/admin/import/excel}" method="post"
                         enctype="multipart/form-data">
                         <div class="container-input">
                             <input type="file" name="file" id="file-5" class="inputfile inputfile-5"
                                 data-multiple-caption="{count} archivos seleccionados" multiple />
-                            <label for="file-5">
+                            <label for="file-5" class="reescalar">
                                 <figure>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20"
                                         height="17" viewBox="0 0 20 17">
@@ -344,17 +443,17 @@
                             </label>
 
                         </div>
-                        <input class="primary-btn" type="submit" value="IMPORTAR">
+                        <input class="primary-btn reescalar" type="submit" value="IMPORTAR" onclick="funcionEsperar()">
                     </form>
 
                 </div>
                 <!--FIN MODULO IMPORTACION DE DATOS -->
 
                 <!--MODULO EXPORTACION DE DATOS -->
-                <div class="acciones-exportar">
-                    <form action="">
-                        <label for="dni">Documento</label>
-                        <input type="text" name="dni" id="dni">
+                <div class="acciones-exportar" id="acciones-exportar">
+                    <form th:action="@{/admin/exportar}" method="get">
+                        <label for="dni">Buscador</label>
+                        <input type="text" name="query" id="dni">
                         <div class="fechas">
                             <div class="contenedor-desde">
 
@@ -395,7 +494,7 @@
                         </select>
 
                         <div class="botones-exportar">
-                            <input class="verde" type="submit" value="FILTRAR">
+                            <input class="verde " type="submit" value="FILTRAR">
                             <input class="rojo" type="reset" value="RESETEAR FILTRO">
                         </div>
 
@@ -410,34 +509,130 @@
 
 
                 <!--FIN MODULO EXPORTACION DE DATOS -->
+                <!--MODULO EXPORTACION DE DATOS -->
+                <div class="acciones-agregar" id="acciones-agregar">
+                    <form th:action="@{/admin/guardar-ingresante}" method="post" id="myForm" th:object="${ingresante}">
+                        <input type="number" name="id" id="id" th:field="*{id}" hidden />
+
+                        <label for="nombre">nombre</label>
+                        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required />
+
+                        <label for="apellido">apellido</label>
+                        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" required />
+
+
+
+                        <label for="numDoc">numero de documento</label>
+                        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" required />
+
+                        <label for="mail">Mail</label>
+                        <input type="email" name="mail" id="mail" th:field="*{mail}" required />
+
+                        <label for="e_egresadoDe">Sos egresado/a de... </label>
+
+                        <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required>
+                            <option value=""></option>
+                            <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
+                        </select>
+
+                        <label for="e_establecimiento">Establecimiento educativo de egreso</label>
+
+                        <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento"
+                            required>
+                            <option value=""></option>
+                            <option th:each="les : ${listaEstablecimientos}" th:value="${les}" th:text="${les}">
+                            </option>
+                        </select>
+
+
+                        <div class="botones-exportar">
+                            <input class="verde" type="submit" value="AGREGAR">
+                            <input class="rojo" type="reset" value="RESETEAR CAMPOS">
+                        </div>
+                    </form>
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#e_establecimiento').select2({
+                                placeholder: "Seleccione establecimiento de egreso",
+                                allowClear: true
+                            });
+                            $('#e_egresadoDe').select2({
+                                placeholder: "Seleccione",
+                                allowClear: true
+                            });
+                           
+
+
+                        });
+                    </script>
+                </div>
 
             </div>
-        </section>
-</body>
+        </div>
+    </div>
+    <div class="boton-volver">
+        <button class="secondary-btn reescalar"><a th:href="@{/admin}"><span>VOLVER</span></a></button>
+    </div>
 <script>
-
-
-    (function (document, window, index) {
-        var inputs = document.querySelectorAll('.inputfile');
-        Array.prototype.forEach.call(inputs, function (input) {
-            var label = input.nextElementSibling,
-                labelVal = label.innerHTML;
-
-            input.addEventListener('change', function (e) {
-                var fileName = '';
-                if (this.files && this.files.length > 1)
-                    fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-                else
-                    fileName = e.target.value.split('\\').pop();
-
-                if (fileName)
-                    label.querySelector('span').innerHTML = fileName;
-                else
-                    label.innerHTML = labelVal;
-            });
-        });
-    }(document, window, 0));
-    document.getElementById("acciones-importar").classList.add("no")
+    document.getElementById("acciones-agregar").setAttribute("style", "display: none")
+        document.getElementById("acciones-exportar").setAttribute("style", "display: none")
 </script>
+    <script>
+
+
+        (function (document, window, index) {
+            var inputs = document.querySelectorAll('.inputfile');
+            Array.prototype.forEach.call(inputs, function (input) {
+                var label = input.nextElementSibling,
+                    labelVal = label.innerHTML;
+
+                input.addEventListener('change', function (e) {
+                    var fileName = '';
+                    if (this.files && this.files.length > 1)
+                        fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                    else
+                        fileName = e.target.value.split('\\').pop();
+
+                    if (fileName)
+                        label.querySelector('span').innerHTML = fileName;
+                    else
+                        label.innerHTML = labelVal;
+                });
+            });
+        }(document, window, 0));
+        //document.getElementById("acciones-importar").classList.add("no")
+    </script>
+    <script>
+        function funcionEsperar() {
+            document.getElementById("cargando").removeAttribute("style", "display: none")
+        }
+        setTimeout(() => {
+            document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
+        }, 10000);
+    </script>
+    <script>
+       function importIngre(){
+        document.getElementById("acciones-agregar").setAttribute("style", "display: none")
+       
+        document.getElementById("acciones-importar").removeAttribute("style", "display: none")
+        
+        document.getElementById("acciones-exportar").setAttribute("style", "display: none")
+       } 
+       function exporIngre(){
+        document.getElementById("acciones-agregar").setAttribute("style", "display: none")
+        document.getElementById("acciones-importar").setAttribute("style", "display: none")
+        document.getElementById("acciones-exportar").removeAttribute("style", "display: none")
+       }
+       function createIngre(){
+        document.getElementById("acciones-agregar").removeAttribute("style", "display: none")
+        document.getElementById("acciones-importar").setAttribute("style", "display: none")
+        document.getElementById("acciones-exportar").setAttribute("style", "display: none")
+       }
+       
+    </script>
+</body>
+
 
 </html>

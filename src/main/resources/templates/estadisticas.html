@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+   
+
+<div id="estadisticas" th:fragment="estadistics">
+    <style>
+        ::selection { background: #4ba027; color: #f2f2f2; text-shadow: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    *{
+      font-family: 'Montserrat', sans-serif !important;
+    }
+#estadisticas { width: 80%; margin: 0 auto; 
+    height: 150px !important; 
+   
+    margin-bottom: 2em;
+    display: flex;
+    gap: 20px;
+}
+
+
+
+
+
+
+#estadisticas div {
+  width: 16%;
+  float: left;
+  text-align: center;
+  transition: all .3s ease;
+}
+#estadisticas div:hover { color: #020202; }
+#estadisticas div em {
+  font-size: 3.5em;
+  font-weight: bold;
+  font-style: normal;
+  display: block;
+  text-align: center;
+  
+}
+#estadisticas div em span { font-size: .6em; }
+
+
+@media all and (max-width : 1100px) { #estadisticas { font-size: .9em; } }
+@media all and (max-width : 980px) { #estadisticas { font-size: .8em; } }
+@media all and (max-width : 880px) { #estadisticas { font-size: .7em; } }
+@media all and (max-width : 790px) {
+    #estadisticas { font-size: .8em; }
+  #estadisticas div {
+    width: 100%;
+    float: none;
+    font-size: 1.3em;
+    margin: 0 auto 2em;
+  }
+  .tl { display: none; }
+}
+@media all and (max-width : 515px) { #estadisticas { font-size: .7em; } }
+@media all and (max-width : 490px) { #estadisticas { font-size: .65em; } }
+
+
+    </style>
+
+  <div><em th:text="${cantidadRegistros}">1200</em>Registros totales</div>
+  <div><em th:text="${rMujeres}">66</em>Mujeres</div>
+  <div><em th:text="${rHombres}">8</em>Hombres</div>
+  <div><em th:text="${rOtros}">7</em>Otros</div>
+  <div><em th:text="${rEncuesta}">123</em> Encuenta Terminada</div>
+  <div><em th:text="${rExamen}">42</em> Examen Terminado</div>
+
+ 
+</div>
+</body>
+</html>

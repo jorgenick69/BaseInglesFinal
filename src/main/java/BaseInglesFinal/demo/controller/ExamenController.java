@@ -40,6 +40,7 @@ public class ExamenController {
        examenNew=es.save(examenNew);
         Ingresante busqueda=is.findIngresanteById(examenNew.getId_ingresante());
        busqueda.setExamen(examen);
+       busqueda.setI_examen(true);
        is.saveIngresante(busqueda);
         return "Finalizo con exito espere noticias";
     }

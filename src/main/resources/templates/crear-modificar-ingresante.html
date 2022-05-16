@@ -2,75 +2,532 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
-  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
-  <link rel="stylesheet" th:href="@{/css/x.css}">
- 
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/x.css}">
+    <title>Document</title>
+    <script>
+        document.getElementById("contenedor").setAttribute("style", "display: none")
+        
+      
+      
+    </script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.getElementById("cargando").setAttribute("style", "display: none")
+            document.getElementById("contenedor").setAttribute("style", "display: block !important")
+        });
+
+    </script>
 </head>
 
 <body>
-  <style>
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-   .nover{
-     display: none;
-   }
-   
-  </style>
-  <form th:action="@{/admin/guardar-ingresante}" method="post" id="myForm" th:object="${ingresante}">
-    <input type="number" name="id" id="id" th:field="*{id}"  hidden />
+    <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
+        th:text="${mensaje}">error inesperado</span>
+    <div id="cargando" th:replace="/loader :: loading"> </div>
+    <div class="contenedor">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-    <label for="nombre">nombre</label>
-    <input type="text" name="nombre" id="nombre" th:field="*{nombre}"  required />
-
-    <label for="apellido">apellido</label>
-    <input type="text" name="apellido" id="apellido" th:field="*{apellido}"  required />
-
- 
-
-    <label for="numDoc">numero de documento</label>
-    <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}"  required />
-
-    <label for="mail">Mail</label>
-    <input type="email" name="mail" id="mail" th:field="*{mail}" required />
-
-    <label for="e_egresadoDe">Sos egresado/a de... </label>
-
-    <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required >
-        <option  value=""></option>
-        <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
-    </select>
-
-    <label for="e_establecimiento">Establecimiento educativo de egreso</label>
- 
-    <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento" required >
-        <option value=""></option>            
-        <option th:each="les : ${listaEstablecimientos}" th:value="${les}" th:text="${les}"></option>
-    </select>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif !important;
+            }
 
 
-    <input type="submit" value="continuar" />
-  </form>
-  
-  
-<script>
-    $(document).ready(function(){
-            $('#e_establecimiento').select2( { 
-                placeholder: "Seleccione establecimiento de egreso",
-                allowClear: true});
-            $('#e_egresadoDe').select2( { 
-                placeholder: "Seleccione",
-                allowClear: true});
-        });
-</script>
+            .container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .contenedor-acciones {
+                width: 80%;
+                min-height: 70vh;
+                margin: auto;
+                border-radius: 7px 7px 0px 0px;
+                box-shadow: 0 0 8px #c5c3c2;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .acciones-ingresante {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                height: 50px;
+                background-color: #9b59b6
+
+;
 
 
+            }
+
+            .acciones-ingresante button {
+               
+                display: flex;
+                justify-content: space-between;
+                border: none;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                background: none;
+                color: white;
+                font-size: 1em;
+            }
+
+            .acciones-ingresante button:hover {
+                background-color: #9d6db6
+
+;
+                font-size: 1.3em;
+                transition: all 0.4s;
+                border-bottom: 5px solid white;
+            }
+
+            .acciones-importar,
+            .acciones-exportar,
+            .acciones-agregar {
+                width: 95%;
+                min-height: calc(70vh - 50px);
+                display: flex;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                
+            }
+
+            .descargar-instructivo {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid #f3a32d;
+                border-radius: 5px;
+                height: 70px;
+            }
+
+            .clic-img {
+                height: 70%;
+            }
+
+            .acciones-exportar form,
+            .acciones-agregar form {
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                margin: auto;
+            }
+
+            .acciones-exportar form label,
+            .acciones-agregar form label {
+                font-size: 0.7em;
+                margin-top: 20px;
+            }
+
+            .acciones-exportar form label,
+            .acciones-exportar form select,
+            .acciones-exportar form input[type=date],
+            .acciones-exportar form input,
+            .acciones-agregar form label,
+            .acciones-agregarform select,
+            .acciones-agregar form input[type=date],
+            .acciones-agregar form input {
+                color: #717170;
+                outline: 0px;
+
+
+            }
+
+            .acciones-exportar form select,
+            .acciones-exportar form input[type=date],
+            .acciones-exportar form input,
+            .acciones-agregar form select,
+            .acciones-agregar form input[type=date],
+            .acciones-agregar form input {
+                color: #717170;
+                border: none;
+                outline: 0px !;
+                padding: 0.5em !;
+                border-bottom: 1px solid #717170;
+            }
+
+            #e_egresadoDe,
+            #e_establecimiento {
+                color: #717170;
+                border: none;
+                outline: 0px;
+                padding: 0.5em;
+                border-bottom: 1px solid #717170;
+            }
+
+            .fechas {
+                display: flex;
+                justify-content: space-between;
+
+            }
+
+            .contenedor-desde,
+            .contenedor-hasta {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+
+
+
+
+
+            input[type=date]::-webkit-calendar-picker-indicator {
+                color: #717170;
+                opacity: 1;
+                font-size: x-large;
+
+
+
+            }
+
+
+            .botones-exportar {
+                margin-top: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+            }
+            
+            .botones-exportar input {
+                border: none !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white !important;
+
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .botones-exportar input {
+                border: none !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white !important;
+
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+
+            .verde {
+                background-color: #99c25f !important;
+
+            }
+
+            .rojo {
+                background-color: #e76056 !important;
+
+            }
+
+            .verde:hover {
+                background-color: #88bf48 !important;
+                transform: scale(1.1);
+                transition: all 0.5s;
+            }
+
+            .rojo:hover {
+                background-color: #e74c3c !important;
+                transform: scale(1.1);
+                transition: all 0.5s;
+            }
+
+            /**********File Inputs**********/
+            .container-input {
+                text-align: center;
+
+                padding: 50px 0;
+                border-radius: 6px;
+                width: 50%;
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
+
+            .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .inputfile+label {
+                max-width: 80%;
+                font-size: 1.25rem;
+                font-weight: 700;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                cursor: pointer;
+                display: inline-block;
+                overflow: hidden;
+                padding: 0.625rem 1.25rem;
+            }
+
+            .inputfile+label svg {
+                width: 1em;
+                height: 1em;
+                vertical-align: middle;
+                fill: currentColor;
+                margin-top: -0.25em;
+                margin-right: 0.25em;
+            }
+
+            .iborrainputfile {
+                font-size: 16px;
+                font-weight: normal;
+                font-family: 'Lato';
+            }
+
+            .inputfile-5+label {
+                color: black;
+            }
+
+            .inputfile-5:focus+label,
+            .inputfile-5.has-focus+label,
+            .inputfile-5+label:hover {
+                color: #0389d1;
+            }
+
+            .inputfile-5+label figure {
+                width: 2em;
+                height: 2em;
+                border-radius: 50%;
+                background-color: #0389d1;
+                display: block;
+                padding: 20px;
+                margin: 0 auto 10px;
+            }
+
+            .inputfile-5:focus+label figure,
+            .inputfile-5.has-focus+label figure,
+            .inputfile-5+label:hover figure {
+                background-color: #00b3e3;
+            }
+
+            .inputfile-5+label svg {
+                width: 100%;
+                height: 100%;
+                fill: #fff;
+            }
+
+            /*********************estilos form***************/
+            .form-importar {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                padding-bottom: 2em;
+            }
+
+            .primary-btn {
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #0389d1;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .boton-volver{
+                margin-top: 30px;
+                margin-bottom: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+            }
+             .reescalar:hover{
+                 transform: scale(1.2);
+                 transition: all 0.5s;
+             }
+            .secondary-btn {
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #f39c12;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .secondary-btn a {
+               text-decoration: none;
+            }
+            .secondary-btn span {
+                color: white !important;
+            }
+
+            .no {
+                display: none;
+                visibility: hidden;
+            }
+
+            @media(max-width:770px) {
+
+                .fechas,
+                .botones-exportar {
+                    flex-direction: column;
+                }
+
+                .contenedor-acciones {
+                    width: 95%;
+                }
+            }
+
+            .mensaje-de-advertencia {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+                text-align: left !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background-color: #fcda59;
+                border-radius: 5px;
+            }
+        </style>
+
+        <div class="container">
+
+            <h1>Panel de administración de Ingresantes</h1>
+
+            <h3>Desde aquí podras administrar toda la información</h3>
+
+            <div class="contenedor-acciones">
+                <div class="acciones-ingresante">
+                  <button id="createIngre" onclick="createIngre()">Modificar Ingresante</button>
+                </div>
+                <!-- MODULO IMPORTACION DE DATOS -->
+                
+                <div class="acciones-agregar" id="acciones-agregar">
+                    <form th:action="@{/admin/guardar-ingresante}" method="post" id="myForm" th:object="${ingresante}">
+                        <input type="number" name="id" id="id" th:field="*{id}" hidden />
+
+                        <label for="nombre">nombre</label>
+                        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" required />
+
+                        <label for="apellido">apellido</label>
+                        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" required />
+
+
+
+                        <label for="numDoc">numero de documento</label>
+                        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" required />
+
+                        <label for="mail">Mail</label>
+                        <input type="email" name="mail" id="mail" th:field="*{mail}" required />
+
+                        <label for="e_egresadoDe">Sos egresado/a de... </label>
+
+                        <select name="e_egresadoDe" th:field="*{e_egresadoDe}" id="e_egresadoDe" required>
+                            <option value=""></option>
+                            <option th:each="led : ${listaEgresadoDe}" th:value="${led}" th:text="${led}"></option>
+                        </select>
+
+                        <label for="e_establecimiento">Establecimiento educativo de egreso</label>
+
+                        <select name="e_establecimiento" th:field="*{e_establecimiento}" id="e_establecimiento"
+                            required>
+                            <option value=""></option>
+                            <option th:each="les : ${listaEstablecimientos}" th:value="${les}" th:text="${les}">
+                            </option>
+                        </select>
+
+
+                        <div class="botones-exportar">
+                            <input class="verde" type="submit" value="AGREGAR">
+                            <input class="rojo" type="reset" value="RESETEAR CAMPOS">
+                        </div>
+                    </form>
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $('#e_establecimiento').select2({
+                                placeholder: "Seleccione establecimiento de egreso",
+                                allowClear: true
+                            });
+                            $('#e_egresadoDe').select2({
+                                placeholder: "Seleccione",
+                                allowClear: true
+                            });
+                           
+
+
+                        });
+                    </script>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="boton-volver">
+        <button class="secondary-btn reescalar"><a th:href="@{/admin/administar}"><span>VOLVER</span></a></button>
+    </div>
+
+    <script>
+
+
+        (function (document, window, index) {
+            var inputs = document.querySelectorAll('.inputfile');
+            Array.prototype.forEach.call(inputs, function (input) {
+                var label = input.nextElementSibling,
+                    labelVal = label.innerHTML;
+
+                input.addEventListener('change', function (e) {
+                    var fileName = '';
+                    if (this.files && this.files.length > 1)
+                        fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+                    else
+                        fileName = e.target.value.split('\\').pop();
+
+                    if (fileName)
+                        label.querySelector('span').innerHTML = fileName;
+                    else
+                        label.innerHTML = labelVal;
+                });
+            });
+        }(document, window, 0));
+        //document.getElementById("acciones-importar").classList.add("no")
+    </script>
+    <script>
+        function funcionEsperar() {
+            document.getElementById("cargando").removeAttribute("style", "display: none")
+        }
+        setTimeout(() => {
+            document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
+        }, 10000);
+    </script>
+    
 </body>
+
 
 </html>

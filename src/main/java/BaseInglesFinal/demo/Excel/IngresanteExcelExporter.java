@@ -81,9 +81,10 @@ public class IngresanteExcelExporter extends AbstractXlsxView {
             celda = filaData.createCell(i);
             celda.setCellValue(comlunas[i]);
         }
-        List<Ingresante> Ingresantes = (List<Ingresante>) model.get("ingresante");
+//        List<Ingresante> Ingresantes = (List<Ingresante>) model.get("ingre");
+        List<Ingresante> ingresantes = (List<Ingresante>) model.get("sudo");
         int numFila = 2;
-        for (Ingresante in : Ingresantes) {
+        for (Ingresante in : ingresantes) {
             filaData = hoja.createRow(numFila);
             
             if (in.getId()!=null) {

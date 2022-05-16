@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -84,6 +86,8 @@ public class Ingresante {
     private String i_cercerProfecionalmente;
     private String i_valorTiempo;
     private Boolean i_estado=false;
+    private Boolean i_examen=false;
+      @Temporal(TemporalType.DATE)
     private Date fechaEncuenta;
     /**
      * **************test********************************
@@ -147,6 +151,11 @@ public class Ingresante {
         this.i_cercerProfecionalmente = i_cercerProfecionalmente;
         this.i_valorTiempo = i_valorTiempo;
         this.examen = examen;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingresante{" + "id=" + id + ", mail=" + mail + ", celu=" + celu + ", tDoc=" + tDoc + ", numDoc=" + numDoc + ", apellido=" + apellido + ", nombre=" + nombre + ", fNacimiento=" + fNacimiento + ", genero=" + genero + ", nacionalidad=" + nacionalidad + ", pais=" + pais + ", provincia=" + provincia + ", localidadResi=" + localidadResi + ", domicilio=" + domicilio + ", d_estado=" + d_estado + ", e_nivelMaximo=" + e_nivelMaximo + ", e_egresadoDe=" + e_egresadoDe + ", e_establecimiento=" + e_establecimiento + ", e_anioEgreso=" + e_anioEgreso + ", e_estado=" + e_estado + ", t_situacionActual=" + t_situacionActual + ", t_relacion=" + t_relacion + ", t_actividadPrincipal=" + t_actividadPrincipal + ", t_roles=" + t_roles + ", t_duracion=" + t_duracion + ", t_antiguedad=" + t_antiguedad + ", t_aniosDelSector=" + t_aniosDelSector + ", t_estudiosSector=" + t_estudiosSector + ", t_aportesJ=" + t_aportesJ + ", t_plataPara=" + t_plataPara + ", t_horas=" + t_horas + ", t_franja=" + t_franja + ", t_estado=" + t_estado + ", i_estudiaste=" + i_estudiaste + ", i_donde=" + i_donde + ", i_nivel_oral=" + i_nivel_oral + ", i_nivel_escrito=" + i_nivel_escrito + ", i_nivel_lectura=" + i_nivel_lectura + ", i_uso_trabajo=" + i_uso_trabajo + ", i_uso_t_situacion=" + i_uso_t_situacion + ", i_conseguirOportunidades=" + i_conseguirOportunidades + ", i_programacion=" + i_programacion + ", i_cercerProfecionalmente=" + i_cercerProfecionalmente + ", i_valorTiempo=" + i_valorTiempo + ", i_estado=" + i_estado + ", fechaEncuenta=" + fechaEncuenta + ", examen=" + examen + '}';
     }
 
     

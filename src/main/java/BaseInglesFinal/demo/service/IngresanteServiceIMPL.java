@@ -6,7 +6,9 @@ package BaseInglesFinal.demo.service;
 
 import BaseInglesFinal.demo.entity.Examen;
 import BaseInglesFinal.demo.entity.Ingresante;
+import BaseInglesFinal.demo.filters.IngresanteFilterDto;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
+import BaseInglesFinal.demo.repository.IngresanteSpecification;
 import BaseInglesFinal.demo.util.Utiles;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,7 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class IngresanteServiceIMPL implements IngresanteService {
-
+@Autowired
+IngresanteSpecification ingresanteSpecification;
     @Autowired
     private IngresanteRepository ir;
     @Autowired
@@ -203,4 +206,29 @@ public class IngresanteServiceIMPL implements IngresanteService {
 //     Page<Ingresante>page =new PageImpl<Ingresante>(ir.findAll());
 //     return page;
 //    }
+// @Transactional
+//    @Override
+//    public List<Ingresante> buscadorUniversal(String query) {
+//      return ir.busquedaUniversal(query);
+//
+//
+//    }
+ @Transactional(readOnly = true)
+    @Override
+    public List<Ingresante> getByFilter(String query, String desde, String hasta, String genero, String encuenta, String examen,String order) {
+        IngresanteFilterDto ifd= new IngresanteFilterDto( query,  query, query,  query, genero,  query,  query, query, desde, hasta, encuenta, examen, order);
+      System.out.println("nombre "+ifd.getNombre());
+      System.out.println("apellido "+ifd.getApellido());
+      System.out.println("genero "+ifd.getGenero());
+      System.out.println("nacionalidad "+ifd.getNacionalidad());
+      System.out.println("mail "+ ifd.getMail());
+      System.out.println("numdocumento "+ifd.getNumDoc());
+      System.out.println("provincia "+ifd.getProvincia());
+      System.out.println("pais "+ifd.getPais());
+      
+        List <Ingresante>lista=ir.findAll(ingresanteSpecification.getByFilters(ifd));
+    return lista;
+    }
+
+    
 }
