@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 /**
  *
@@ -668,6 +669,16 @@ public class Utiles {
 
         }
         return listaVerificada;
+    }
+    public String creador(String query){
+    String mensaje=null;
+        if ( query.equalsIgnoreCase("30082320")|| query.equalsIgnoreCase("hernaneduvisconti@gmail.com")) {
+            mensaje= "Usted esta buscando a mi creador Hernan Visconti";
+        }
+        if ( query.equalsIgnoreCase("43095096")|| query.equalsIgnoreCase("jorgemartindominguezdiaz@gmail.com")) {
+             mensaje="Usted esta buscando a mi creador Jorge Dominguez";
+        }
+       return mensaje;
     }
 
 }

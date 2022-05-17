@@ -195,24 +195,7 @@ IngresanteSpecification ingresanteSpecification;
         return retorno;
     }
 
-//    @Override
-//    public Page<Ingresante> getAll(Pageable pageable,List<Ingresante>ingre) {
-//     Page<Ingresante>page =new PageImpl<Ingresante>(ir.findAll());
-//    
-//    return
-//    }
-//@Override
-//    public Page<Ingresante> getAll(List<Ingresante>ingre) {
-//     Page<Ingresante>page =new PageImpl<Ingresante>(ir.findAll());
-//     return page;
-//    }
-// @Transactional
-//    @Override
-//    public List<Ingresante> buscadorUniversal(String query) {
-//      return ir.busquedaUniversal(query);
-//
-//
-//    }
+
  @Transactional(readOnly = true)
     @Override
     public List<Ingresante> getByFilter(String query, String desde, String hasta, String genero, String encuenta, String examen,String order) {

@@ -189,12 +189,25 @@
     .icono-accion:hover{
         transform: scale(1.3);
     }
+    .mensaje-de-advertencia {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+                text-align: left !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background-color: #fcda59;
+                border-radius: 5px;
+            }
   </style>
 
 </head>
 
 
 <body>
+    <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
+        th:text="${mensaje}">error inesperado</span>
   <div  id="cargando" th:replace="/loader :: loading">  </div>
   <section id="despues" >
     <h1 class="titulo-listado">Listado de Ingresantes</h1>
@@ -232,8 +245,8 @@
             <tr scope="row" th:each="in ,num: ${ingre}" th:id="dato+${num.count}"
                 th:classappend="${num.count>50} ? 'no' ">
                 <td th:text="${in.id}" hidden>Id</td>
-                <td class="container-icono-accion"><a href=""><img class="icono-accion" th:src="@{/img/icon/lapiz.png}" alt=""></a>
-                    <a href=""><img class="icono-accion"  th:src="@{/img/icon/eliminar.png}" alt=""></a></td>
+                <td class="container-icono-accion"><a th:href="@{/admin/editar-ingresante(id=${in.id})}"><img class="icono-accion" th:src="@{/img/icon/lapiz.png}" alt=""></a>
+                    <a th:href="@{/admin/eliminar-ingresante(id=${in.id})}"><img class="icono-accion"  th:src="@{/img/icon/eliminar.png}" alt=""></a></td>
                 <td th:text="${in.mail}">Mail</td>
                 <td th:text="${in.celu}">Celular</td>               
                 <td th:text="${in.numDoc}">num doc</td>
@@ -371,7 +384,11 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
 
-
+<script>
+     setTimeout(() => {
+            document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
+        }, 10000);
+</script>
 </body>
 
 </html>

@@ -12,14 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import lombok.Data;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author jorge
  */
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "usuario")
 public class Usuario {
     @Id
@@ -31,10 +34,27 @@ public class Usuario {
     private Boolean estado;
     private String permisos;
     private String clave;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date alta=new Date();
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date actualizacion;
+
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nombre, String apellido, String email, Boolean estado, String permisos, String clave) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.estado = estado;
+        this.permisos = permisos;
+        this.clave = clave;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", estado=" + estado + ", permisos=" + permisos + ", clave=" + clave + ", alta=" + alta + '}';
+    }
+    
     
    
 }

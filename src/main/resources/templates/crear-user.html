@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+
+        .sec-pan-us {
+            width: 100%;
+            display: flex;
+            font-weight: 400;
+            font-size: xx-large;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-direction: column;
+        }
+
+        .conteiner-pan-us {
+            width: 80%;
+            display: flex;
+            font-weight: 400;
+            font-size: xx-large;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-direction: column;
+        }
+
+        .tit-pan-us {
+            display: flex;
+            width: 100%;
+            font-weight: 400;
+            font-size: xx-large;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #a6a4a4;
+        }
+
+        .tba-user {
+            margin-top: 1em;
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        .tba-user thead {
+            font-size: large;
+
+
+        }
+
+        .tba-user th {
+            font-weight: 500;
+            color: #a6a4a4;
+            border-bottom: 1px solid #a6a4a4;
+            padding-bottom: 1em;
+
+        }
+
+        .tba-user th:hover {
+            color: black;
+        }
+
+        .tba-user tbody {
+            font-size: medium;
+
+
+        }
+
+        .tba-user td {
+            font-weight: 500;
+            color: #a6a4a4;
+
+            padding: 15px;
+            text-align: center;
+        }
+
+        .icono-accion {
+            width: 20px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .icono-accion:hover {
+            transform: scale(1.3);
+        }
+
+        .icono-agregar {
+            width: 35px;
+            padding: 3px;
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: #fdd306;
+            box-shadow: 0 0 4px;
+        }
+
+        .icono-agregar:hover {
+            transform: scale(1.2);
+            transition: all 0.4s;
+        }
+
+        .agregar {
+            position: absolute;
+
+            width: 500px;
+            height: 400px;
+            top: 50%;
+            left: 50;
+            transform: translateY(-200px);
+
+
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 0 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            align-content: center;
+        }
+
+        .form-agregar {
+            margin: 0%;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
+        .form-agregar label {
+            font-size: 15px;
+
+        }
+
+        .form-agregar input {
+            background: none;
+            border: none;
+            outline: 0px;
+            border-bottom: 1px solid #a6a4a4;
+
+        }
+
+        .agregar-tit {
+            width: 100%;
+            font-weight: 400;
+            font-size: xx-large;
+            display: flex;
+            justify-content: center;
+            background-color: #fdd306;
+            margin: 0;
+            height: 80px;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        .comandos-agr-user {
+            display: flex;
+            flex-direction: row !important;
+            gap: 25px;
+            height: 50px;
+            color: #0389d1;
+            justify-content: flex-end;
+            align-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .comandos-agr-user label {
+            cursor: pointer;
+        }
+
+        .flex-row {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flex-row div {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            gap: 15px;
+        }
+
+        .no {
+            display: none;
+            visibility: hidden;
+        }
+        .mensaje-de-advertencia {
+                position: absolute;
+                top: 20px;
+                left: 10px;
+                text-align: left !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background-color: #fcda59;
+                border-radius: 5px;
+            }
+            .boton-volver{
+                margin-top: 30px;
+                margin-bottom: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+            }
+             .reescalar:hover{
+                 transform: scale(1.2);
+                 transition: all 0.5s;
+             }
+            .secondary-btn {
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #f39c12;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .secondary-btn a {
+               text-decoration: none;
+            }
+            .secondary-btn span {
+                color: white !important;
+            }
+            .parrafo-no-hay{
+                display: flex;
+                width: 100%;
+                font-size: large;
+                justify-content: center;
+            }
+    </style>
+ <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
+ th:text="${mensaje}">error inesperado</span>
+    <section class="sec-pan-us">
+        <div class="conteiner-pan-us">
+            <h1 class="tit-pan-us">Panel de administración de Usuarios</h1>
+            <table class="tba-user">
+                <thead>
+                    <tr>
+                        <th style="display: none;"></th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        
+                        <th>Alta</th>
+                        <th>Acciones</th>
+                        <th><img class="icono-agregar" th:src="@{/img/icon/agregar-usuario.png}" alt=""
+                                onclick="ver()">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="use : ${listaUsuarios}"  th:if="${listaUsuarios != null}">
+                        <td style="display: none;">id</td>
+                        <td th:text="${use.nombre}">Nombre</td>
+                        <td th:text="${use.apellido}">Apellido</td>
+                        <td th:text="${use.email}">Email</td>                        
+                        <td th:text="${use.alta}">Alta</td>
+                        <td class="container-icono-accion">
+                            <a th:href="@{/admin/eliminar-user(id=${use.id})}"><img class="icono-accion"
+                                    th:src="@{/img/icon/eliminar.png}" alt=""></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="parrafo-no-hay" th:if="${ #lists.isEmpty(listaUsuarios)}" >No Existen usuarios cargados</p>
+            
+         
+        </div>
+        <div class="agregar" id="agregar">
+            <h1 class="agregar-tit">Alta de administrador</h1>
+            <form class="form-agregar" th:action="@{/admin/guardar-user}" method="post" id="myForm" th:object="${usuario}">
+
+                <div class="flex-row">
+                    <div style="display: none;">
+                        <label for="" style="display: none;">id</label>
+                        <input type="text" name="id" id="id"  th:field="*{id}" hidden>
+                    </div>
+                    <div>
+                        <label id="et-nombre" for="nombre">Nombre*</label>
+                        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" onchange="comprobarNombre()" required>
+                    </div>
+                    <div>
+                        <label id="et-apellido" for="apellido">Apellido*</label>
+                        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" onchange="comprobarApellido()" required>
+                    </div>
+                    <div>
+                        <label id="et-email1" for="email1">Email*</label>
+                        <input type="email" name="email1" id="email1" th:field="*{email}" required>
+                    </div>
+                    <div>
+                        <label id="et-email2" for="email2">Confirma Email*</label>
+                        <input type="email" name="email2" id="email2" required>
+                    </div>
+                    <div>
+                        <label id="et-clave1" for="clave1">Clave*</label>
+                        <input type="password" name="clave1" id="clave1" th:field="*{clave}" required>
+                    </div>
+                    <div>
+                        <label id="et-clave2" for="clave2">Confirma Clave*</label>
+                        <input type="password" name="" id="clave2" required>
+                    </div>
+                </div>
+
+                <div class="comandos-agr-user">
+                    <label for="cancelar" onclick="nover()">Cancelar</label>
+                    <label for="enviar" onclick="guardar()">Guardar</label>
+                </div>
+            </form>
+        </div>
+        <div class="boton-volver">
+            <button class="secondary-btn reescalar"><a th:href="@{/admin}"><span>VOLVER</span></a></button>
+        </div>
+    </section>
+    <script>
+        document.getElementById("agregar").classList.add("no")
+            let nombre = document.getElementById("nombre")
+            let apellido = document.getElementById("apellido")
+            let email1 = document.getElementById("email1")
+            let email2 = document.getElementById("email2")
+            let clave1 = document.getElementById("clave1")
+            let clave2 = document.getElementById("clave2")
+            let etnombre = document.getElementById("et-nombre")
+            let etapellido = document.getElementById("et-apellido")
+            let etemail1 = document.getElementById("et-email1")
+            let etemail2 = document.getElementById("et-email2")
+            let etclave1 = document.getElementById("et-clave1")
+            let etclave2 = document.getElementById("et-clave2")
+            let formu = document.getElementById("myForm")
+        
+        
+        function nover() {
+            document.getElementById("agregar").classList.add("no")
+            document.getElementById("myForm").reset()            
+            etapellido.removeAttribute("style", "color:red !important")
+            apellido.removeAttribute("placeholder", "El Apellido no puede estar vacio")
+            etnombre.removeAttribute("style", "color:red !important")
+            nombre.removeAttribute("placeholder", "El Nombre no puede estar vacio")
+            etclave2.removeAttribute("style", "color:red !important")
+            clave2.removeAttribute("placeholder", "La clave no puede estar vacia")
+            etclave1.removeAttribute("style", "color:red !important")
+            clave1.removeAttribute("placeholder", "La clave no puede estar vacia")
+            etemail2.removeAttribute("style", "color:red !important")
+            email2.removeAttribute("placeholder", "El Email no puede estar vacio")
+            etemail1.removeAttribute("style", "color:red !important")
+            email1.removeAttribute("placeholder", "El Email no puede estar vacio")
+        }
+        function ver() {
+            document.getElementById("agregar").classList.remove("no")
+
+        }
+        function guardar() {
+         
+            let verificador = true;
+            if (email1.value === "") {
+                etemail1.setAttribute("style", "color:red !important")
+                email1.setAttribute("placeholder", "El Email no puede estar vacio")
+                verificador = false;
+            }
+            if (email2.value === "") {
+                etemail2.setAttribute("style", "color:red !important")
+                email2.setAttribute("placeholder", "El Email no puede estar vacio")
+                verificador = false;
+            }
+            if (email1.value !== "" && email2.value != "") {
+                if (email1.value !== email2.value) {
+                    alert("Los Email no concuerdan")
+                    verificador = false;
+                }
+            }
+            if (clave1.value === "") {
+                etclave1.setAttribute("style", "color:red !important")
+                clave1.setAttribute("placeholder", "La clave no puede estar vacia")
+                verificador = false;
+            }
+            if (clave2.value === "") {
+                etclave2.setAttribute("style", "color:red !important")
+                clave2.setAttribute("placeholder", "La clave no puede estar vacia")
+                verificador = false;
+            }
+            if (clave1.value !== "" && clave2.value !== "") {
+                if (clave1.value !== clave2.value) {
+                    alert("Las claves no concuerdan")
+                    verificador = false;
+                }
+            }
+            if (nombre.value === "") {
+                etnombre.setAttribute("style", "color:red !important")
+                nombre.setAttribute("placeholder", "El Nombre no puede estar vacio")
+                verificador = false;
+
+            }
+
+            if (apellido.value === "") {
+                etapellido.setAttribute("style", "color:red !important")
+                apellido.setAttribute("placeholder", "El Apellido no puede estar vacio")
+                verificador = false;
+            }
+            if (verificador) {
+                formu.submit()
+            }
+
+        }
+        function comprobarNombre(){
+            etnombre.setAttribute("style", "color:green !important")
+        }
+        function comprobarApellido(){
+            etapellido.setAttribute("style", "color:green !important")
+        }
+        setTimeout(() => {
+            document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
+        }, 10000);
+    </script>
+</body>
+
+</html>

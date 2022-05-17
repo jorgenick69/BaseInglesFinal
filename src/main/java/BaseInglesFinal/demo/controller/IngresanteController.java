@@ -48,7 +48,7 @@ public class IngresanteController {
     public String traerIngresante(@RequestParam String doc, Model model) {
         Ingresante busqueda = is.findIngresanteByDoc(doc);
         if (busqueda == null) {
-            model.addAttribute("no", "el documento no figura en nuestra base de datos");
+            model.addAttribute("no", "*advertencia el dni ingresado no es valido");
             return "buscaringresante";
         } else if (busqueda.getD_estado() == false) {
             Ingresante ingre = is.findIngresanteByDoc(doc);
@@ -131,5 +131,6 @@ public class IngresanteController {
 
         return "new_examen";
     }
+    
 
 }

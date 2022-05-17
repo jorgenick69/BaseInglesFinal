@@ -398,17 +398,7 @@
                 }
             }
 
-            .mensaje-de-advertencia {
-                position: absolute;
-                top: 20px;
-                left: 10px;
-                text-align: left !important;
-                padding: 1em;
-                padding-left: 2em;
-                padding-right: 2em;
-                background-color: #fcda59;
-                border-radius: 5px;
-            }
+            
         </style>
 
         <div class="container">
@@ -509,7 +499,7 @@
 
 
                 <!--FIN MODULO EXPORTACION DE DATOS -->
-                <!--MODULO EXPORTACION DE DATOS -->
+                <!--MODULO AGREGAR USUARIO DE DATOS -->
                 <div class="acciones-agregar" id="acciones-agregar">
                     <form th:action="@{/admin/guardar-ingresante}" method="post" id="myForm" th:object="${ingresante}">
                         <input type="number" name="id" id="id" th:field="*{id}" hidden />
@@ -550,7 +540,7 @@
                             <input class="rojo" type="reset" value="RESETEAR CAMPOS">
                         </div>
                     </form>
-
+                              <!-- FIN MODULO AGREGAR USUARIO -->
 
                     <script>
                         $(document).ready(function () {
