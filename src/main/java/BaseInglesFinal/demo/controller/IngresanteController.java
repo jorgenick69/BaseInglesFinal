@@ -6,6 +6,8 @@ package BaseInglesFinal.demo.controller;
 
 import BaseInglesFinal.demo.entity.Examen;
 import BaseInglesFinal.demo.entity.Ingresante;
+import BaseInglesFinal.demo.entity.Usuario;
+import BaseInglesFinal.demo.repository.UsuarioRepository;
 import BaseInglesFinal.demo.service.ExamenService;
 import BaseInglesFinal.demo.service.IngresanteService;
 import BaseInglesFinal.demo.util.Utiles;
@@ -37,6 +39,8 @@ public class IngresanteController {
     private Utiles ut;
     @Autowired
     private ExamenService es;
+    @Autowired
+    private UsuarioRepository ur;
 
     @GetMapping("/consulta")
     public String subir() {
@@ -46,38 +50,92 @@ public class IngresanteController {
 
     @PostMapping("/traer")
     public String traerIngresante(@RequestParam String doc, Model model) {
-        Ingresante busqueda = is.findIngresanteByDoc(doc);
-        if (busqueda == null) {
-            model.addAttribute("no", "*advertencia el dni ingresado no es valido");
-            return "buscaringresante";
-        } else if (busqueda.getD_estado() == false) {
-            Ingresante ingre = is.findIngresanteByDoc(doc);
-            model.addAttribute("listaBarriosCaba", ut.devolverBarriosCaba());
-            model.addAttribute("listaDeLocalidadesGcba", ut.devolverLocalidades());
-            model.addAttribute("listaProvincias", ut.devolverProvincias());
-            model.addAttribute("listaPaises", ut.devolverPaises());
-            model.addAttribute("ingresante", ingre);
-            model.addAttribute("listaNacionalidades", ut.devolverNacionalidades());
-            return "datosduros";
-        } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == false && busqueda.getT_estado() == false) {
-            model.addAttribute("ingresante", busqueda);
-            model.addAttribute("listaNivelAlcanzado", ut.devolverNivelEstudios());
-            model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
-            model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
-            model.addAttribute("listaRolIt", ut.devolverRolesIt());
-            model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
-            
-            return "encuentapersonal";
-        } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true && busqueda.getT_estado() == true && busqueda.getI_estado() == false) {
-            model.addAttribute("ingresante", busqueda);
+        List<Usuario> listauser = ur.findAll();
+        Boolean validador = false;
+        if (listauser.size() == 0) {
+            Ingresante busqueda = is.findIngresanteByDoc(doc);
+            if (busqueda == null) {
+                model.addAttribute("no", "*advertencia el dni ingresado no es valido");
+                return "buscaringresante";
+            } else if (busqueda.getD_estado() == false) {
+                Ingresante ingre = is.findIngresanteByDoc(doc);
+                model.addAttribute("listaBarriosCaba", ut.devolverBarriosCaba());
+                model.addAttribute("listaDeLocalidadesGcba", ut.devolverLocalidades());
+                model.addAttribute("listaProvincias", ut.devolverProvincias());
+                model.addAttribute("listaPaises", ut.devolverPaises());
+                model.addAttribute("ingresante", ingre);
+                model.addAttribute("listaNacionalidades", ut.devolverNacionalidades());
+                return "datosduros";
+            } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == false && busqueda.getT_estado() == false) {
+                model.addAttribute("ingresante", busqueda);
+                model.addAttribute("listaNivelAlcanzado", ut.devolverNivelEstudios());
+                model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
+                model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
+                model.addAttribute("listaRolIt", ut.devolverRolesIt());
+                model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
 
-            return "nivelingles";
-        } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true
-                && busqueda.getT_estado() == true && busqueda.getI_estado() == true && busqueda.getExamen() == null) {
-            model.addAttribute("ingresante", busqueda);
-            return "examen-aviso";
+                return "encuentapersonal";
+            } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true && busqueda.getT_estado() == true && busqueda.getI_estado() == false) {
+                model.addAttribute("ingresante", busqueda);
+
+                return "nivelingles";
+            } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true
+                    && busqueda.getT_estado() == true && busqueda.getI_estado() == true && busqueda.getExamen() == null) {
+                model.addAttribute("ingresante", busqueda);
+                return "examen-aviso";
+            } else {
+                model.addAttribute("usu", busqueda.getNombre() + " " + busqueda.getApellido());
+                return "finalizado";
+            }
+        } else {
+            for (Usuario usu : listauser) {
+                if (usu.getEncuesta().equalsIgnoreCase("si")) {
+                    validador = true;
+                    break;
+                } else {
+                    validador = false;
+                    break;
+                }
+            }
+            if (validador) {
+                Ingresante busqueda = is.findIngresanteByDoc(doc);
+                if (busqueda == null) {
+                    model.addAttribute("no", "*advertencia el dni ingresado no es valido");
+                    return "buscaringresante";
+                } else if (busqueda.getD_estado() == false) {
+                    Ingresante ingre = is.findIngresanteByDoc(doc);
+                    model.addAttribute("listaBarriosCaba", ut.devolverBarriosCaba());
+                    model.addAttribute("listaDeLocalidadesGcba", ut.devolverLocalidades());
+                    model.addAttribute("listaProvincias", ut.devolverProvincias());
+                    model.addAttribute("listaPaises", ut.devolverPaises());
+                    model.addAttribute("ingresante", ingre);
+                    model.addAttribute("listaNacionalidades", ut.devolverNacionalidades());
+                    return "datosduros";
+                } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == false && busqueda.getT_estado() == false) {
+                    model.addAttribute("ingresante", busqueda);
+                    model.addAttribute("listaNivelAlcanzado", ut.devolverNivelEstudios());
+                    model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
+                    model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
+                    model.addAttribute("listaRolIt", ut.devolverRolesIt());
+                    model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
+
+                    return "encuentapersonal";
+                } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true && busqueda.getT_estado() == true && busqueda.getI_estado() == false) {
+                    model.addAttribute("ingresante", busqueda);
+
+                    return "nivelingles";
+                } else if (busqueda.getD_estado() == true && busqueda.getE_estado() == true
+                        && busqueda.getT_estado() == true && busqueda.getI_estado() == true && busqueda.getExamen() == null) {
+                    model.addAttribute("ingresante", busqueda);
+                    return "examen-aviso";
+                } else {
+                    model.addAttribute("usu", busqueda.getNombre() + " " + busqueda.getApellido());
+                    return "finalizado";
+                }
+            } else {
+                return "finalizo-periodo";
+            }
         }
-        return "Usted ya finalizo todoas las inancias";
     }
 
     @PostMapping("/duros")
@@ -90,7 +148,7 @@ public class IngresanteController {
         model.addAttribute("listaActividades", ut.devolverActividadesPrincipales());
         model.addAttribute("listaRolIt", ut.devolverRolesIt());
         model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
-         
+
         return "encuentapersonal";
     }
 
@@ -106,8 +164,8 @@ public class IngresanteController {
 
     @PostMapping("/nivel")
     public String saveNivel(Ingresante ingresante, Model model, String i_uso_t_situacion_otro, String i_donde_otro) {
-        System.out.println("el lugar es :"+ i_donde_otro);
-        System.out.println("La situaion es :"+ i_uso_t_situacion_otro);
+        System.out.println("el lugar es :" + i_donde_otro);
+        System.out.println("La situaion es :" + i_uso_t_situacion_otro);
         Ingresante modificado = is.guardarNivel(ingresante, i_uso_t_situacion_otro, i_donde_otro);
 
         modificado = is.saveIngresante(modificado);
@@ -120,25 +178,23 @@ public class IngresanteController {
     @PostMapping("/realizar-examen")
     public String saveNivel(Ingresante ingresante, Model model) {
         Ingresante ingre = is.findIngresanteById(ingresante.getId());
-        System.out.println("El examen esssssss " +ingre.getI_examen() );
-       if(ingre.getI_examen()==false){
-        Examen exa = new Examen();
-        exa.setApellido(ingre.getApellido());
-        exa.setNombre(ingre.getNombre());
-        exa.setNumDoc(ingre.getNumDoc());
-        exa.setId_ingresante(ingre.getId());
-        ingre.setExamen(es.save(exa));
-        ingre = is.saveIngresante(ingre);
-        model.addAttribute("examen", ingre.getExamen());
-        return "new_examen";
-       }else{
-        model.addAttribute("usu", ingre.getNombre()+" " +ingre.getApellido());
-         return "finalizado";
-       
-       }
-        
-        
+        System.out.println("El examen esssssss " + ingre.getI_examen());
+        if (ingre.getI_examen() == false) {
+            Examen exa = new Examen();
+            exa.setApellido(ingre.getApellido());
+            exa.setNombre(ingre.getNombre());
+            exa.setNumDoc(ingre.getNumDoc());
+            exa.setId_ingresante(ingre.getId());
+            ingre.setExamen(es.save(exa));
+            ingre = is.saveIngresante(ingre);
+            model.addAttribute("examen", ingre.getExamen());
+            return "new_examen";
+        } else {
+            model.addAttribute("usu", ingre.getNombre() + " " + ingre.getApellido());
+            return "finalizado";
+
+        }
+
     }
-    
 
 }

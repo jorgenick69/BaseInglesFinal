@@ -58,7 +58,23 @@ public class AdminController {
     }
 
     @GetMapping("")
-    public String home() {
+    public String home(Model model) {
+        List<Usuario> listauser = ur.findAll();
+        Boolean validador = false;
+        for (Usuario usu : listauser) {
+                if (usu.getEncuesta().equalsIgnoreCase("si")) {
+                    validador = true;
+                    break;
+                } else {
+                    validador = false;
+                    break;
+                }
+            }
+         if (validador==true) {
+          model.addAttribute("enc", "si");  
+        }else{
+          model.addAttribute("enc", "no");  
+         }
 
         return "home-admin";
     }
@@ -145,6 +161,7 @@ public class AdminController {
 
     @GetMapping("/administrar")
     public String subir(Model model) {
+             
         Ingresante ingresante = new Ingresante();
         model.addAttribute("ingresante", ingresante);
         model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
@@ -155,6 +172,7 @@ public class AdminController {
     @PostMapping("/import/excel")
 
     public String ImportToMySql(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+      
         try {
             Date fecha1 = new Date();
             IngresanteExcelImporter excelImporter = new IngresanteExcelImporter();
@@ -174,6 +192,7 @@ public class AdminController {
             model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
             model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
             model.addAttribute("mensaje", "La importacion se realizo correctamente en " + minutos + " segundos con un total de " + listaFinal.size() + " registros");
+           
             return "panel-administracion-ingresantes";
         } catch (Exception e) {
             Ingresante ingresante = new Ingresante();
@@ -181,6 +200,8 @@ public class AdminController {
             model.addAttribute("listaEgresadoDe", ut.devolverSosEgregadoDe());
             model.addAttribute("listaEstablecimientos", ut.devolverEstablecimientos());
             model.addAttribute("mensaje", "Se a generado un error en la carga intente nuevamente");
+           
+            
             return "panel-administracion-ingresantes";
         }
 
@@ -200,9 +221,7 @@ public class AdminController {
         if (query.equalsIgnoreCase("") && desde.equalsIgnoreCase("") && hasta.equalsIgnoreCase("") && genero.equalsIgnoreCase("") && encuenta.equalsIgnoreCase("") && examen.equalsIgnoreCase("")) {
             lista = is.findAllIngresante();
         } else {
-            if (query.equalsIgnoreCase("")) {
-                query = null;
-            }
+           
             if (encuenta.equalsIgnoreCase("")) {
                 encuenta = null;
             }
@@ -234,7 +253,7 @@ public class AdminController {
                 if (in.getGenero().equalsIgnoreCase("femenino")) {
                     mujeres++;
                 }
-                if (in.getGenero().equalsIgnoreCase("femenino")) {
+                if (in.getGenero().equalsIgnoreCase("masculino")) {
                     varones++;
                 }
             }
@@ -300,6 +319,7 @@ public class AdminController {
 
     }
 
+    
     @GetMapping("/eliminar-user")
     public String deleteUser(Model model, @RequestParam(required = false, name = "id") Long id) {
         Usuario eliminado = ur.findById(id).orElse(null);
@@ -324,5 +344,36 @@ public class AdminController {
 
         }
     }
+    @GetMapping("/habilitar-encuesta")
+    public String encuesta(Model model) {
+        List<Usuario>userlist=ur.findAll();
+        for (Usuario usu : userlist) {
+            if(usu.getEncuesta().equalsIgnoreCase("si")){
+            usu.setEncuesta("no");
+            }else{
+            usu.setEncuesta("si");
+            }
+            ur.save(usu);
+        }
+        List<Usuario> listauser = ur.findAll();
+        Boolean validador = false;
+        for (Usuario usu : listauser) {
+                if (usu.getEncuesta().equalsIgnoreCase("si")) {
+                    validador = true;
+                    break;
+                } else {
+                    validador = false;
+                    break;
+                }
+            }
+       
+        if (validador==true) {
+          model.addAttribute("enc", "si");  
+        }else{
+          model.addAttribute("enc", "no");  
+         }
+        return  "home-admin";     
+    }
+    
 
 }

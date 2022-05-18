@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ingles It</title>
+</head>
+
+<body>
+    <nav th:replace="/navfoo :: naving"></nav>
+  
+    <div class="cuerpoadvertencia">
+        <img class="img" th:src="@{/img/fondo1.png}" alt="">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+            *{
+                font-family: 'Montserrat', sans-serif !important;
+            }
+            .img{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -2 !important;
+            }
+            .cuerpoadvertencia {
+                min-height: 100vh;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                font-family: 'Montserrat', sans-serif;
+                font-size: small;
+            }
+
+            #boton {
+                padding: 1em;
+                width: 40%;
+                border: none;
+                border-radius: 5px;
+                background-color: #fcda59;
+                color: black;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            a{
+                text-decoration: none;
+            }
+            #boton span{
+                color: black !important;
+                font-weight: bold;
+            }
+            #boton:hover {
+                background-color: #fdd306;
+            }
+
+            .titulos {
+                background-color: white;
+                display: flex;
+                flex-direction:column ;
+                gap: 15px;
+                width: 50%;
+                text-align: center;
+                font-family: 'Montserrat', sans-serif;
+                padding: 1em;
+                justify-content: center;
+            }
+            h1,h2,h3,h4{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
+            }
+            .listo{
+                width: 150px;
+                margin: auto;
+            }
+            h2{
+                font-size: x-large;
+            }
+            h3{
+                font-size:large;
+            }
+        </style>
+        <!-- no borrar formulario -->
+       
+        <div class="titulos">
+            <h1>Incripciones Momentaneamnete Cerradas</h1>
+            <h2>¡Muchas Gracias por querer participar!</h2>
+           
+           <img class="listo" th:src="@{/img/icon/advertencia.png}" alt="">
+            <h3>Proximamente tendras Noticias</h3>
+            <div>
+                
+            <button id="boton"><a th:href="@{/ingresante/consulta}"><span>SALIR</span></a></button>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="/navfoo :: footing"></footer>
+</body>
+
+</html>

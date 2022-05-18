@@ -1,138 +1,223 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ingles IT</title>
 </head>
+
 <body>
+    <p id="enc" th:text="${enc}" style="display: none;"></p>
     <nav th:replace="/navfoo :: naving"></nav>
-   <div class="contenedor">
-       <style>
-           @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-}
-           .contenedor{
-               
-               display: flex;
-               flex-direction: column;
-               width: 70%;
-              margin: auto;
-              align-items: center;
-              text-align: center;
-              padding-bottom: 2em;
-           }
-           .contenedor h1{
-             font-size: 2em;
-             
-             margin-top: 1em;
-           }
-           .contenedor h2{
-             font-size: 1.5em;
-           }
-           .contenedor h3{
-             font-size: 1.2em;
-             margin-top: 1em;
-             margin-bottom: 1em;
-           }
-           .acciones{
-               width: 100%;
-               display: flex;
-               flex-wrap: wrap;
-               gap: 25px;
-               justify-content: center;
-           }
-           .acciones-admin{
-               display: flex;
-               flex-direction: column;
-               justify-content: center;
-               align-items: center;
-               gap: 10px;
-               width: calc(100% / 2.3);
-               min-height: 200px;
-               padding: 1em;
-               background-color: #fcda59;
-               border-radius: 10px;
+    <div class="contenedor">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-           }
-           .acciones-admin p{
-          
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            justify-content: center;
-           }
-           .boton-admin{
-               width: 30%;
-               height:4em;
-               background-color: #19c3e3;
-               border-radius: 5px;
-               border: none;
-           }
-           .boton-admin:hover{
-               transition: all 0.5s;
-               transform: scale(1.1);
-               background-color: #00b3e3;
-           }
-           a{
-               text-decoration: none !important;
-           }
-           .boton-admin span{
-              color: white !important;
-              font-size: 1.5em;
-             
-           }
-           @media(max-width:770px){
-            .contenedor{
-               display: flex;
-               flex-direction: column;
-               width: 100%;
-              margin: auto;
-              align-items: center;
-           }
-           .acciones{
-               width: 100%;
-               display: flex;
-               flex-wrap: wrap;
-               gap: 25px;
-               justify-content: center;
-           }
-           .acciones-admin{
-               padding: 1em;
-              
-           }
-           .boton-admin{
-               width: 60%;
-               
-           }
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif;
+            }
 
-           }
-       </style>
-    <h1>Bienvenido a tu Home de Administración</h1>
-    
-    <h3>Desde aquí podras administrar toda la información</h3>
-    <div class="acciones">
-        <div class="acciones-admin">
-            <h2>Administrar Registros</h2>
-            <p>Importá el excel con la información requerida de todos los aspirantes. También podés exportarlos y agregarlos manualmente desde aquí.</p>
-        <button class="boton-admin"><a th:href="@{/admin/administrar}"><span>IR</span></a></button>
-        </div>
-        <div class="acciones-admin">
-            <h2>Administrar Usuarios</h2>
-            <p>Registro de usuarios que tienen acceso a la aplicación. También podés agregarlos desde aquí.</p>
-        <button class="boton-admin"><a th:href="@{/admin/administrar-user}"><span>IR</span></a></button>
-        </div>
-        <div class="acciones-admin">
-            <h2>Habilitar encuesta</h2>
-        <p>Habilita y Deshabilita el formulario.</p>
-        <button class="boton-admin"><a href=""><span>IR</span></a></button>
+            .contenedor {
+
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                margin: auto;
+                align-items: center;
+                text-align: center;
+                padding-bottom: 2em;
+            }
+
+            .contenedor h1 {
+                font-size: 2em;
+
+                margin-top: 1em;
+            }
+
+            .contenedor h2 {
+                font-size: 1.5em;
+            }
+
+            .contenedor h3 {
+                font-size: 1.2em;
+                margin-top: 1em;
+                margin-bottom: 1em;
+            }
+
+            .acciones {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 25px;
+                justify-content: center;
+            }
+
+            .acciones-admin {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: calc(100% / 2.3);
+                min-height: 200px;
+                padding: 1em;
+                background-color: #fcda59;
+                border-radius: 10px;
+
+            }
+
+            .acciones-admin p {
+
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .boton-admin {
+                width: 30%;
+                height: 4em;
+                background-color: #19c3e3;
+                border-radius: 5px;
+                border: none !important;
+
+            }
+
+            .boton-deshabilitar {
+                width: 50%;
+                height: 4em;
+                background-color: #e76056;
+                border-radius: 5px;
+                border: none;
+
+            }
+
+            .boton-habilitar {
+                width: 50%;
+                height: 4em;
+                background-color: #99c25f;
+                border-radius: 5px;
+                border: none;
+
+            }
+
+            .boton-admin:hover {
+                transition: all 0.5s;
+                transform: scale(1.1);
+                background-color: #00b3e3;
+            }
+
+            .boton-habilitar:hover {
+                transition: all 0.5s;
+                transform: scale(1.1);
+                background-color: #88bf48;
+            }
+
+            .boton-deshabilitar:hover {
+                transition: all 0.5s;
+                transform: scale(1.1);
+                background-color: #e74c3c;
+            }
+
+            a {
+                text-decoration: none !important;
+            }
+
+            .boton-admin span,
+            .boton-deshabilitar span,
+            .boton-habilitar span {
+                color: white !important;
+                font-size: 1.5em;
+
+            }
+
+            @media(max-width:770px) {
+                .contenedor {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    margin: auto;
+                    align-items: center;
+                }
+
+                .acciones {
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 25px;
+                    justify-content: center;
+                }
+
+                .acciones-admin {
+                    padding: 1em;
+
+                }
+
+                .boton-admin {
+                    width: 60%;
+
+                }
+
+                .no {
+                    display: none !important;
+                    visibility: hidden;
+                }
+
+            }
+        </style>
+
+        <h1>Bienvenido a tu Home de Administración</h1>
+
+        <h3>Desde aquí podras administrar toda la información</h3>
+
+
+        <div class="acciones">
+            <div class="acciones-admin">
+                <h2>Administrar Registros</h2>
+                <p>Importá el excel con la información requerida de todos los aspirantes. También podés exportarlos y
+                    agregarlos manualmente desde aquí.</p>
+                <button class="boton-admin"><a th:href="@{/admin/administrar}"><span>IR</span></a></button>
+            </div>
+            <div class="acciones-admin">
+                <h2>Administrar Usuarios</h2>
+                <p>Registro de usuarios que tienen acceso a la aplicación. También podés agregarlos desde aquí.</p>
+                <button class="boton-admin"><a th:href="@{/admin/administrar-user}"><span>IR</span></a></button>
+            </div>
+            <div class="acciones-admin">
+                <h2>Habilitar encuesta</h2>
+                <p>Habilita y Deshabilita el formulario.</p>
+                <button id="activado" class="boton-habilitar"><a
+                        th:href="@{/admin/habilitar-encuesta}"><span>ACTIVAR</span></a></button>
+                <button id="desactivado" class="boton-deshabilitar"><a
+                        th:href="@{/admin/habilitar-encuesta}"><span>DESACTIVAR</span></a></button>
+            </div>
         </div>
     </div>
-   </div>
-   <footer th:replace="/navfoo :: footing"></footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            let enc = document.getElementById("enc")
+            const valor = enc.innerHTML;
+            console.log(valor)
+            let activado = document.getElementById("activado");
+            let desactivado = document.getElementById("desactivado");
+            desactivado.setAttribute("style", "display:none")
+            activado.setAttribute("style", "display:none")
+            if (valor == "si") {
+                desactivado.removeAttribute("style", "display:none")
+            }
+            if (valor == "no") {
+               
+                activado.removeAttribute("style", "display:none")
+            }
+        });
+
+    </script>
+    <footer th:replace="/navfoo :: footing"></footer>
+
 </body>
+
 </html>

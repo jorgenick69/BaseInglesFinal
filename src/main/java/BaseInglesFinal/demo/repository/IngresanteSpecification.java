@@ -30,7 +30,8 @@ public class IngresanteSpecification {
      return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (StringUtils.hasLength(ifd.getApellido())){
+           if (ifd.getApellido()!=null ) {
+              if (StringUtils.hasLength(ifd.getApellido())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("apellido")),
@@ -39,7 +40,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getMail())){
+         }
+            if (ifd.getMail()!=null) {
+             if (StringUtils.hasLength(ifd.getMail())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("mail")),
@@ -48,7 +51,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getNacionalidad())){
+         }
+            if (ifd.getNacionalidad()!=null) {
+             if (StringUtils.hasLength(ifd.getNacionalidad())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("nacionalidad")),
@@ -57,7 +62,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getNombre())){
+         }
+            if (ifd.getNombre()!=null) {
+             if (StringUtils.hasLength(ifd.getNombre())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("nombre")),
@@ -66,8 +73,10 @@ public class IngresanteSpecification {
                 );
 
             }
+         }
             
-            if (StringUtils.hasLength(ifd.getNumDoc())){
+           if (ifd.getNumDoc()!=null) {
+              if (StringUtils.hasLength(ifd.getNumDoc())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("numDoc")),
@@ -76,7 +85,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getGenero())){
+         }
+           if (ifd.getGenero()!=null) {
+              if (StringUtils.hasLength(ifd.getGenero())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("genero")),
@@ -85,7 +96,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getPais())){
+         }
+            if (ifd.getPais()!=null) {
+             if (StringUtils.hasLength(ifd.getPais())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("pais")),
@@ -94,7 +107,9 @@ public class IngresanteSpecification {
                 );
 
             }
-            if (StringUtils.hasLength(ifd.getProvincia())){
+         }
+           if (ifd.getProvincia()!=null) {
+              if (StringUtils.hasLength(ifd.getProvincia())){
                 predicates.add(
                         criteriaBuilder.like(
                                 criteriaBuilder.lower(root.get("provincia")),
@@ -103,6 +118,7 @@ public class IngresanteSpecification {
                 );
 
             }
+         }
             if (ifd.getDesde()!= null && ifd.getHasta() !=null ){
                 
                 try {

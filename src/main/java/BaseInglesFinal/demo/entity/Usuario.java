@@ -34,8 +34,10 @@ public class Usuario {
     private Boolean estado;
     private String permisos;
     private String clave;
+    private String encuesta="si";
     @Temporal(TemporalType.DATE)
     private Date alta=new Date();
+    
 
     public Usuario() {
     }
@@ -49,6 +51,7 @@ public class Usuario {
         this.permisos = permisos;
         this.clave = clave;
     }
+    
 
     @Override
     public String toString() {

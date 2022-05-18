@@ -4,11 +4,12 @@
  */
 package BaseInglesFinal.demo.controller;
 
-
 import BaseInglesFinal.demo.Excel.IngresanteExcelImporter;
 
 import BaseInglesFinal.demo.entity.Ingresante;
+import BaseInglesFinal.demo.entity.Usuario;
 import BaseInglesFinal.demo.repository.IngresanteRepository;
+import BaseInglesFinal.demo.repository.UsuarioRepository;
 import BaseInglesFinal.demo.service.ExamenService;
 import BaseInglesFinal.demo.service.IngresanteService;
 
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
@@ -45,30 +45,35 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("")
 public class HomeController {
 
-   
+    @Autowired
+    private UsuarioRepository ur;
 
     @GetMapping({"", "/index", "/home", "/"})
     public String home() {
 
-        return "index";
+        return "buscaringresante";
     }
 
-   
+    @GetMapping("/administrador/crear-super-user")
+    public String superUser() {
 
-    
+        List<Usuario> userLis = new ArrayList<>();
+        userLis = ur.findAll();
+        if (userLis.size() == 0) {
+            Usuario usu = new Usuario();
+            usu.setAlta(new Date());
+            usu.setApellido("SuperAdmin");
+            usu.setNombre("Admin");
+            usu.setPermisos("todos");
+            usu.setEmail("superadmin@bue.edu.ar");
+            usu.setClave("desarrollodesistemas");
+            ur.save(usu);
+
+        }
+        return "buscaringresante";
+    }
+
     /*,@RequestParam("query") String query,String desde, String hasta,String genero,String encuenta,String examen*/
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 //    @GetMapping("/listar")
 //    public String listarIngresantes(List<ingresante>) {
 ////       
@@ -78,5 +83,4 @@ public class HomeController {
 //        return "listareingresantes";
 //    }
 //    
-    
 }
