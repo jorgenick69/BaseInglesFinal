@@ -628,7 +628,7 @@ public class Utiles {
         int contador = 0;
         var verificado = true;
         Ingresante ingre = new Ingresante();
-
+        System.out.println("El tamaño al entrar de la lista paso 1 es"+lista.size());
         for (Ingresante ingreOri : lista) {
             contador++;
             verificado = true;
@@ -639,6 +639,7 @@ public class Utiles {
                 for (Ingresante ingresante : listaVerificada) {
                     if (ingresante.getNumDoc().equalsIgnoreCase(ingreOri.getNumDoc())) {
                         verificado = false;
+                        System.out.println("DNI REPETIDO "+ingresante.getNumDoc());
                     }
                 }
                 if (verificado) {
@@ -647,16 +648,19 @@ public class Utiles {
 
             }
         }
+        System.out.println("La lista que salio en paso 1 tiene " + listaVerificada.size());
         return listaVerificada;
     }
 
     public List<Ingresante> evitarDocDuplicadosPaso1(List<Ingresante> base, List<Ingresante> aCargar) {
         List<Ingresante> listaVerificada = new ArrayList<>();
+        System.out.println("la lista tiene "+ aCargar.size());
         var verificado = true;
         Ingresante ingresante = new Ingresante();
         for (Ingresante aCar : aCargar) {
             verificado = true;
             ingresante = aCar;
+           
             for (Ingresante bas : base) {
                 if (aCar.getNumDoc().equalsIgnoreCase(bas.getNumDoc())) {
                     verificado = false;

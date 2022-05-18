@@ -10,319 +10,382 @@
 
 </head>
 
-<h1 class="titulo1">Test Inglés para la Empleabilidad</h1>
-<p class="titulo2">La siguiente prueba es sólo a los efectos de conocer tu nivel real de inglés.</p>
-<p class="titulo2">El resultado no afecta a la
-    designación de vacantes.</p>
-<p class="titulo2">Es muy importante que puedas aquí reflejar tus verdaderas hablidades en el idioma para</p>
-<p class="titulo2"> conocerte más y así poder acompañarte en tu propio proceso de aprendizaje.</p>
+
 
 <body>
+    <nav th:replace="/navfoo :: naving"></nav>
+    <div class="titulacion">
+        <h1 class="titulo1">Test Inglés para la Empleabilidad</h1>
+    <p class="titulo2">La siguiente prueba es sólo a los efectos de conocer tu nivel real de inglés.</p>
+    <p class="titulo2">El resultado no afecta a la
+        designación de vacantes.</p>
+    <p class="titulo2">Es muy importante que puedas aquí reflejar tus verdaderas hablidades en el idioma para</p>
+    <p class="titulo2"> conocerte más y así poder acompañarte en tu propio proceso de aprendizaje.</p>
+    </div>
     <div class="cronometro">
         <p class="titulo2"> Tiempo restante:</p>
-        <span class="days"></span>
-        <span class="hours"></span>
-        <span class="minutes"></span>
-        <span class="seconds"></span>
+        <span hidden class="days"></span>
+       <span> <span  class="hours"></span>
+       <span class="minutes"></span>
+       <span class="seconds"></span></span>
+        <span>minutos</span>
     </div>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
     <div class="cuerpoexm">
-        <img th:src="@{/img/fondo1.png}" alt="">
-        <style>
-            .cuerpoexm {
-                min-height: 100vh;
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
-                font-family: 'Montserrat', sans-serif;
-                font-size: small;
-            }
+    <img class="img" th:src="@{/img/fondo1.png}" alt="">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-            .cuerpoexm img {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                z-index: -2 !important;
-            }
+        * {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+.titulacion{
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    font-weight:400 ;
+    font-family: 'Montserrat', sans-serif !important;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+body{
+    position: relative;
+}
+        .cuerpoexm {
+            min-height: 500px;
+            position: relative;
+display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: small;
+            
+        }
 
-            form {
-                display: flex;
-                flex-direction: column;
-                padding: 3em;
-                background-color: white;
-                width: 60%;
-                color: black;
-                justify-content: left;
-                align-items: left;
-                align-content: left;
-            }
+        .img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2 !important;
+        }
 
-            .pregunta {
-                margin: 10px;
-            }
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 3em;
+            background-color: white;
+            width: 60%;
+            color: black;
+            justify-content: left;
+            align-items: left;
+            align-content: left;
+        }
 
-            form p {
-                font-weight: bold;
-            }
+        .pregunta {
+            margin: 10px;
+        }
 
-            #boton {
-                display: flex;
-                padding: 1em;
-                width: 20%;
-                border: none;
-                border-radius: 5px;
-                background-color: #fcda59;
-                color: black;
-                font-weight: bold;
-                justify-content: center;
-                align-items: center;
-                position: relative;
-                top: 50%;
-                left: 40%;
+        form p {
+            font-weight: bold;
+        }
+
+        #boton {
+            display: flex;
+            padding: 1em;
+            width: 20%;
+            border: none;
+            border-radius: 5px;
+            background-color: #fcda59;
+            color: black;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            top: 50%;
+            left: 40%;
 
 
-            }
+        }
 
-            #boton:hover {
-                background-color: #fdd306;
-            }
+        #boton:hover {
+            background-color: #fdd306;
+        }
 
-            .cronometro {
-                padding: 1em;
-                width: 8%;
-                border: black;
-                border: 2px solid black;
-                border-radius: 10px;
-                background-color: #fcda59;
-                color: black;
-                font-weight: bold;
-                font-family: 'Montserrat', sans-serif;
-                margin: 10px;
-                float: right;
-            }
+        .cronometro {
+            padding: 1em;
+            width: 8%;
+            border: black;
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: #fcda59;
+            color: black;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            margin: 10px;
+            float: right;
+            position: fixed;
+            top: 40%;
+            right:80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            z-index: +2 !important;
+        }
 
-            .titulo1 {
-                font-family: 'Montserrat', sans-serif;
-                text-align: center;
-            }
+        .titulo1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
 
-            .titulo2 {
-                font-family: 'Montserrat', sans-serif;
-                text-align: center;
-            }
-        </style>
+        .titulo2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .datos-ingre input {
+        padding: 0.5em;
+        border: 1px solid #c5c3c2;
+       
+        border-radius: 5px;
+        color: black;
+        font-weight: bold;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      
+      }
+      .datos-ingre{
+          width: 100%;
+          display: flex;
+         flex-wrap: wrap;
+         justify-content: space-between;
+        margin-bottom: 2em;
+      }
+      .datos-ingre div{
+          display: flex;
+          flex-direction: column;
+        text-align: left;
+        justify-content: flex-start;
+          overflow: hidden;
+          gap: 5px;
+          width: calc(100% / 3.3);
+      }
+      .audio{
+          width: 500;
+          height: 150px;
+          border:none;
+          border-radius: 0.4em;
+      }
+      .video{
+        width: 500px;
+          height: 300px;
+          border:none;
+          border-radius: 0.4em; 
+      }
+    </style>
 
-        <form th:action="@{/examen/save}" method="post" id="myForm" th:object="${examen}">
+    <form th:action="@{/examen/save}" method="post" id="myForm" th:object="${examen}">
+     <div class="datos-ingre">
+        <div>
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly>
-            <label for="apellido">Apellido</label>
-            <input type="text" name="apellido" id="apellido" th:field="*{apellido}" readonly>
-            <label for="numDoc">Documento</label>
-            <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" readonly>
-            <label for="id_ingresante">id Ingresante</label>
-            <input type="number" name="id_ingresante" id="id_ingresante" th:field="*{id_ingresante}" readonly>
-            <label for="id">id examen</label>
-            <input type="number" name="id" id="id" th:field="*{id}" readonly>
-            <div class="pregunta">
-                <b>1)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p1" id="p1" th:value="a" th:field="*{p1}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p1" id="p1" th:value="b" th:field="*{p1}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p1" id="p1" th:value="c" th:field="*{p1}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p1" id="p1" th:value="d" th:field="*{p1}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>2)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p2" id="p2" th:value="a" th:field="*{p2}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p2" id="p2" th:value="b" th:field="*{p2}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p2" id="p2" th:value="c" th:field="*{p2}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p2" id="p2" th:value="d" th:field="*{p2}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>3)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p3" id="p3" th:value="a" th:field="*{p3}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p3" id="p3" th:value="b" th:field="*{p3}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p3" id="p3" th:value="c" th:field="*{p3}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p3" id="p3" th:value="d" th:field="*{p3}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>4)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p4" id="p4" th:value="a" th:field="*{p4}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p4" id="p4" th:value="b" th:field="*{p4}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p4" id="p1" th:value="c" th:field="*{p4}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p4" id="p4" th:value="d" th:field="*{p4}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>5)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p5" id="p5" th:value="a" th:field="*{p5}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p5" id="p5" th:value="b" th:field="*{p5}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p5" id="p5" th:value="c" th:field="*{p5}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p5" id="p5" th:value="d" th:field="*{p5}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>6)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p6" id="p6" th:value="a" th:field="*{p6}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p6" id="p6" th:value="b" th:field="*{p6}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p6" id="p6" th:value="c" th:field="*{p6}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p6" id="p6" th:value="d" th:field="*{p6}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>7)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p7" id="p7" th:value="a" th:field="*{p7}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p7" id="p7" th:value="b" th:field="*{p7}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p7" id="p7" th:value="c" th:field="*{p7}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p7" id="p7" th:value="d" th:field="*{p7}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>8)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p8" id="p8" th:value="a" th:field="*{p8}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p8" id="p8" th:value="b" th:field="*{p8}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p8" id="p8" th:value="c" th:field="*{p8}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p8" id="p8" th:value="d" th:field="*{p8}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>9)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p9" id="p9" th:value="a" th:field="*{p9}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p9" id="p9" th:value="b" th:field="*{p9}"><span>b-You are welcome</span><br>
-                <input type="radio" name="p9" id="p9" th:value="c" th:field="*{p9}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p9" id="p9" th:value="d" th:field="*{p9}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>10)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p10" id="p10" th:value="a" th:field="*{p10}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p10" id="p10" th:value="b" th:field="*{p10}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p10" id="p10" th:value="c" th:field="*{p10}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p10" id="p10" th:value="d" th:field="*{p10}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>11)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p11" id="p11" th:value="a" th:field="*{p11}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p11" id="p11" th:value="b" th:field="*{p11}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p11" id="p11" th:value="c" th:field="*{p11}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p11" id="p11" th:value="d" th:field="*{p11}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>12)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p12" id="p12" th:value="a" th:field="*{p12}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p12" id="p12" th:value="b" th:field="*{p12}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p12" id="p12" th:value="c" th:field="*{p12}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p12" id="p12" th:value="d" th:field="*{p12}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>13)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p13" id="p13" th:value="a" th:field="*{p13}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p13" id="p13" th:value="b" th:field="*{p13}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p13" id="p13" th:value="c" th:field="*{p13}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p13" id="p13" th:value="d" th:field="*{p13}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>14)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p14" id="p14" th:value="a" th:field="*{p14}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p14" id="p14" th:value="b" th:field="*{p14}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p14" id="p14" th:value="c" th:field="*{p14}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p14" id="p14" th:value="d" th:field="*{p14}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>15)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p15" id="p15" th:value="a" th:field="*{p15}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p15" id="p15" th:value="b" th:field="*{p15}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p15" id="p15" th:value="c" th:field="*{p15}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p15" id="p15" th:value="d" th:field="*{p15}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>16)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p16" id="p16" th:value="a" th:field="*{p16}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p16" id="p16" th:value="b" th:field="*{p16}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p16" id="p16" th:value="c" th:field="*{p16}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p16" id="p16" th:value="d" th:field="*{p16}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>17)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p17" id="p17" th:value="a" th:field="*{p17}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p17" id="p17" th:value="b" th:field="*{p17}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p17" id="p17" th:value="c" th:field="*{p17}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p17" id="p17" th:value="d" th:field="*{p17}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>18)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p18" id="p18" th:value="a" th:field="*{p18}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p18" id="p18" th:value="b" th:field="*{p18}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p18" id="p18" th:value="c" th:field="*{p18}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p18" id="p18" th:value="d" th:field="*{p18}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>19)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p19" id="p19" th:value="a" th:field="*{p19}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p19" id="p19" th:value="b" th:field="*{p19}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p19" id="p19" th:value="c" th:field="*{p19}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p19" id="p19" th:value="d" th:field="*{p19}"><span>d- Good bye.</span><br>
-            </div>
-            <div class="pregunta">
-                <b>20)</b>
-                <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
-                <input type="radio" name="p20" id="p20" th:value="a" th:field="*{p20}"><span>a- I'm nine. </span><br>
-                <input type="radio" name="p20" id="p20" th:value="b" th:field="*{p20}"><span>b-You are
-                    welcome</span><br>
-                <input type="radio" name="p20" id="p20" th:value="c" th:field="*{p20}"><span>c- Fine thank you, and
-                    you?</span><br>
-                <input type="radio" name="p20" id="p20" th:value="d" th:field="*{p20}"><span>d- Good bye.</span><br>
-            </div>
-    </div>
-    <input id="boton" type="submit" value="finalizar">
+        <input type="text" name="nombre" id="nombre" th:field="*{nombre}" readonly>
+        </div>
+       <div>
+        <label for="apellido">Apellido</label>
+        <input type="text" name="apellido" id="apellido" th:field="*{apellido}" readonly>
+       </div>
+      <div>
+        <label for="numDoc">Documento</label>
+        <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" readonly>
+      </div>
+      <div style="display: none;">
+        <label for="id_ingresante" hidden>id Ingresante</label>
+        <input type="number" name="id_ingresante" id="id_ingresante" th:field="*{id_ingresante}" hidden  readonly>
+        <label for="id" hidden>id examen</label>
+        <input type="number" name="id" id="id" th:field="*{id}" hidden readonly>
+      </div>
+     </div>
+        <div class="pregunta">
+            <b>1)</b>
+            <p> A: Hello <br>B: Hi, How are you? <br> A:___________ </p>
+            <input type="radio" name="p1" id="p1" th:value="a" th:field="*{p1}"><span>a- I'm nine. </span><br>
+            <input type="radio" name="p1" id="p1" th:value="b" th:field="*{p1}"><span>b-You are welcome</span><br>
+            <input type="radio" name="p1" id="p1" th:value="c" th:field="*{p1}"><span>c- Fine thank you, and
+                you?</span><br>
+            <input type="radio" name="p1" id="p1" th:value="d" th:field="*{p1}"><span>d- Good bye.</span><br>
+        </div>
+        <div class="pregunta">
+            <b>2)</b>
+            <p>Kelly and Sue ________ 15 years old. </p>
+            <input type="radio" name="p2" id="p2" th:value="a" th:field="*{p2}"><span>a- will</span><br>
+            <input type="radio" name="p2" id="p2" th:value="b" th:field="*{p2}"><span>b-are</span><br>
+            <input type="radio" name="p2" id="p2" th:value="c" th:field="*{p2}"><span>c- is</span><br>
+            <input type="radio" name="p2" id="p2" th:value="d" th:field="*{p2}"><span>d- have</span><br>
+        </div>
+        <div class="pregunta">
+            <b>3)</b>
+            <p>John has got one cat _______</p>
+            <input type="radio" name="p3" id="p3" th:value="a" th:field="*{p3}"><span>a- but two cats.</span><br>
+            <input type="radio" name="p3" id="p3" th:value="b" th:field="*{p3}"><span>b- and three cats.</span><br>
+            <input type="radio" name="p3" id="p3" th:value="c" th:field="*{p3}"><span>c- and two dogs.</span><br>
+            <input type="radio" name="p3" id="p3" th:value="d" th:field="*{p3}"><span>d- or many cats.</span><br>
+        </div>
+        <div class="pregunta">
+            <b>4)</b>
+            <p>My bag is_______ the chair. </p>
+            <input type="radio" name="p4" id="p4" th:value="a" th:field="*{p4}"><span>a- on</span><br>
+            <input type="radio" name="p4" id="p4" th:value="b" th:field="*{p4}"><span>b-in</span><br>
+            <input type="radio" name="p4" id="p1" th:value="c" th:field="*{p4}"><span>c- from</span><br>
+            <input type="radio" name="p4" id="p4" th:value="d" th:field="*{p4}"><span>d- between</span><br>
+        </div>
+        <div class="pregunta">
+            <b>5)</b>
+            <p>Listen and answer: <br> "It costs ________"</p>
+            <iframe class="audio" src="https://drive.google.com/file/d/1XrJf0KUCEGy4K-aU_nB9S1rqwiUvnuFz/preview" width="640" height="480" allow="autoplay"></iframe><br>
+            
+            <input type="radio" name="p5" id="p5" th:value="a" th:field="*{p5}"><span>a- Є13 </span><br>
+            <input type="radio" name="p5" id="p5" th:value="b" th:field="*{p5}"><span>b- Є 33</span><br>
+            <input type="radio" name="p5" id="p5" th:value="c" th:field="*{p5}"><span>c- Є 3</span><br>
+            <input type="radio" name="p5" id="p5" th:value="d" th:field="*{p5}"><span>d- Є30</span><br>
+        </div>
+        <div class="pregunta">
+            <b>6)</b>
+            <p>I ____________ this coffee. It tastes horrible. </p>
+            <input type="radio" name="p6" id="p6" th:value="a" th:field="*{p6}"><span>a- am not like</span><br>
+            <input type="radio" name="p6" id="p6" th:value="b" th:field="*{p6}"><span>b-don't like</span><br>
+            <input type="radio" name="p6" id="p6" th:value="c" th:field="*{p6}"><span>c- am not liking</span><br>
+            <input type="radio" name="p6" id="p6" th:value="d" th:field="*{p6}"><span>d- not like</span><br>
+        </div>
+        <div class="pregunta">
+            <b>7)</b>
+            <p>Can you _______ the lights, I can't see. </p>
+            <input type="radio" name="p7" id="p7" th:value="a" th:field="*{p7}"><span>a- turn on</span><br>
+            <input type="radio" name="p7" id="p7" th:value="b" th:field="*{p7}"><span>b- start</span><br>
+            <input type="radio" name="p7" id="p7" th:value="c" th:field="*{p7}"><span>c- open</span><br>
+            <input type="radio" name="p7" id="p7" th:value="d" th:field="*{p7}"><span>d- put on</span><br>
+        </div>
+        <div class="pregunta">
+            <b>8)</b>
+            <p>______ are very interlligent.</p>
+            <input type="radio" name="p8" id="p8" th:value="a" th:field="*{p8}"><span>a- A dolphin</span><br>
+            <input type="radio" name="p8" id="p8" th:value="b" th:field="*{p8}"><span>b-The dolphin</span><br>
+            <input type="radio" name="p8" id="p8" th:value="c" th:field="*{p8}"><span>c- Dolphins</span><br>
+            <input type="radio" name="p8" id="p8" th:value="d" th:field="*{p8}"><span>d- An dolphins</span><br>
+        </div>
+        <div class="pregunta">
+            <b>9)</b>
+            <p>The test is ____________ February</p>
+            <input type="radio" name="p9" id="p9" th:value="a" th:field="*{p9}"><span>a- over</span><br>
+            <input type="radio" name="p9" id="p9" th:value="b" th:field="*{p9}"><span>b- on</span><br>
+            <input type="radio" name="p9" id="p9" th:value="c" th:field="*{p9}"><span>c- at</span><br>
+            <input type="radio" name="p9" id="p9" th:value="d" th:field="*{p9}"><span>d- in</span><br>
+        </div>
+        <div class="pregunta">
+            <b>10)</b>
+            <p>Listen and answer: <br> A: "What's your name?"<br> B: " I'm Sara_________"</p>
+            <iframe class="audio" src="https://drive.google.com/file/d/1dxnBAHBs22eO95wZZ9fSWLWP-p_u6mWv/preview" width="640" height="480" allow="autoplay"></iframe><br>
+            <input type="radio" name="p10" id="p10" th:value="a" th:field="*{p10}"><span>a- Jenley</span><br>
+            <input type="radio" name="p10" id="p10" th:value="b" th:field="*{p10}"><span>b- Henlei</span><br>
+            <input type="radio" name="p10" id="p10" th:value="c" th:field="*{p10}"><span>c- Hamley</span><br>
+            <input type="radio" name="p10" id="p10" th:value="d" th:field="*{p10}"><span>d- Henley</span><br>
+        </div>
+        <div class="pregunta">
+            <b>11)</b>
+            <p>Where___________________?</p>
+            <input type="radio" name="p11" id="p11" th:value="a" th:field="*{p11}"><span>a- she works</span><br>
+            <input type="radio" name="p11" id="p11" th:value="b" th:field="*{p11}"><span>b- she work</span><br>
+            <input type="radio" name="p11" id="p11" th:value="c" th:field="*{p11}"><span>c- does she work</span><br>
+            <input type="radio" name="p11" id="p11" th:value="d" th:field="*{p11}"><span>d-  do she work</span><br>
+        </div>
+        <div class="pregunta">
+            <b>12)</b>
+            <p>A: "How old________?"<br> B: " I_______"</p>
+            <input type="radio" name="p12" id="p12" th:value="a" th:field="*{p12}"><span>a- are you/ have 20 years old. </span><br>
+            <input type="radio" name="p12" id="p12" th:value="b" th:field="*{p12}"><span>b- are you/ am 20 years old. </span><br>
+            <input type="radio" name="p12" id="p12" th:value="c" th:field="*{p12}"><span>c- do you have/ am 20 years.</span><br>
+            <input type="radio" name="p12" id="p12" th:value="d" th:field="*{p12}"><span>d- are you/ has 20 old. </span><br>
+        </div>
+        <div class="pregunta">
+            <b>13)</b>
+            <p>We usually meet ___________ 8 AM. </p>
+            <input type="radio" name="p13" id="p13" th:value="a" th:field="*{p13}"><span>a- in </span><br>
+            <input type="radio" name="p13" id="p13" th:value="b" th:field="*{p13}"><span>b-on</span><br>
+            <input type="radio" name="p13" id="p13" th:value="c" th:field="*{p13}"><span>c- between</span><br>
+            <input type="radio" name="p13" id="p13" th:value="d" th:field="*{p13}"><span>d- at</span><br>
+        </div>
+        <div class="pregunta">
+            <b>14)</b>
+            <p>This is _______ car. </p>
+            <input type="radio" name="p14" id="p14" th:value="a" th:field="*{p14}"><span>a- me</span><br>
+            <input type="radio" name="p14" id="p14" th:value="b" th:field="*{p14}"><span>b-mine</span><br>
+            <input type="radio" name="p14" id="p14" th:value="c" th:field="*{p14}"><span>c- my</span><br>
+            <input type="radio" name="p14" id="p14" th:value="d" th:field="*{p14}"><span>d- an</span><br>
+        </div>
+        <div class="pregunta">
+            <b>15)</b>
+            <p>English classes are ____________ Mondays</p>
+            <input type="radio" name="p15" id="p15" th:value="a" th:field="*{p15}"><span>a- on</span><br>
+            <input type="radio" name="p15" id="p15" th:value="b" th:field="*{p15}"><span>b-in </span><br>
+            <input type="radio" name="p15" id="p15" th:value="c" th:field="*{p15}"><span>c- at</span><br>
+            <input type="radio" name="p15" id="p15" th:value="d" th:field="*{p15}"><span>d- for</span><br>
+        </div>
+        <div class="pregunta">
+            <b>16)</b>
+            <p>Watch the video and answer questions 16, 17, 18, 19:  <br>  What time is the class?</p>
+            <iframe class="video" src="https://drive.google.com/file/d/1Sq0q9Fe2_TpUu-MsPnbhr8q808Kc1LcN/preview" allow="autoplay"></iframe><br>
+            <input type="radio" name="p16" id="p16" th:value="a" th:field="*{p16}"><span>a-  Half past nine.</span><br>
+            <input type="radio" name="p16" id="p16" th:value="b" th:field="*{p16}"><span>b- Quarter past nine.</span><br>
+            <input type="radio" name="p16" id="p16" th:value="c" th:field="*{p16}"><span>c- Nine o'clock</span><br>
+            <input type="radio" name="p16" id="p16" th:value="d" th:field="*{p16}"><span>d-  Quarter to nine.</span><br>
+        </div>
+        <div class="pregunta">
+            <b>17)</b>
+            <p>The girl's name is_______</p>
+            <input type="radio" name="p17" id="p17" th:value="a" th:field="*{p17}"><span>a- Molly</span><br>
+            <input type="radio" name="p17" id="p17" th:value="b" th:field="*{p17}"><span>b- Hally</span><br>
+            <input type="radio" name="p17" id="p17" th:value="c" th:field="*{p17}"><span>c- Moli</span><br>
+            <input type="radio" name="p17" id="p17" th:value="d" th:field="*{p17}"><span>d- Nolly</span><br>
+        </div>
+        <div class="pregunta">
+            <b>18)</b>
+            <p>The first teacher is _______</p>
+            <input type="radio" name="p18" id="p18" th:value="a" th:field="*{p18}"><span>a- Mrs Lin</span><br>
+            <input type="radio" name="p18" id="p18" th:value="b" th:field="*{p18}"><span>b- Mrs Taylor</span><br>
+            <input type="radio" name="p18" id="p18" th:value="c" th:field="*{p18}"><span>c- Mrs Sailor</span><br>
+            <input type="radio" name="p18" id="p18" th:value="d" th:field="*{p18}"><span>d- Mrs Smith</span><br>
+        </div>
+        <div class="pregunta">
+            <b>19)</b>
+            <p>Which is the correct classroom?</p>
+            <input type="radio" name="p19" id="p19" th:value="a" th:field="*{p19}"><span>a- 230</span><br>
+            <input type="radio" name="p19" id="p19" th:value="b" th:field="*{p19}"><span>b- 203</span><br>
+            <input type="radio" name="p19" id="p19" th:value="c" th:field="*{p19}"><span>c- 233</span><br>
+            <input type="radio" name="p19" id="p19" th:value="d" th:field="*{p19}"><span>d- 23</span><br>
+        </div>
+        <div class="pregunta">
+            <b>20)</b>
+            <p>Listen and answer: <br>It has _______________ employees.</p>
+            <iframe class="audio" src="https://drive.google.com/file/d/11BVTur0DR3Bj8Lsfpli3nJSjLc5roMdB/preview" width="640" height="480" allow="autoplay"></iframe><br>
+            <input type="radio" name="p20" id="p20" th:value="a" th:field="*{p20}"><span>a-100</span><br>
+            <input type="radio" name="p20" id="p20" th:value="b" th:field="*{p20}"><span>b- 110</span><br>
+            <input type="radio" name="p20" id="p20" th:value="c" th:field="*{p20}"><span>c- 10000</span><br>
+            <input type="radio" name="p20" id="p20" th:value="d" th:field="*{p20}"><span>d- 1000</span><br>
+        </div>
+
+        <input id="boton" type="submit" value="FINALIZAR">
     </form>
+    </div>
     <script>
         let minadd = 45;
         let countDownDate = new Date().getTime() + minadd * 60000;
@@ -356,7 +419,8 @@
 
     </script>
 
-    </div>
+    
+    <footer th:replace="/navfoo :: footing"></footer>
 </body>
 
 </html>

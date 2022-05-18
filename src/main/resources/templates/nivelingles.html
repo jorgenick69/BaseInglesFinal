@@ -5,10 +5,11 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Ingles IT</title>
     </head>
 
     <body>
+        <nav th:replace="/navfoo :: naving"></nav>
         <link
            
             rel="stylesheet">
@@ -19,6 +20,11 @@
                         *{
                             font-family: 'Montserrat', sans-serif !important;
                         }
+                        body{
+                            display: flex;
+                            flex-direction: column;
+                        }
+
                         form {
                             display: flex;
                             flex-direction: column;
@@ -142,6 +148,10 @@
                             align-content: center;
                             gap: 10px;
                         }
+                        .terminos-nivel div,.nivel-nulo div,.nivel-basico div,.nivel-intermedio div,.nivel-avanzado div{
+                            display: flex;
+                            gap: 5px;
+                        }
                         .choice{
                             margin-top: 1em;
                             margin-bottom: 1em;
@@ -222,9 +232,9 @@
                         <label class="choice " id="choice" for="">Nivel de inglés (tu valoración)</label>
                         <div class="div-nilvel-ingles">
                             <div class="terminos-nivel">
-                                <label for="i_nivel_oral">ORALIDAD</label>
-                                <label for="i_nivel_escrito">ESCRITURA</label>
-                                <label for="i_nivel_lectura">LECTURA</label>
+                                <label for="i_nivel_oral">ORALIDAD:&nbsp;&nbsp;</label>
+                                <label for="i_nivel_escrito">ESCRITURA:&nbsp;&nbsp;</label>
+                                <label for="i_nivel_lectura">LECTURA:&nbsp;&nbsp;</label>
                             </div>
                             <div class="nivel-nulo">
                                 <div><Span>NULO</Span><input type="radio" name="i_nivel_oral" id="i_nivel_oral"
@@ -339,6 +349,8 @@
 
                         <input class="bt-continuar " type="submit" value="continuar" />
                     </form>
+            </div>
+                    <footer th:replace="/navfoo :: footing"></footer>
                     <script>
                         var i_uso_t_situacion = document.getElementById("i_uso_t_situacion");
                         var label_i_uso_t_situacion_otro = document.getElementById("label_i_uso_t_situacion_otro");
@@ -406,7 +418,7 @@
 
 
                     </script>
-
+  
                     </body>
 
                     </html>

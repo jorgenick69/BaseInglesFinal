@@ -105,7 +105,9 @@ IngresanteSpecification ingresanteSpecification;
     public Ingresante guardarDDuros(Ingresante ingresante) {
         Ingresante modificado = findIngresanteById(ingresante.getId());
 
+        modificado.setMail(ingresante.getMail());
         modificado.setTDoc(ingresante.getTDoc());
+        modificado.setCelu(ingresante.getCelu());
         modificado.setFNacimiento(ingresante.getFNacimiento());
         modificado.setGenero(ingresante.getGenero());
         modificado.setNacionalidad(ingresante.getNacionalidad());

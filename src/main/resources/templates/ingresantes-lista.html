@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap demo</title>
+   
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Ingles IT</title>
    
     <script>
      
@@ -191,7 +191,7 @@
     }
     .mensaje-de-advertencia {
                 position: absolute;
-                top: 20px;
+                top: 200px;
                 left: 10px;
                 text-align: left !important;
                 padding: 1em;
@@ -206,16 +206,19 @@
 
 
 <body>
+    <nav th:replace="/navfoo :: naving"></nav>
     <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
         th:text="${mensaje}">error inesperado</span>
   <div  id="cargando" th:replace="/loader :: loading">  </div>
   <section id="despues" >
+    <br><br>
     <h1 class="titulo-listado">Listado de Ingresantes</h1>
   
 
    <!-- Exportar la lista</a> -->
     <!-- <a th:href="@{/exportar?format=xlsx}">Volver</a> -->
     <p th:text="${cantidadRegistros}" hidden id="contadorFinal"></p>
+  
     <div th:replace="/estadisticas :: estadistics"></div>
 
     <a class="icono-excel no" id="icono-excel" th:href="@{/admin/exportar(query=${quer},desde=${des},hasta=${has},genero=${gen},encuesta=${enc},examen=${exam})}+'&format=xlsx'"><img th:src="@{/img/icon/icons8-export-excel-100.png}" alt=""><span>EXPORTAR</span></a>
@@ -389,6 +392,7 @@
             document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
         }, 10000);
 </script>
+<footer th:replace="/navfoo :: footing"></footer>
 </body>
 
 </html>

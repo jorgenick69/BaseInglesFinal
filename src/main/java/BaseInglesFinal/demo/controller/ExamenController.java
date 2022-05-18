@@ -34,15 +34,25 @@ public class ExamenController {
     
 
     @PostMapping("/save")
-    public String save(Examen examen) {
-       Examen examenNew=new Examen();
+    public String save(Examen examen, Long id_ingresante,Model model) {
+        Ingresante previo=is.findIngresanteById(id_ingresante);
+        System.out.println(previo.getI_examen().toString());
+        if (previo.getI_examen()==false) {
+             Examen examenNew=new Examen();
        examenNew =es.evaluar(examen);
-       examenNew=es.save(examenNew);
-        Ingresante busqueda=is.findIngresanteById(examenNew.getId_ingresante());
-       busqueda.setExamen(examen);
-       busqueda.setI_examen(true);
-       is.saveIngresante(busqueda);
-        return "Finalizo con exito espere noticias";
+       examenNew.setId_ingresante(id_ingresante);
+       examenNew=es.save(examenNew);      
+       previo.setExamen(examenNew);
+       previo.setI_examen(true);
+       is.saveIngresante(previo);
+       model.addAttribute("usu", previo.getNombre()+" " +previo.getApellido());
+        return "finalizado";
+        }else{
+        
+        model.addAttribute("usu", previo.getNombre()+" " +previo.getApellido());
+         return "finalizado";
+        }
+       
     }
     
    @GetMapping("/delete")

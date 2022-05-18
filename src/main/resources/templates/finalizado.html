@@ -12,13 +12,13 @@
     <nav th:replace="/navfoo :: naving"></nav>
   
     <div class="cuerpoadvertencia">
-        <img th:src="@{/img/fondo1.png}" alt="">
+        <img class="img" th:src="@{/img/fondo1.png}" alt="">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
             *{
                 font-family: 'Montserrat', sans-serif !important;
             }
-            .cuerpoadvertencia img{
+            .img{
                 position: absolute;
                 width: 100%;
                 height: 100%;
@@ -66,28 +66,34 @@
                 text-align: center;
                 font-family: 'Montserrat', sans-serif;
                 padding: 1em;
+                justify-content: center;
             }
             h1,h2,h3,h4{
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 400;
             }
+            .listo{
+                width: 50px;
+                margin: auto;
+            }
+            h2{
+                font-size: x-large;
+            }
+            h3{
+                font-size:large;
+            }
         </style>
         <!-- no borrar formulario -->
-        <form class="myForm" th:action="@{/ingresante/realizar-examen}" method="post" id="myForm"
-            th:object="${ingresante}">
-
-            <input type="number" name="id" id="id" th:field="*{id}" required hidden readonly />
-            <input type="submit" value="" id="continuar" hidden="true">
-        </form>
+       
         <div class="titulos">
-            <h1>A continuación realizara el examen</h1>
-            <h2>Advertencia solo cuenta con un intento y con un tiempo limite de </h2>
-            <h2>45 minutos</h2>
-            <h3>Si desea realizarlo ahora haga click en si en caso de querer realizarlo mas tarde haga click en cancelar
-                todos sus datos ya fueron almacenados solo tendra que realizar el examen</h3>
+            <h1 th:text="${usu}">Jorge martin Dominguez Diaz</h1>
+            <h2>¡Muchas Gracias!</h2>
+            <h3>Has Finalizado todas las intancias preliminares</h3>
+           <img class="listo" th:src="@{/img/icon/checked.png}" alt="">
+            <h3>Proximamente tendras Noticias</h3>
             <div>
-                <button id="boton"><label for="continuar">Continuar</label></button>
-            <button id="boton"><a th:href="@{/ingresante/consulta}"><span>Cancelar</span></a></button>
+                
+            <button id="boton"><a th:href="@{/ingresante/consulta}"><span>SALIR</span></a></button>
             </div>
         </div>
     </div>

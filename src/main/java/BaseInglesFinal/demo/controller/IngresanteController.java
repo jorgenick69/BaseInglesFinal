@@ -120,6 +120,8 @@ public class IngresanteController {
     @PostMapping("/realizar-examen")
     public String saveNivel(Ingresante ingresante, Model model) {
         Ingresante ingre = is.findIngresanteById(ingresante.getId());
+        System.out.println("El examen esssssss " +ingre.getI_examen() );
+       if(ingre.getI_examen()==false){
         Examen exa = new Examen();
         exa.setApellido(ingre.getApellido());
         exa.setNombre(ingre.getNombre());
@@ -128,8 +130,14 @@ public class IngresanteController {
         ingre.setExamen(es.save(exa));
         ingre = is.saveIngresante(ingre);
         model.addAttribute("examen", ingre.getExamen());
-
         return "new_examen";
+       }else{
+        model.addAttribute("usu", ingre.getNombre()+" " +ingre.getApellido());
+         return "finalizado";
+       
+       }
+        
+        
     }
     
 

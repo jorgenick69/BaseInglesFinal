@@ -8,7 +8,7 @@
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/x.css}">
-    <title>Document</title>
+    <title>Ingles IT</title>
     <script>
         document.getElementById("contenedor").setAttribute("style", "display: none")
         
@@ -27,6 +27,7 @@
 </head>
 
 <body>
+    <nav th:replace="/navfoo :: naving"></nav>
     <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
         th:text="${mensaje}">error inesperado</span>
     <div id="cargando" th:replace="/loader :: loading"> </div>
@@ -274,7 +275,7 @@
                 max-width: 80%;
                 font-size: 1.25rem;
                 font-weight: 700;
-                text-overflow: ellipsis;
+               
                 white-space: nowrap;
                 cursor: pointer;
                 display: inline-block;
@@ -294,7 +295,7 @@
             .iborrainputfile {
                 font-size: 16px;
                 font-weight: normal;
-                font-family: 'Lato';
+                
             }
 
             .inputfile-5+label {
@@ -397,15 +398,46 @@
                     width: 95%;
                 }
             }
-
+       .titulacion{
+           width: 100%;
+           padding: 2em;
+           display: flex;
+           flex-direction: column;
+           gap: 30px;
+           justify-content: center;
+           align-items: center;
+           align-content: center;
+           text-align: center;
+           
+       }
+       .titulacion h1,.titulacion h3{
+        font-weight: 400;
+        display: flex;
+        flex-wrap: wrap;
+       }
+       .mensaje-de-advertencia {
+                position: absolute;
+                top: 200px;
+                left: 10px;
+                text-align: left !important;
+                padding: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background-color: #fcda59;
+                border-radius: 5px;
+            }
+            
+      
             
         </style>
 
         <div class="container">
 
-            <h1>Panel de administración de Ingresantes</h1>
+            <div class="titulacion">
+                <h1>Panel de administración de Ingresantes</h1>
 
             <h3>Desde aquí podras administrar toda la información</h3>
+            </div>
 
             <div class="contenedor-acciones">
                 <div class="acciones-ingresante">
@@ -565,6 +597,7 @@
     <div class="boton-volver">
         <button class="secondary-btn reescalar"><a th:href="@{/admin}"><span>VOLVER</span></a></button>
     </div>
+    <footer th:replace="/navfoo :: footing"></footer>
 <script>
     document.getElementById("acciones-agregar").setAttribute("style", "display: none")
         document.getElementById("acciones-exportar").setAttribute("style", "display: none")

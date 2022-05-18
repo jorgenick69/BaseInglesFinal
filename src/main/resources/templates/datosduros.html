@@ -8,10 +8,11 @@
 
 
 
-  <title>Document</title>
+  <title>Ingles IT</title>
 </head>
 
 <body>
+  <nav th:replace="/navfoo :: naving"></nav>
   <div class="cuerpoformulario1 ">
     <img class="cuerpo-formulario1-img" th:src="@{/img/fondo2.png}" alt="">
     <style>
@@ -189,7 +190,7 @@
       <input type="text" name="numDoc" id="numDoc" th:field="*{numDoc}" readonly required />
 
       <label for="mail">Mail</label>
-      <input type="email" name="mail" id="mail" th:field="*{mail}" readonly />
+      <input type="email" name="mail" id="mail" th:field="*{mail}" />
 
       <label for="celu">Ingrese Celular:</label>
       <input type="number" name="celu" id="celu" th:field="*{celu}" required />
@@ -251,7 +252,7 @@
       <input id="bt-continuar" type="submit" value="Continuar" />
     </form>
   </div>
-  
+  <footer th:replace="/navfoo :: footing"></footer>
   <script>
     document.getElementById("localidad").classList.add("no");
     document.getElementById("barrio").classList.add("no");

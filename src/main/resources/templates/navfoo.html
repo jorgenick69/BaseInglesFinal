@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ingles IT</title>
+</head>
+
+<body>
+
+    <nav class="nav-ingresante" th:fragment="naving">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .nav-ingresante {
+                background-color: #fdd306;
+                display: flex;
+                width: 100vw;
+                height: 109.86px;
+                overflow: hidden;
+                justify-content: space-between;
+                align-items: center;
+            }
+            #logoagencia{
+            margin-left: 2em;
+            height: 60%;
+            }
+            #logo-ingles {
+            margin-right: 2em;
+            height: 60%;
+            }
+
+        </style>
+        <img id="logoagencia" th:src="@{/img/logos/buenosairesyagencia.png}" alt="logo-nav">
+        <img id="logo-ingles" th:src="@{/img/IPET-IT-logo.png}" alt="logo-nav">
+    
+    </nav>
+
+        <footer th:fragment="footing">
+            <script th:src="@{https://code.iconify.design/2/2.2.1/iconify.min.js}"></script>
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Montserrat', sans-serif;
+                }
+
+                footer {
+                    background-color: #333;
+                    display: flex;
+                    width: 100vw;
+                    overflow: hidden;
+                    justify-content: center;
+
+                }
+
+                .contenedor-fot-prin {
+                    display: flex;
+                    flex-direction: column;
+                    width: 90%;
+
+                    padding: 2em;
+                }
+
+                .fot-sup {
+                    display: flex;
+                    flex-direction: row;
+                    border-bottom: 1px solid white;
+                    width: 100%;
+                    justify-content: space-between;
+                    padding-bottom: 1.5em;
+
+                }
+
+                .logo-ba-fot {
+                    display: flex;
+                    width: 20%;
+                }
+
+                .fot-sup-cont {
+                    display: flex;
+                    flex-direction: column;
+                    width: calc(100% - 25%);
+                    justify-content: space-between;
+                    gap: 25px;
+
+
+                }
+
+                .fot-cont-titulos {
+                    display: flex;
+                    flex-direction: column;
+                    width: 30%;
+                    gap: 10px;
+                    color: white;
+                }
+                .fot-cont-titulos a{
+                    
+                    text-decoration: none;
+                }
+                .fot-cont-titulos a p{
+                    
+                  color: white !important;
+                }
+
+                .fot-cont-tel {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    color: white;
+                }
+
+                .fot-cont-tel div {
+                    width: calc(100% / 7.5);
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    color: white;
+                }
+                .fot-cont-tel div a{
+                    text-decoration: none;
+                }
+                .fot-cont-tel div a span {
+                        font-size:large;
+                        font-weight: bold;
+                        color: white !important;
+                        border-bottom: 1px solid white;                        
+                }
+                .fot-cont-tel div p {
+                        color: #a6a4a4;                 
+                }
+
+                .fot-cont-sup-titulos {
+                    display: flex;
+                    color: white;
+                }
+
+                .fot-cont-inf {
+                    width: 100%;
+                    display: flex;
+                }
+
+                .fot-cont-inf-titulos-redes {
+                    display: flex;
+                    flex-direction: column;
+                    width: 23%;
+                    gap: 10px;
+                    color: white;
+                }
+
+                .fot-cont-inf-redes {
+                    display: flex;
+                    width: 40%;
+                    justify-content: space-between;
+                }
+
+                .fot-cont-inf-redes a:hover {
+                    transform: scale(1.4) rotateY(360grad) !important;
+                    /* transform: rotateY(360grad); */
+                    transition: 0.5s all;
+                }
+
+                .fot-inf {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    padding: 1em;
+                }
+
+                .fot-inf a {
+                    text-decoration: none;
+                }
+
+                .fot-inf a span {
+                    color: white;
+                }
+
+                .fot-inf-div-logo {
+                    width: 42%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                .fot-inf-div-logo p{
+                    color: #a6a4a4;
+                }
+
+                .fot-inf-div-contenido-iz {
+                    display: flex;
+                    width: calc(100% - 50%);
+                    justify-content: space-between;
+                }
+
+                .fot-inf-div-logo p {
+                    display: flex;
+                    width: 80%;
+                    font-size: smaller;
+                }
+
+                .logofo {
+                    width: 45%;
+                }
+
+                @media(max-width: 990px) {
+                    footer {
+                        background-color: #333;
+                        display: flex;
+                        flex-direction: column;
+                        width: 100vw;
+                        overflow: hidden;
+                        justify-content: center;
+
+                    }
+
+                    .contenedor-fot-prin {
+                        display: flex;
+                        flex-direction: column;
+                        width: 90%;
+
+                        padding: 2em;
+                    }
+
+                    .fot-sup {
+                        display: flex;
+                        flex-direction: column;
+                        border-bottom: 1px solid white;
+                        width: 100%;
+                        justify-content: space-between;
+                        padding-bottom: 1.5em;
+
+                    }
+
+                    .logo-ba-fot {
+                        display: flex;
+                        flex-direction: column;
+                        width: 20%;
+                    }
+
+                    .fot-sup-cont {
+                        display: flex;
+                        flex-direction: column;
+                        width: calc(100% - 25%);
+                        justify-content: space-between;
+                        gap: 25px;
+
+
+                    }
+
+                    .fot-cont-titulos {
+                        display: flex;
+                        flex-direction: column;
+                        width: 30%;
+                        gap: 10px;
+                    }
+
+                    .fot-cont-tel {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        justify-content: space-between;
+                    }
+                    
+
+                    .fot-cont-tel div {
+                        width: calc(100% / 7.5);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+
+                    }
+                    .fot-cont-sup-titulos {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .fot-cont-inf {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+
+                    .fot-cont-inf-titulos-redes {
+                        display: flex;
+                        flex-direction: column;
+                        width: 23%;
+                        gap: 10px;
+                    }
+
+                    .fot-cont-inf-redes {
+                        display: flex;
+                        flex-direction: column;
+                        width: 40%;
+                        gap: 20px;
+                    }
+
+                    .fot-inf {
+                        display: flex;
+                        flex-direction: column;
+
+                        padding: 0;
+                        padding-top: 1em;
+                        gap: 20px;
+                    }
+
+                    .fot-inf a {
+                        text-decoration: none;
+                    }
+
+                    .fot-inf a span {
+                        color: white;
+                    }
+
+                    .fot-inf-div-logo {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+
+                    .fot-inf-div-contenido-iz {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        width: 100%;
+                    }
+
+                    .fot-inf-div-logo p {
+                        display: flex;
+                        flex-direction: column;
+                        width: 80%;
+                        font-size: smaller;
+                    }
+
+                    .logofo {
+                        width: 45%;
+                    }
+                }
+            </style>
+            <div class="contenedor-fot-prin">
+                <div class="fot-sup">
+                    <div class="logo-ba-fot">
+                        <a href="http://www.buenosaires.gob.ar/" target="blank">
+                            <img th:src="@{/img/logos/ba_vamosba_blanco.png}"
+                                alt="Logo Vamos Buenos Aires">
+                        </a>
+                    </div>
+                    <div class="fot-sup-cont">
+                        <div class="fot-cont-sup-titulos">
+                            <div class="fot-cont-titulos">
+                                <p>Teléfonos útiles</p>
+                                <a href="https://www.buenosaires.gob.ar/laciudad/telefonosutiles" target="blank">
+                                    <p>Ver todos los teléfonos</p>
+                                </a>
+                            </div>
+                            <div class="fot-cont-tel">
+                                <div>
+                                    <a href="tel:102" target="blank"><span>102</span></a>
+                                    <p>Niñez y Adolescencia</p>
+                                </div>
+                                <div>
+                                    <a href="tel:103" target="blank"><span>103</span></a>
+                                    <p>Emergencias</p>
+                                </div>
+                                <div>
+                                    <a href="tel:107" target="blank"><span>107</span></a>
+                                    <p>SAME</p>
+                                </div>
+                                <div>
+                                    <a href="tel:911" target="blank"><span>911</span></a>
+                                    <p>Policía</p>
+                                </div>
+                                <div>
+                                    <a href="tel:147" target="blank"><span>147</span></a>
+                                    <p>Atención ciudadana</p>
+                                </div>
+                                <div>
+                                    <a href="tel:144" target="blank"><span>144</span></a>
+                                    <p>Violencia de género</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="fot-cont-inf">
+                            <div class="fot-cont-inf-titulos-redes">
+                                <p>Redes de la Ciudad</p>
+                            </div>
+                            <div class="fot-cont-inf-redes">
+                                <a href="https://www.facebook.com/GCBA/" target="blank">
+                                    <i class="iconify" id="face" data-icon="gg:facebook"
+                                        style="color: white; width: 25px;height: 25px;"></i>
+                                </a>
+                                <a href="https://twitter.com/gcba" target="blank">
+                                    <i class="iconify" data-icon="ant-design:twitter-outlined"
+                                        style="color: white;width: 25px;height: 25px;"></i>
+                                </a>
+                                <a href="https://www.instagram.com/buenosaires/" target="blank">
+                                    <i class="iconify" data-icon="bi:instagram"
+                                        style="color: white;width: 25px;height: 25px;"></i>
+                                </a>
+                                <a href="https://www.youtube.com/user/GCBA" target="blank">
+                                    <i class="iconify" data-icon="fa:youtube"
+                                        style="color: white;width: 25px;height: 25px;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fot-inf">
+                    <div class="fot-inf-div-logo">
+                        <a href="http://www.buenosaires.gob.ar/" target="blank">
+                            <img th:src="@{/img/logos/ciudad-ba.png}" class="logofo"
+                                alt="Logo Buenos Aires Ciudad">
+                        </a>
+                        <p>Los contenidos de buenosaires.gob.ar están licenciados bajo Creative Commons Reconocimiento
+                            2.5
+                            Argentina License.</p>
+                    </div>
+                    <div class="fot-inf-div-contenido-iz">
+                        <a href="https://boletinoficial.buenosaires.gob.ar/" target="blank"><span>Boletín
+                                Oficial</span></a>
+                        <a href="https://www.buenosaires.gob.ar/innovacion/ciudadinteligente/terminos-y-condiciones"
+                            target="blank"><span>Términos y condiciones</span></a>
+                        <a href="https://www.buenosaires.gob.ar/privacidad" target="blank"><span>Política de
+                                Privacidad</span></a>
+                        <a href="https://www.buenosaires.gob.ar/oficiosjudiciales" target="blank"><span>Oficios
+                                judiciales</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>

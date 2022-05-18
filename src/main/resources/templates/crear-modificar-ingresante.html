@@ -8,7 +8,7 @@
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/x.css}">
-    <title>Document</title>
+    <title>Ingles IT</title>
     <script>
         document.getElementById("contenedor").setAttribute("style", "display: none")
         
@@ -27,6 +27,7 @@
 </head>
 
 <body>
+    <nav th:replace="/navfoo :: naving"></nav>
     <span class="mensaje-de-advertencia" id="mensaje-de-advertencia" th:if="${mensaje != null}"
         th:text="${mensaje}">error inesperado</span>
     <div id="cargando" th:replace="/loader :: loading"> </div>
@@ -404,7 +405,7 @@
 
             .mensaje-de-advertencia {
                 position: absolute;
-                top: 20px;
+                top: 200px;
                 left: 10px;
                 text-align: left !important;
                 padding: 1em;
@@ -413,14 +414,17 @@
                 background-color: #fcda59;
                 border-radius: 5px;
             }
+            .container h1, .container h3{
+                font-weight: 400;
+            }
         </style>
-
+<br>
         <div class="container">
-
+   <br><br>
             <h1>Panel de administración de Ingresantes</h1>
-
+            <br><br>
             <h3>Desde aquí podras administrar toda la información</h3>
-
+            <br><br>
             <div class="contenedor-acciones">
                 <div class="acciones-ingresante">
                   <button id="createIngre" onclick="createIngre()">Modificar Ingresante</button>
@@ -526,7 +530,7 @@
             document.getElementById("mensaje-de-advertencia").setAttribute("style", "display: none")
         }, 10000);
     </script>
-    
+    <footer th:replace="/navfoo :: footing"></footer>
 </body>
 
 

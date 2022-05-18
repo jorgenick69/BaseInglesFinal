@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+
+
+
+<body>
+    <style>
+        .tipodeeror {
+            font-size: xx-large;
+        }
+
+        .mensajeerror {
+            font-size: xx-large;
+        }
+
+        .exeptionerror {
+            font-size: xx-large;
+        }
+
+        .div-error {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imagen-error {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .boton-volver{
+                margin-top: 30px;
+                margin-bottom: 30px;
+                display: flex;
+                width: 100%;
+                gap: 40px;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+              
+            }
+             .reescalar:hover{
+                 transform: scale(1.2);
+                 transition: all 0.5s;
+             }
+            .secondary-btn {
+                padding: 2em;
+                padding-left: 2em;
+                padding-right: 2em;
+                background: none;
+                border: none;
+                color: white;
+                background-color: #f39c12;
+                border-radius: 5px;
+                box-shadow: 0 0 8px #c5c5c5;
+            }
+            .secondary-btn a {
+               text-decoration: none;
+            }
+            .secondary-btn span {
+                font-size: xx-large;
+                color: white !important;
+            }
+
+    </style>
+    <nav th:replace="/navfoo :: naving"></nav>
+
+    <div class="div-error">
+        <h4 class="tipodeeror" th:text="${error}">Internal Server Error</h4>
+        
+
+       
+        <div class="boton-volver">
+            <button class="secondary-btn reescalar"><a  th:href="@{/ingresante/consulta}"><span>VOLVER</span></a></button>
+        </div>
+        <img class="imagen-error" th:src="@{/img/error-no-es-fracaso.jpg}" alt="">
+    </div>
+
+    <span class="mensajeerror" th:text="${message}">Message</span><br />
+    <span class="exeptionerror" th:text="${exception}">Trace </span><br />
+
+
+    <footer th:replace="/navfoo :: footing"></footer>
+</body>
+
+</html>
